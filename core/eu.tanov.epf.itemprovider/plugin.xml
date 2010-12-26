@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.epf.library.edit.adapterFactories">
+      <factory
+            class="eu.tanov.epf.itemprovider.factory.ExtendedItemProviderAdapterFactory"
+            id="library">
+      </factory>
+   </extension>
+
+
+   
+</plugin>
