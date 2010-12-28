@@ -24,6 +24,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.forms.editor.FormEditor;
 
+import eu.tanov.epf.itemprovider.util.MethodPluginHelper;
 import eu.tanov.epf.pv.techniques.util.ExtLibraryManager;
 import eu.tanov.epf.pv.techniques.util.FilteredContentElementOrderList;
 
@@ -205,7 +206,7 @@ public class TechniqueTasksPage extends AssociationFormPage {
 	
 	@Override
 	protected String[] getModelStructurePath() {
-		return ModelStructure.DEFAULT.domainPath;
+		return MethodPluginHelper.TECHNIQUES_PATH;
 	}
 	
 	@Override

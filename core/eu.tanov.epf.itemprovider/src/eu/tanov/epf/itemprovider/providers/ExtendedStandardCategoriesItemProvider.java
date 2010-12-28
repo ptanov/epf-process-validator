@@ -22,7 +22,9 @@ import org.eclipse.epf.uma.Element;
 import org.eclipse.epf.uma.MethodPlugin;
 import org.eclipse.epf.uma.util.UmaUtil;
 
-public class ExtendedStandardCategoriesItemProvider extends StandardCategoriesItemProvider{
+import eu.tanov.epf.itemprovider.util.MethodPluginHelper;
+
+public class ExtendedStandardCategoriesItemProvider extends StandardCategoriesItemProvider {
 	private ArrayList children;
 
 	private Map groupItemProviderMap;
@@ -57,10 +59,11 @@ public class ExtendedStandardCategoriesItemProvider extends StandardCategoriesIt
 
 			}
 
+			MethodPluginHelper.createContentPackages(plugin, MethodPluginHelper.TECHNIQUES_PATH);
 			contentPkg = UmaUtil.findContentPackage(plugin,
-					ModelStructure.DEFAULT.domainPath);
+					MethodPluginHelper.TECHNIQUES_PATH);
 			if (contentPkg != null) {
-				name = "Discipline2"; //$NON-NLS-1$
+				name = "Techniques"; //$NON-NLS-1$
 				child = new TechniquesCategoryItemProvider(adapterFactory,
 						contentPkg, name);
 				child.setParent(this);

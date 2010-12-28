@@ -4,12 +4,16 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.epf.library.edit.command.IActionManager;
-import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.library.util.LibraryManager;
 import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.Task;
 import org.eclipse.epf.uma.UmaPackage;
 
+import eu.tanov.epf.itemprovider.util.MethodPluginHelper;
+
+/**
+ * TODO do not use this... Create helper instead
+ */
 public class ExtLibraryManager extends LibraryManager {
 	private static ExtLibraryManager instance = null;
 
@@ -39,14 +43,14 @@ public class ExtLibraryManager extends LibraryManager {
 		return (CustomCategory) addToCategory(actionMgr, discipline, task,
 				 UmaPackage.eINSTANCE
 					.getCustomCategory_CategorizedElements(),
-				ModelStructure.DEFAULT.domainPath, true, usedCategories);
+					MethodPluginHelper.TECHNIQUES_PATH, true, usedCategories);
 	}
 	
 	public boolean removeFromTechnique(IActionManager actionMgr,
 			CustomCategory discipline, Task task, List usedCategories) {
 		EStructuralFeature feature = UmaPackage.eINSTANCE.getCustomCategory_CategorizedElements();
 		return removeFromCategory(actionMgr, discipline, task, feature,
-				ModelStructure.DEFAULT.domainPath, usedCategories);
+				MethodPluginHelper.TECHNIQUES_PATH, usedCategories);
 	}
 
 
