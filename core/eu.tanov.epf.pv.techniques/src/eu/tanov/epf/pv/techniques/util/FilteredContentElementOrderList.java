@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.epf.library.edit.util.ContentElementOrderList;
 import org.eclipse.epf.uma.ContentElement;
@@ -45,7 +43,6 @@ public class FilteredContentElementOrderList<T> extends ContentElementOrderList 
 
 	/**
 	 * TODO improve method
-	 * @return
 	 */
 	public T[] toFilteredArray() {
 		final List<T> result;
@@ -55,8 +52,8 @@ public class FilteredContentElementOrderList<T> extends ContentElementOrderList 
 			for (Object next : (List<?>)object) {
 				if (acceptOnlyType.isInstance(next)) {
 					@SuppressWarnings("unchecked")
-					final T next2 = (T)next;
-					result.add(next2);
+					final T casted = (T)next;
+					result.add(casted);
 				}
 			}
 		} else if (object == null) {
@@ -67,18 +64,6 @@ public class FilteredContentElementOrderList<T> extends ContentElementOrderList 
 		@SuppressWarnings("unchecked")
 		final T[] castedResult = (T[]) result.toArray();
 		return castedResult;
-	}
-	
-	private EList eGet() {
-		EList list = null;
-		Object object = editElement.eGet(feature);
-		if (object instanceof EList) {
-			list = (EList) object;
-		}
-		if (list == null) {
-			list = new BasicEList();
-		}
-		return list;
 	}
 
 }
