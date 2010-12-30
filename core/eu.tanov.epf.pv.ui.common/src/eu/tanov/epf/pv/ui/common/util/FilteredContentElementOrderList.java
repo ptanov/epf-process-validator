@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.ui.techniques.util;
+package eu.tanov.epf.pv.ui.common.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,8 +18,6 @@ public class FilteredContentElementOrderList<T> extends ContentElementOrderList 
 	 * always CONTENT_ELEMENTS__FOR_ELEMENT_ONLY
 	 */
 	protected final boolean mixed = false;
-	
-
 
 	/**
 	 * why is private in ContentElementOrderList?
@@ -32,10 +30,9 @@ public class FilteredContentElementOrderList<T> extends ContentElementOrderList 
 
 	private final Class<?> acceptOnlyType;
 
-
 	public FilteredContentElementOrderList(ContentElement contentElement, EStructuralFeature feature, Class<T> acceptOnlyType) {
 		super(contentElement, CONTENT_ELEMENTS__FOR_ELEMENT_ONLY, feature);
-		
+
 		this.feature = feature;
 		this.editElement = contentElement;
 		this.acceptOnlyType = acceptOnlyType;
@@ -49,10 +46,10 @@ public class FilteredContentElementOrderList<T> extends ContentElementOrderList 
 		final Object object = editElement.eGet(feature);
 		if (object instanceof List) {
 			result = new ArrayList<T>();
-			for (Object next : (List<?>)object) {
+			for (Object next : (List<?>) object) {
 				if (acceptOnlyType.isInstance(next)) {
 					@SuppressWarnings("unchecked")
-					final T casted = (T)next;
+					final T casted = (T) next;
 					result.add(casted);
 				}
 			}

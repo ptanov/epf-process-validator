@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.ui.techniques.util;
+package eu.tanov.epf.pv.ui.common.util;
 
 import org.eclipse.epf.authoring.ui.AuthoringUIResources;
 import org.eclipse.epf.uma.ContentElement;
@@ -6,9 +6,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 
-/**
- * TODO move to common plugin
- */
 public class FormHelper {
 	/**
 	 * Helper
@@ -26,7 +23,7 @@ public class FormHelper {
 	 * Hack to remove last added listener - because AssociationFormPage.addListeners() adds wrong listeners that changes title
 	 * with bad value and title blinks - this method helps in avoiding this blinking
 	 * 
-	 * XXX how to replace safely listeners and keep custom title? 
+	 * XXX how to replace safely listeners and keep custom title?
 	 * 
 	 * @param expectedListenerType
 	 *            to be sure that we remove right listener

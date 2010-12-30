@@ -16,8 +16,8 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
+import eu.tanov.epf.pv.ui.common.util.FormHelper;
 import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
-import eu.tanov.epf.pv.ui.techniques.util.FormHelper;
 
 public class TechniqueDescriptionPage extends CustomCategoryDescriptionPage {
 	private static final String classNameForFormTitle = TechniquesUIResources.technique_text;

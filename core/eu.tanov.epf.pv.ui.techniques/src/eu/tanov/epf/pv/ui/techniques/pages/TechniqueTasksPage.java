@@ -5,6 +5,7 @@ import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.Task;
 import org.eclipse.ui.forms.editor.FormEditor;
 
+import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
 import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
 import eu.tanov.epf.pv.ui.techniques.provider.TechniquesCategoryItemProvider;
 
