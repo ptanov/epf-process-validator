@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.techniques.pages;
+package eu.tanov.epf.pv.ui.techniques.pages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.techniques.util.FilteredContentElementOrderList;
-import eu.tanov.epf.pv.techniques.util.FormHelper;
+import eu.tanov.epf.pv.ui.techniques.util.FilteredContentElementOrderList;
+import eu.tanov.epf.pv.ui.techniques.util.FormHelper;
 
 public abstract class AbstractCustomCategoryPage<T extends DescribableElement> extends AssociationFormPage {
 

@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.techniques.extension;
+package eu.tanov.epf.pv.ui.techniques.extension;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.epf.library.edit.ILibraryItemProvider;
@@ -6,8 +6,8 @@ import org.eclipse.epf.uma.ContentPackage;
 
 import eu.tanov.epf.itemprovider.extension.AbstractExtendedItemProvider;
 import eu.tanov.epf.itemprovider.extension.ExtendedItemProvider;
-import eu.tanov.epf.pv.techniques.i18n.TechniquesUIResources;
-import eu.tanov.epf.pv.techniques.provider.TechniquesCategoryItemProvider;
+import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.ui.techniques.provider.TechniquesCategoryItemProvider;
 
 public class TechniquesExtendedItemProvider extends AbstractExtendedItemProvider implements ExtendedItemProvider {
 

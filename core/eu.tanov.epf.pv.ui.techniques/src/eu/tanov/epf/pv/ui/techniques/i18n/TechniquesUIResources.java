@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.techniques.i18n;
+package eu.tanov.epf.pv.ui.techniques.i18n;
 
 import org.eclipse.osgi.util.NLS;
 

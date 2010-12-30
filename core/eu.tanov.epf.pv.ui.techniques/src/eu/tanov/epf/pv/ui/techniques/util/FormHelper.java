@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.techniques.util;
+package eu.tanov.epf.pv.ui.techniques.util;
 
 import org.eclipse.epf.authoring.ui.AuthoringUIResources;
 import org.eclipse.epf.uma.ContentElement;

@@ -4,13 +4,13 @@
    <extension
          point="org.eclipse.epf.authoring.ui.MethodElementEditorPageProviders">
       <editorPage
-            class="eu.tanov.epf.pv.techniques.extension.TechniquePageProviderExtension">
+            class="eu.tanov.epf.pv.ui.techniques.extension.TechniquePageProviderExtension">
       </editorPage>
    </extension>
    <extension
          point="eu.tanov.epf.itemprovider.StandardCategoriesItemProviders">
       <provider
-            class="eu.tanov.epf.pv.techniques.extension.TechniquesExtendedItemProvider"
+            class="eu.tanov.epf.pv.ui.techniques.extension.TechniquesExtendedItemProvider"
             id="techniques">
       </provider>
    </extension>

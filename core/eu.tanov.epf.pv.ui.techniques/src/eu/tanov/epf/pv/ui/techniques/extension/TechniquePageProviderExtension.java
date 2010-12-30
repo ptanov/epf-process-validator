@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.techniques.extension;
+package eu.tanov.epf.pv.ui.techniques.extension;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -8,11 +8,11 @@ import org.eclipse.epf.authoring.ui.forms.CustomCategoryDescriptionPage;
 import org.eclipse.epf.authoring.ui.providers.IMethodElementEditorPageProviderExtension;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.techniques.pages.TechniqueDescriptionPage;
-import eu.tanov.epf.pv.techniques.pages.TechniqueGuidancePage;
-import eu.tanov.epf.pv.techniques.pages.TechniqueTasksPage;
-import eu.tanov.epf.pv.techniques.pages.TechniqueWorkProductsPage;
-import eu.tanov.epf.pv.techniques.util.TechniquesHelper;
+import eu.tanov.epf.pv.ui.techniques.pages.TechniqueDescriptionPage;
+import eu.tanov.epf.pv.ui.techniques.pages.TechniqueGuidancePage;
+import eu.tanov.epf.pv.ui.techniques.pages.TechniqueTasksPage;
+import eu.tanov.epf.pv.ui.techniques.pages.TechniqueWorkProductsPage;
+import eu.tanov.epf.pv.ui.techniques.util.TechniquesHelper;
 
 public class TechniquePageProviderExtension implements IMethodElementEditorPageProviderExtension {
 

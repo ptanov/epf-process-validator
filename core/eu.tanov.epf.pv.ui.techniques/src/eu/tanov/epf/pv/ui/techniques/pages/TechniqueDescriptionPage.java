@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.techniques.pages;
+package eu.tanov.epf.pv.ui.techniques.pages;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epf.authoring.ui.editors.MethodElementEditor;
@@ -16,8 +16,8 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.techniques.i18n.TechniquesUIResources;
-import eu.tanov.epf.pv.techniques.util.FormHelper;
+import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.ui.techniques.util.FormHelper;
 
 public class TechniqueDescriptionPage extends CustomCategoryDescriptionPage {
 	private static final String classNameForFormTitle = TechniquesUIResources.technique_text;

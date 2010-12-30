@@ -1,12 +1,12 @@
-package eu.tanov.epf.pv.techniques.pages;
+package eu.tanov.epf.pv.ui.techniques.pages;
 
 import org.eclipse.epf.authoring.ui.AuthoringUIText;
 import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.Task;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.techniques.i18n.TechniquesUIResources;
-import eu.tanov.epf.pv.techniques.provider.TechniquesCategoryItemProvider;
+import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.ui.techniques.provider.TechniquesCategoryItemProvider;
 
 public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
 	private static final String FORM_PAGE_ID = "techniqueTasksPage"; //$NON-NLS-1$	

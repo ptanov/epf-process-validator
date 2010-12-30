@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.techniques.pages;
+package eu.tanov.epf.pv.ui.techniques.pages;
 
 import org.eclipse.epf.authoring.ui.forms.ContentElementGuidancePage;
 import org.eclipse.epf.library.edit.util.TngUtil;
@@ -8,8 +8,8 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.techniques.i18n.TechniquesUIResources;
-import eu.tanov.epf.pv.techniques.util.FormHelper;
+import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.ui.techniques.util.FormHelper;
 
 public class TechniqueGuidancePage extends ContentElementGuidancePage {
 	private static final String classNameForFormTitle = TechniquesUIResources.technique_text;

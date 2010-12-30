@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.techniques.util;
+package eu.tanov.epf.pv.ui.techniques.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
