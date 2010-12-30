@@ -1,36 +1,23 @@
 package eu.tanov.epf.itemprovider.providers.standardcategories;
 
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.epf.library.edit.ILibraryItemProvider;
-import org.eclipse.epf.library.edit.LibraryEditPlugin;
 import org.eclipse.epf.library.edit.category.DomainsItemProvider;
 import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.uma.ContentPackage;
-import org.eclipse.epf.uma.Element;
-import org.eclipse.epf.uma.MethodPlugin;
-import org.eclipse.epf.uma.util.UmaUtil;
 
+import eu.tanov.epf.itemprovider.extension.AbstractExtendedItemProvider;
 import eu.tanov.epf.itemprovider.extension.ExtendedItemProvider;
 
-public class DomainsExtendedItemProvider implements ExtendedItemProvider {
+public class DomainsExtendedItemProvider extends AbstractExtendedItemProvider implements ExtendedItemProvider {
+
+	public DomainsExtendedItemProvider() {
+		super(ModelStructure.DEFAULT.domainPath, "_UI_Domains_group");
+	}
 
 	@Override
-	public void provide(Object object, List<ILibraryItemProvider> children,
-			Map<String, ILibraryItemProvider> groupItemProviderMap, AdapterFactory adapterFactory) {
-		final MethodPlugin plugin = UmaUtil.getMethodPlugin((Element) ((ItemProviderAdapter) object).getTarget());
-		// create domain categories folder
-		final ContentPackage contentPkg = UmaUtil.findContentPackage(plugin, ModelStructure.DEFAULT.domainPath);
-		if (contentPkg != null) {
-			final String name = LibraryEditPlugin.INSTANCE.getString("_UI_Domains_group"); //$NON-NLS-1$
-			final ILibraryItemProvider child = new DomainsItemProvider(adapterFactory, contentPkg, name);
-			child.setParent(this);
-			children.add(child);
-			groupItemProviderMap.put(name, child);
-		}
+	protected ILibraryItemProvider createProvider(AdapterFactory adapterFactory, ContentPackage contentPkg, String name) {
+		return new DomainsItemProvider(adapterFactory, contentPkg, name);
 	}
 
 }
