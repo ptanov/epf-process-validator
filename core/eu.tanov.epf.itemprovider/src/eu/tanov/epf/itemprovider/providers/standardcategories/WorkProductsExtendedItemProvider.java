@@ -2,6 +2,7 @@ package eu.tanov.epf.itemprovider.providers.standardcategories;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.epf.library.edit.ILibraryItemProvider;
+import org.eclipse.epf.library.edit.LibraryEditPlugin;
 import org.eclipse.epf.library.edit.category.WorkProductTypesItemProvider;
 import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.uma.ContentPackage;
@@ -12,8 +13,7 @@ import eu.tanov.epf.itemprovider.extension.ExtendedItemProvider;
 public class WorkProductsExtendedItemProvider extends AbstractExtendedItemProvider implements ExtendedItemProvider {
 
 	public WorkProductsExtendedItemProvider() {
-		super(ModelStructure.DEFAULT.workProductTypePath, "_UI_WorkProductTypes_group");
-		// TODO Auto-generated constructor stub
+		super(ModelStructure.DEFAULT.workProductTypePath);
 	}
 
 	@Override
@@ -21,4 +21,8 @@ public class WorkProductsExtendedItemProvider extends AbstractExtendedItemProvid
 		return new WorkProductTypesItemProvider(adapterFactory, contentPkg, name);
 	}
 
+	@Override
+	protected String getCategoryLocalizedName() {
+		return LibraryEditPlugin.INSTANCE.getString("_UI_WorkProductTypes_group");
+	}
 }

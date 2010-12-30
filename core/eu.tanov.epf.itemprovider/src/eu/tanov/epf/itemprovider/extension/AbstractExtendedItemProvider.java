@@ -6,7 +6,6 @@ import java.util.Map;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.epf.library.edit.ILibraryItemProvider;
-import org.eclipse.epf.library.edit.LibraryEditPlugin;
 import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.Element;
 import org.eclipse.epf.uma.MethodPlugin;
@@ -16,11 +15,9 @@ import eu.tanov.epf.itemprovider.util.MethodPluginHelper;
 
 public abstract class AbstractExtendedItemProvider implements ExtendedItemProvider {
 	protected final String[] definitionPath;
-	protected final String nameKey;
 
-	public AbstractExtendedItemProvider(String[] definitionPath, String nameKey) {
+	public AbstractExtendedItemProvider(String[] definitionPath) {
 		this.definitionPath = definitionPath;
-		this.nameKey = nameKey;
 	}
 
 	@Override
@@ -32,7 +29,7 @@ public abstract class AbstractExtendedItemProvider implements ExtendedItemProvid
 
 		final ContentPackage contentPkg = UmaUtil.findContentPackage(plugin, definitionPath);
 		if (contentPkg != null) {
-			final String name = getName();
+			final String name = getCategoryLocalizedName();
 			final ILibraryItemProvider child = createProvider(adapterFactory, contentPkg, name);
 			child.setParent(this);
 			children.add(child);
@@ -43,7 +40,5 @@ public abstract class AbstractExtendedItemProvider implements ExtendedItemProvid
 	protected abstract ILibraryItemProvider createProvider(AdapterFactory adapterFactory, final ContentPackage contentPkg,
 			final String name);
 
-	protected String getName() {
-		return LibraryEditPlugin.INSTANCE.getString(nameKey);
-	}
+	protected abstract String getCategoryLocalizedName();
 }

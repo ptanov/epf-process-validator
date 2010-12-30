@@ -20,6 +20,8 @@ public final class TechniquesUIResources extends NLS {
 	public static String techniqueWorkProductsPage_sectionDescription;
 	public static String techniqueWorkProductsPage_multipleSelectDescription;
 
+	public static String _UI_Techniques_group;
+
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, TechniquesUIResources.class);
 	}
