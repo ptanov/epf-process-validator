@@ -1,6 +1,5 @@
 package eu.tanov.epf.pv.techniques.pages;
 
-import org.eclipse.epf.authoring.ui.AuthoringUIResources;
 import org.eclipse.epf.authoring.ui.AuthoringUIText;
 import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.WorkProduct;
@@ -23,7 +22,7 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 
 	@Override
 	protected String multipleSelectDescription(int count) {
-		return AuthoringUIResources.bind(TechniquesUIResources.techniqueWorkProductsPage_multipleSelectDescription, new Integer(
+		return TechniquesUIResources.bind(TechniquesUIResources.techniqueWorkProductsPage_multipleSelectDescription, new Integer(
 				count));
 	}
 

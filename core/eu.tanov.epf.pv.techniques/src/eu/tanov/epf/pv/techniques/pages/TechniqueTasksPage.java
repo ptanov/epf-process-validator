@@ -1,6 +1,5 @@
 package eu.tanov.epf.pv.techniques.pages;
 
-import org.eclipse.epf.authoring.ui.AuthoringUIResources;
 import org.eclipse.epf.authoring.ui.AuthoringUIText;
 import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.Task;
@@ -23,7 +22,7 @@ public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
 
 	@Override
 	protected String multipleSelectDescription(int count) {
-		return AuthoringUIResources.bind(TechniquesUIResources.techniqueTasksPage_multipleSelectDescription, new Integer(count));
+		return TechniquesUIResources.bind(TechniquesUIResources.techniqueTasksPage_multipleSelectDescription, new Integer(count));
 	}
 
 	@Override
