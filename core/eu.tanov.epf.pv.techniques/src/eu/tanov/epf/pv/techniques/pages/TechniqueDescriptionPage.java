@@ -19,7 +19,7 @@ public class TechniqueDescriptionPage extends CustomCategoryDescriptionPage {
 		
 		//without variability - if on - it searches in custom categories, not in techniques
 		//but it is not used - so disable
-		variabilitySectionOn = false;
+		this.variabilitySectionOn = false;
 	}
 	
 	@Override
