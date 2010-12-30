@@ -7,5 +7,12 @@
             class="eu.tanov.epf.pv.techniques.extension.TechniquePageProviderExtension">
       </editorPage>
    </extension>
+   <extension
+         point="eu.tanov.epf.itemprovider.StandardCategoriesItemProviders">
+      <provider
+            class="eu.tanov.epf.pv.techniques.extension.TechniquesExtendedItemProvider"
+            id="techniques">
+      </provider>
+   </extension>
 
 </plugin>

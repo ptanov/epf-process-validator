@@ -3,6 +3,8 @@ package eu.tanov.epf.pv.techniques.util;
 import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.CustomCategory;
 
+import eu.tanov.epf.pv.techniques.provider.TechniquesCategoryItemProvider;
+
 public class TechniquesHelper {
 	/**
 	 * helper
@@ -21,7 +23,6 @@ public class TechniquesHelper {
 		}
 		final ContentPackage contentPackage = (ContentPackage)customCategory.eContainer();
 		
-		//TODO make constant when Extension points in categories item provider is used
-		return "Techniques".equals(contentPackage.getName());
+		return TechniquesCategoryItemProvider.TECHNIQUES_NAME.equals(contentPackage.getName());
 	}
 }

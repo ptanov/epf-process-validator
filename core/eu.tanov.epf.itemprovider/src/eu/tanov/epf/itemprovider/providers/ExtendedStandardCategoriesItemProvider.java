@@ -3,31 +3,27 @@ package eu.tanov.epf.itemprovider.providers;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.epf.library.edit.ILibraryItemProvider;
-import org.eclipse.epf.library.edit.LibraryEditPlugin;
-import org.eclipse.epf.library.edit.category.DisciplineCategoriesItemProvider;
-import org.eclipse.epf.library.edit.category.DomainsItemProvider;
-import org.eclipse.epf.library.edit.category.RoleSetsItemProvider;
 import org.eclipse.epf.library.edit.category.StandardCategoriesItemProvider;
-import org.eclipse.epf.library.edit.category.ToolsItemProvider;
-import org.eclipse.epf.library.edit.category.WorkProductTypesItemProvider;
-import org.eclipse.epf.library.edit.util.ModelStructure;
-import org.eclipse.epf.uma.ContentPackage;
-import org.eclipse.epf.uma.Element;
-import org.eclipse.epf.uma.MethodPlugin;
-import org.eclipse.epf.uma.util.UmaUtil;
+import org.eclipse.epf.library.edit.util.ExtensionManager;
 
-import eu.tanov.epf.itemprovider.util.MethodPluginHelper;
+import eu.tanov.epf.itemprovider.extension.ExtendedItemProvider;
 
 public class ExtendedStandardCategoriesItemProvider extends StandardCategoriesItemProvider {
-	private ArrayList children;
+	private static final String EXTENSION_POINT_NAME = "StandardCategoriesItemProviders";
+	/**
+	 * TODO move to common space or get from somewhere else?
+	 */
+	private static final String PLUGIN_ID = "eu.tanov.epf.itemprovider";
 
-	private Map groupItemProviderMap;
+	private ArrayList<ILibraryItemProvider> children;
+
+	private HashMap<String, ILibraryItemProvider> groupItemProviderMap;
+	private List<ExtendedItemProvider> allProviders;
 
 	public ExtendedStandardCategoriesItemProvider(AdapterFactory adapterFactory,
 			Notifier parent, String name) {
@@ -35,96 +31,24 @@ public class ExtendedStandardCategoriesItemProvider extends StandardCategoriesIt
 	}
 	
 	@Override
-	public Collection getChildren(Object object) {
+	public Collection<ILibraryItemProvider> getChildren(Object object) {
 		if (children == null) {
-			children = new ArrayList();
-			groupItemProviderMap = new HashMap();
-			String name;
-			ILibraryItemProvider child;
-
-			// create the disciplines categories folder
-			MethodPlugin plugin = UmaUtil
-					.getMethodPlugin((Element) ((ItemProviderAdapter) object)
-							.getTarget());
-			ContentPackage contentPkg = UmaUtil.findContentPackage(plugin,
-					ModelStructure.DEFAULT.disciplineDefinitionPath);
-			if (contentPkg != null) {
-				name = LibraryEditPlugin.INSTANCE
-						.getString("_UI_Disciplines_group"); //$NON-NLS-1$
-				child = new DisciplineCategoriesItemProvider(adapterFactory,
-						contentPkg, name);
-				child.setParent(this);
-				children.add(child);
-				groupItemProviderMap.put(name, child);
-
-			}
-
-			MethodPluginHelper.createContentPackages(plugin, MethodPluginHelper.TECHNIQUES_PATH);
-			contentPkg = UmaUtil.findContentPackage(plugin,
-					MethodPluginHelper.TECHNIQUES_PATH);
-			if (contentPkg != null) {
-				name = "Techniques"; //$NON-NLS-1$
-				child = new TechniquesCategoryItemProvider(adapterFactory,
-						contentPkg, name);
-				child.setParent(this);
-				children.add(child);
-				groupItemProviderMap.put(name, child);
-			}
-
+			children = new ArrayList<ILibraryItemProvider>();
+			groupItemProviderMap = new HashMap<String, ILibraryItemProvider>();
 			
-			
-			// create domain categories folder
-			contentPkg = UmaUtil.findContentPackage(plugin,
-					ModelStructure.DEFAULT.domainPath);
-			if (contentPkg != null) {
-				name = LibraryEditPlugin.INSTANCE
-						.getString("_UI_Domains_group"); //$NON-NLS-1$
-				child = new DomainsItemProvider(adapterFactory, contentPkg,
-						name);
-				child.setParent(this);
-				children.add(child);
-				groupItemProviderMap.put(name, child);
-			}
-
-			// create work product types folder
-			contentPkg = UmaUtil.findContentPackage(plugin,
-					ModelStructure.DEFAULT.workProductTypePath);
-			if (contentPkg != null) {
-				name = LibraryEditPlugin.INSTANCE
-						.getString("_UI_WorkProductTypes_group"); //$NON-NLS-1$
-				child = new WorkProductTypesItemProvider(adapterFactory,
-						contentPkg, name);
-				child.setParent(this);
-				children.add(child);
-				groupItemProviderMap.put(name, child);
-			}
-
-			// create role set folder
-			contentPkg = UmaUtil.findContentPackage(plugin,
-					ModelStructure.DEFAULT.roleSetPath);
-			if (contentPkg != null) {
-				name = LibraryEditPlugin.INSTANCE
-						.getString("_UI_Role_Sets_group"); //$NON-NLS-1$
-				child = new RoleSetsItemProvider(adapterFactory, contentPkg,
-						name);
-				child.setParent(this);
-				children.add(child);
-				groupItemProviderMap.put(name, child);
-			}
-
-			// create tool folder
-			contentPkg = UmaUtil.findContentPackage(plugin,
-					ModelStructure.DEFAULT.toolPath);
-			if (contentPkg != null) {
-				name = LibraryEditPlugin.INSTANCE.getString("_UI_Tools_group"); //$NON-NLS-1$
-				child = new ToolsItemProvider(adapterFactory, contentPkg, name);
-				child.setParent(this);
-				children.add(child);
-				groupItemProviderMap.put(name, child);
+			final List<ExtendedItemProvider> extensions = getAllExtensions();
+			for (ExtendedItemProvider extendedItemProvider : extensions) {
+				extendedItemProvider.provide(object, children, groupItemProviderMap, adapterFactory);
 			}
 		}
 		return children;
 
+	}
+	private List<ExtendedItemProvider> getAllExtensions() {
+		if (allProviders == null) {
+			allProviders = ExtensionManager.getExtensions(PLUGIN_ID, EXTENSION_POINT_NAME, ExtendedItemProvider.class);
+		}
+		return allProviders;
 	}
 
 	/*

@@ -6,9 +6,8 @@ import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.Task;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.itemprovider.util.MethodPluginHelper;
 import eu.tanov.epf.pv.techniques.i18n.TechniquesUIResources;
-
+import eu.tanov.epf.pv.techniques.provider.TechniquesCategoryItemProvider;
 
 public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
 	private static final String FORM_PAGE_ID = "techniqueTasksPage"; //$NON-NLS-1$	
@@ -21,7 +20,7 @@ public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
 	protected String tabString() {
 		return FilterConstants.TASKS;
 	}
-		
+
 	@Override
 	protected String multipleSelectDescription(int count) {
 		return AuthoringUIResources.bind(TechniquesUIResources.techniqueTasksPage_multipleSelectDescription, new Integer(count));
@@ -44,6 +43,6 @@ public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
 
 	@Override
 	protected String[] modelStructurePath() {
-		return MethodPluginHelper.TECHNIQUES_PATH;
+		return TechniquesCategoryItemProvider.TECHNIQUES_PATH;
 	}
 }

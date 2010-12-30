@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="StandardCategoriesItemProviders" name="Standard Categories Item Providers" schema="schema/StandardCategoriesItemProviders.exsd"/>
    <extension
          point="org.eclipse.epf.library.edit.adapterFactories">
       <factory
             class="eu.tanov.epf.itemprovider.factory.ExtendedItemProviderAdapterFactory"
             id="library">
       </factory>
+   </extension>
+   <extension
+         point="eu.tanov.epf.itemprovider.StandardCategoriesItemProviders">
+      <provider
+            class="eu.tanov.epf.itemprovider.providers.standardcategories.DisciplinesExtendedItemProvider"
+            id="disciplines">
+      </provider>
+      <provider
+            class="eu.tanov.epf.itemprovider.providers.standardcategories.DomainsExtendedItemProvider"
+            id="disciplines">
+      </provider>
+      <provider
+            class="eu.tanov.epf.itemprovider.providers.standardcategories.WorkProductsExtendedItemProvider"
+            id="disciplines">
+      </provider>
+      <provider
+            class="eu.tanov.epf.itemprovider.providers.standardcategories.RoleSetsExtendedItemProvider"
+            id="disciplines">
+      </provider>
+      <provider
+            class="eu.tanov.epf.itemprovider.providers.standardcategories.ToolsExtendedItemProvider"
+            id="disciplines">
+      </provider>
    </extension>
 
 

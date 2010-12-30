@@ -6,9 +6,8 @@ import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.WorkProduct;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.itemprovider.util.MethodPluginHelper;
 import eu.tanov.epf.pv.techniques.i18n.TechniquesUIResources;
-
+import eu.tanov.epf.pv.techniques.provider.TechniquesCategoryItemProvider;
 
 public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkProduct> {
 	private static final String FORM_PAGE_ID = "techniqueWorkProductsPage"; //$NON-NLS-1$	
@@ -21,10 +20,11 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 	protected String tabString() {
 		return FilterConstants.WORKPRODUCTS;
 	}
-		
+
 	@Override
 	protected String multipleSelectDescription(int count) {
-		return AuthoringUIResources.bind(TechniquesUIResources.techniqueWorkProductsPage_multipleSelectDescription, new Integer(count));
+		return AuthoringUIResources.bind(TechniquesUIResources.techniqueWorkProductsPage_multipleSelectDescription, new Integer(
+				count));
 	}
 
 	@Override
@@ -44,6 +44,6 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 
 	@Override
 	protected String[] modelStructurePath() {
-		return MethodPluginHelper.TECHNIQUES_PATH;
+		return TechniquesCategoryItemProvider.TECHNIQUES_PATH;
 	}
 }
