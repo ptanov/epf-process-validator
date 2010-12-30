@@ -26,6 +26,8 @@ public class FormHelper {
 	 * Hack to remove last added listener - because AssociationFormPage.addListeners() adds wrong listeners that changes title
 	 * with bad value and title blinks - this method helps in avoiding this blinking
 	 * 
+	 * XXX how to replace safely listeners and keep custom title? 
+	 * 
 	 * @param expectedListenerType
 	 *            to be sure that we remove right listener
 	 */
