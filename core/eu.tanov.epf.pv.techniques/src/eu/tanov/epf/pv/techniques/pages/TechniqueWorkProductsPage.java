@@ -12,7 +12,8 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 	private static final String FORM_PAGE_ID = "techniqueWorkProductsPage"; //$NON-NLS-1$	
 
 	public TechniqueWorkProductsPage(FormEditor editor) {
-		super(editor, FORM_PAGE_ID, AuthoringUIText.WORK_PRODUCTS_PAGE_TITLE, WorkProduct.class);
+		super(editor, FORM_PAGE_ID, AuthoringUIText.WORK_PRODUCTS_PAGE_TITLE, WorkProduct.class,
+				TechniquesUIResources.technique_text);
 	}
 
 	@Override

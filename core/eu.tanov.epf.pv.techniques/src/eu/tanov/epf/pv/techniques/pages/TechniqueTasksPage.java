@@ -12,7 +12,7 @@ public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
 	private static final String FORM_PAGE_ID = "techniqueTasksPage"; //$NON-NLS-1$	
 
 	public TechniqueTasksPage(FormEditor editor) {
-		super(editor, FORM_PAGE_ID, AuthoringUIText.TASKS_PAGE_TITLE, Task.class);
+		super(editor, FORM_PAGE_ID, AuthoringUIText.TASKS_PAGE_TITLE, Task.class, TechniquesUIResources.technique_text);
 	}
 
 	@Override

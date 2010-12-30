@@ -12,16 +12,22 @@ import org.eclipse.epf.library.edit.TngAdapterFactory;
 import org.eclipse.epf.library.edit.command.IActionManager;
 import org.eclipse.epf.library.edit.util.CategorySortHelper;
 import org.eclipse.epf.library.edit.util.ContentElementOrderList;
+import org.eclipse.epf.library.edit.util.TngUtil;
 import org.eclipse.epf.library.util.LibraryManager;
 import org.eclipse.epf.uma.ContentElement;
 import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.DescribableElement;
 import org.eclipse.epf.uma.UmaPackage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
 import eu.tanov.epf.pv.techniques.util.FilteredContentElementOrderList;
+import eu.tanov.epf.pv.techniques.util.FormHelper;
 
 public abstract class AbstractCustomCategoryPage<T extends DescribableElement> extends AssociationFormPage {
 
@@ -31,11 +37,51 @@ public abstract class AbstractCustomCategoryPage<T extends DescribableElement> e
 
 	protected final String pageId;
 	protected final Class<T> clazz;
+	protected final String classNameForFormTitle;
 
-	public AbstractCustomCategoryPage(FormEditor editor, String pageId, String title, Class<T> clazz) {
+	public AbstractCustomCategoryPage(FormEditor editor, String pageId, String title, Class<T> clazz, String classNameForFormTitle) {
 		super(editor, pageId, title);
 		this.pageId = pageId;
 		this.clazz = clazz;
+		this.classNameForFormTitle = classNameForFormTitle;
+	}
+
+	@Override
+	protected void createFormContent(IManagedForm managedForm) {
+		super.createFormContent(managedForm);
+
+		FormHelper.updateFormText(form, classNameForFormTitle, contentElement);
+	}
+
+	@Override
+	protected void addListeners() {
+		super.addListeners();
+
+		FormHelper.replaceLastListener(form, SWT.Activate, new Listener() {
+			public void handleEvent(Event e) {
+				FormHelper.updateFormText(form, classNameForFormTitle, contentElement);
+
+				refreshViewers();
+				if (TngUtil.isLocked(contentElement)) {
+					enableControls(false);
+				} else {
+					enableControls(true);
+				}
+			}
+		}, "org.eclipse.epf.authoring.ui.forms.AssociationFormPage");
+
+		FormHelper.replaceLastListener(form, SWT.Deactivate, new Listener() {
+			public void handleEvent(Event e) {
+				FormHelper.updateFormText(form, classNameForFormTitle, contentElement);
+
+				refreshViewers();
+				if (TngUtil.isLocked(contentElement)) {
+					enableControls(false);
+				} else {
+					enableControls(true);
+				}
+			}
+		}, "org.eclipse.epf.authoring.ui.forms.AssociationFormPage");
 	}
 
 	@Override
@@ -145,6 +191,7 @@ public abstract class AbstractCustomCategoryPage<T extends DescribableElement> e
 	protected final String getSelectedLabel() {
 		return selectedLabel();
 	}
+
 	protected abstract String selectedLabel();
 
 	@Override
