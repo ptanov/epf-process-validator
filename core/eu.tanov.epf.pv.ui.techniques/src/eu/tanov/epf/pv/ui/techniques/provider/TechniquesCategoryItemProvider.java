@@ -17,6 +17,8 @@ import org.eclipse.epf.uma.MethodElement;
 import org.eclipse.epf.uma.UmaFactory;
 import org.eclipse.epf.uma.UmaPackage;
 
+import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
+
 public class TechniquesCategoryItemProvider extends TransientCategoryPackageItemProvider {
 	private static final String NEW_NAME_TECHNIQUE = "new_technique";
 	public static final String TECHNIQUES_NAME = "Techniques"; //$NON-NLS-1$
@@ -97,10 +99,8 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 	@Override
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
 		if (child instanceof CustomCategory) {
-			// TODO i18n MyEditPlugin.INSTANCE.getString("Techniques_child");
-			return "Technique";
+			return TechniquesUIResources.Techniques_child;
 		}
-		// TODO throw:
-		return super.getCreateChildText(owner, feature, child, selection);
+		throw new IllegalStateException("Unknown child type: " + child);
 	}
 }
