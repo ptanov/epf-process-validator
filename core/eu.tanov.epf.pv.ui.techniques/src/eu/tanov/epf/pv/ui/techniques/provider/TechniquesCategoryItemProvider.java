@@ -2,19 +2,23 @@ package eu.tanov.epf.pv.ui.techniques.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.epf.library.edit.LibraryEditPlugin;
 import org.eclipse.epf.library.edit.category.TransientCategoryPackageItemProvider;
 import org.eclipse.epf.library.edit.util.ModelStructure;
+import org.eclipse.epf.library.edit.util.TngUtil;
 import org.eclipse.epf.uma.ContentCategory;
 import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.CustomCategory;
+import org.eclipse.epf.uma.MethodElement;
 import org.eclipse.epf.uma.UmaFactory;
 import org.eclipse.epf.uma.UmaPackage;
 
 public class TechniquesCategoryItemProvider extends TransientCategoryPackageItemProvider {
+	private static final String NEW_NAME_TECHNIQUE = "new_technique";
 	public static final String TECHNIQUES_NAME = "Techniques"; //$NON-NLS-1$
 	public static final String[] TECHNIQUES_PATH;
 	static {
@@ -82,23 +86,12 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 
 	@Override
 	public void setDefaultName(Object obj) {
-		// TODO
 		if (obj instanceof CustomCategory) {
-			((CustomCategory) obj).setName("new_technique");
+			@SuppressWarnings("unchecked")
+			final List<CustomCategory> onlyTechniques = TngUtil.extract(((ContentPackage) target).getContentElements(),
+					CustomCategory.class);
+			TngUtil.setDefaultName(onlyTechniques, (MethodElement) obj, NEW_NAME_TECHNIQUE);
 		}
-
-		// if (obj instanceof CustomCategory) {
-		// TngUtil.setDefaultName(TngUtil.extract(((ContentPackage) target)
-		// .getContentElements(), CustomCategory.class),
-		// (MethodElement) obj, "new_technique"
-		// // LibraryEditConstants.NEW_DISCIPLINE
-		// );
-		// // } else if (obj instanceof DisciplineGrouping) {
-		// // TngUtil.setDefaultName(TngUtil.extract(((ContentPackage) target)
-		// // .getContentElements(), DisciplineGrouping.class),
-		// // (MethodElement) obj,
-		// // LibraryEditConstants.NEW_DISCIPLINE_GROUPING);
-		// }
 	}
 
 	@Override
