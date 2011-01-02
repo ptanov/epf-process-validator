@@ -101,14 +101,22 @@ public abstract class AbstractCustomCategoryPage<T extends DescribableElement> e
 
 			public Object[] getElements(Object object) {
 				if (allSteps == null) {
-					allSteps = new FilteredContentElementOrderList<T>(contentElement, getOrderFeature(), clazz);
+					allSteps = createFilteredContentElementOderList();
 				}
 				final List<Object> returnList = CategorySortHelper.sortCategoryElements(contentElement,
 						allSteps.toFilteredArray());
 				return returnList.toArray();
 			}
+
 		};
 		viewer_selected.setContentProvider(contentProviderSelected);
+	}
+
+	/**
+	 * should be overrided if custom filtered content element order list is used
+	 */
+	protected FilteredContentElementOrderList<T> createFilteredContentElementOderList() {
+		return new FilteredContentElementOrderList<T>(contentElement, getOrderFeature(), clazz);
 	}
 
 	protected CustomCategory addToCategory(IActionManager actionMgr, CustomCategory categoryToModify, T objectToAdd) {
