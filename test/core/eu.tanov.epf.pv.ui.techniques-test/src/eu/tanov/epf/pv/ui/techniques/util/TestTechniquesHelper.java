@@ -51,6 +51,8 @@ public class TestTechniquesHelper {
 		final List<DescribableElement> afterUpdate = technique.getCategorizedElements();
 		assertEquals(3, afterUpdate.size());
 		assertSame(task, afterUpdate.get(0));
+
+		// order of automatically added work products is not guaranteed
 		assertEqualsIgnoreOrder(afterUpdate.subList(1, afterUpdate.size()), workProduct1, workProduct2);
 	}
 

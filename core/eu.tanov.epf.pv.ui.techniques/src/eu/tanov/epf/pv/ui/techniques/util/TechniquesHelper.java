@@ -36,6 +36,8 @@ public class TechniquesHelper {
 	/**
 	 * (#42) If task contains work products as mandatory input and task is selected in technique - automatically add its work
 	 * products (that are mandatory inputs) to technique
+	 * 
+	 * Order of automatically added work products is not guaranteed (HashSet is used)
 	 */
 	public static void updateWorkProducts(CustomCategory technique) {
 		final HashSet<WorkProduct> directWorkProducts = new HashSet<WorkProduct>(
