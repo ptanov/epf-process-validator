@@ -1,6 +1,5 @@
 package eu.tanov.epf.pv.ui.techniques.util;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -38,9 +37,10 @@ public class TechniquesHelper {
 	 * (#42) If task contains work products as mandatory input and task is selected in technique - automatically add its work
 	 * products (that are mandatory inputs) to technique
 	 */
-	public static List<WorkProduct> getAndUpdateWorkProducts(CustomCategory technique) {
-		final List<WorkProduct> directWorkProducts = FilteredContentElementOrderList.<WorkProduct> toFilteredList(technique,
-				UmaPackage.eINSTANCE.getCustomCategory_CategorizedElements(), WorkProduct.class);
+	public static void updateWorkProducts(CustomCategory technique) {
+		final HashSet<WorkProduct> directWorkProducts = new HashSet<WorkProduct>(
+				FilteredContentElementOrderList.<WorkProduct> toFilteredList(technique,
+						UmaPackage.eINSTANCE.getCustomCategory_CategorizedElements(), WorkProduct.class));
 
 		final List<Task> tasks = FilteredContentElementOrderList.<Task> toFilteredList(technique,
 				UmaPackage.eINSTANCE.getCustomCategory_CategorizedElements(), Task.class);
@@ -57,10 +57,5 @@ public class TechniquesHelper {
 		}
 
 		technique.getCategorizedElements().addAll(workProductsToAdd);
-
-		final ArrayList<WorkProduct> result = new ArrayList<WorkProduct>(directWorkProducts.size() + workProductsToAdd.size());
-		result.addAll(directWorkProducts);
-		result.addAll(workProductsToAdd);
-		return result;
 	}
 }

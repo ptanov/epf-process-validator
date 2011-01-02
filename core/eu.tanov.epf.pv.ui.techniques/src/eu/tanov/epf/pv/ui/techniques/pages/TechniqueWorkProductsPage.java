@@ -59,7 +59,9 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 
 			@Override
 			protected List<WorkProduct> toFilteredList() {
-				return TechniquesHelper.getAndUpdateWorkProducts(container);
+				//add work products from tasks.mandatoryInput
+				TechniquesHelper.updateWorkProducts(container);
+				return super.toFilteredList();
 			}
 		};
 	}
