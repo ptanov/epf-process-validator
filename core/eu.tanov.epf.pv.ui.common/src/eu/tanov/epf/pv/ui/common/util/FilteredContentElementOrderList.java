@@ -38,10 +38,22 @@ public class FilteredContentElementOrderList<T> extends ContentElementOrderList 
 		this.acceptOnlyType = acceptOnlyType;
 	}
 
+	public T[] toFilteredArray() {
+		final List<T> result = toFilteredList();
+
+		@SuppressWarnings("unchecked")
+		final T[] castedResult = (T[]) result.toArray();
+		return castedResult;
+	}
+
+	protected List<T> toFilteredList() {
+		return toFilteredList(editElement, feature, acceptOnlyType);
+	}
+
 	/**
 	 * TODO improve method
 	 */
-	public T[] toFilteredArray() {
+	public static <T> List<T> toFilteredList(VariabilityElement editElement, EStructuralFeature feature, Class<T> acceptOnlyType) {
 		final List<T> result;
 		final Object object = editElement.eGet(feature);
 		if (object instanceof List) {
@@ -51,9 +63,7 @@ public class FilteredContentElementOrderList<T> extends ContentElementOrderList 
 		} else {
 			throw new IllegalStateException("Feature " + feature + " on " + editElement + " is not list, but: " + object);
 		}
-		@SuppressWarnings("unchecked")
-		final T[] castedResult = (T[]) result.toArray();
-		return castedResult;
+		return result;
 	}
 
 }
