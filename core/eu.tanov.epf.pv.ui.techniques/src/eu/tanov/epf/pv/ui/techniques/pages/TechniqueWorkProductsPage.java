@@ -1,13 +1,17 @@
 package eu.tanov.epf.pv.ui.techniques.pages;
 
+import java.util.List;
+
 import org.eclipse.epf.authoring.ui.AuthoringUIText;
 import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.WorkProduct;
 import org.eclipse.ui.forms.editor.FormEditor;
 
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
+import eu.tanov.epf.pv.ui.common.util.FilteredContentElementOrderList;
 import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
 import eu.tanov.epf.pv.ui.techniques.provider.TechniquesCategoryItemProvider;
+import eu.tanov.epf.pv.ui.techniques.util.TechniquesHelper;
 
 public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkProduct> {
 	private static final String FORM_PAGE_ID = "techniqueWorkProductsPage"; //$NON-NLS-1$	
@@ -46,5 +50,17 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 	@Override
 	protected String[] modelStructurePath() {
 		return TechniquesCategoryItemProvider.TECHNIQUES_PATH;
+	}
+
+	@Override
+	protected FilteredContentElementOrderList<WorkProduct> createFilteredContentElementOderList() {
+		return new FilteredContentElementOrderList<WorkProduct>(contentElement, getOrderFeature(), clazz) {
+			private static final long serialVersionUID = 6454750512209162031L;
+
+			@Override
+			protected List<WorkProduct> toFilteredList() {
+				return TechniquesHelper.getAndUpdateWorkProducts(container);
+			}
+		};
 	}
 }
