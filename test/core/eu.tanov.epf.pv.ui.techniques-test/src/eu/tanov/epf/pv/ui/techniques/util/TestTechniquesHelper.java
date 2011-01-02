@@ -54,6 +54,7 @@ public class TestTechniquesHelper {
 		assertEqualsIgnoreOrder(afterUpdate.subList(1, afterUpdate.size()), workProduct1, workProduct2);
 	}
 
+	// XXX move to test helper
 	private static void assertEqualsIgnoreOrder(List<?> expectedObjects, Object... actualObjects) {
 		assertEquals(actualObjects.length, expectedObjects.size());
 
