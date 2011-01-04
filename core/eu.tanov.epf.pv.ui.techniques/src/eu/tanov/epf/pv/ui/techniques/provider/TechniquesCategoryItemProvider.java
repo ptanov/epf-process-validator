@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.epf.library.edit.LibraryEditPlugin;
 import org.eclipse.epf.library.edit.category.TransientCategoryPackageItemProvider;
 import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.library.edit.util.TngUtil;
@@ -16,7 +15,9 @@ import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.MethodElement;
 import org.eclipse.epf.uma.UmaFactory;
 import org.eclipse.epf.uma.UmaPackage;
+import org.eclipse.jface.resource.ImageDescriptor;
 
+import eu.tanov.epf.pv.ui.techniques.TechniquesActivator;
 import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
 
 public class TechniquesCategoryItemProvider extends TransientCategoryPackageItemProvider {
@@ -73,9 +74,8 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 	}
 
 	@Override
-	public Object getImage(Object object) {
-		// TODO
-		return LibraryEditPlugin.INSTANCE.getImage("full/obj16/Disciplines"); //$NON-NLS-1$
+	public ImageDescriptor getImage(Object object) {
+		return TechniquesActivator.getDefault().getImage("full/obj16/Techniques"); //$NON-NLS-1$
 	}
 
 	@Override
