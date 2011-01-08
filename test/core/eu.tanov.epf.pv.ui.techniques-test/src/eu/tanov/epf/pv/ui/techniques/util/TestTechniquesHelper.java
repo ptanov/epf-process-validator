@@ -1,6 +1,7 @@
 package eu.tanov.epf.pv.ui.techniques.util;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.epf.library.edit.LibraryEditPlugin;
+import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.DescribableElement;
 import org.eclipse.epf.uma.Task;
@@ -136,6 +138,31 @@ public class TestTechniquesHelper {
 		TechniquesHelper.updateWorkProducts(technique);
 
 		assertEquals(technique.getCategorizedElements(), Arrays.asList(task, workProduct1));
+	}
+
+	@Test
+	public void isTechniqueNotCustomCategory() {
+		assertFalse(TechniquesHelper.isTechnique(null));
+		assertFalse(TechniquesHelper.isTechnique(UmaFactory.eINSTANCE.createDiscipline()));
+	}
+
+	@Test
+	public void isTechniqueCustomCategoryWithoutContainer() {
+		assertFalse(TechniquesHelper.isTechnique(UmaFactory.eINSTANCE.createCustomCategory()));
+	}
+
+	@Test
+	public void isTechniqueCustomCategoryWithContainer() {
+		final ContentPackage contentPackage = UmaFactory.eINSTANCE.createContentPackage();
+
+		final CustomCategory category = UmaFactory.eINSTANCE.createCustomCategory();
+		contentPackage.getContentElements().add(category);
+
+		assertFalse(TechniquesHelper.isTechnique(category));
+
+		contentPackage.setName("Techniques");
+		// if name of content package is "Techniques" - then this is technique:
+		assertTrue(TechniquesHelper.isTechnique(category));
 	}
 
 }
