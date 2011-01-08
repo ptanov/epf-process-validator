@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -17,7 +18,7 @@ public class TechniquesActivator extends AbstractUIPlugin {
 	private static final String ICON_PATH = "icons/"; //$NON-NLS-1$;
 
 	// The shared image hash map.
-	protected final Map<String, ImageDescriptor> images = new HashMap<String, ImageDescriptor>();
+	protected final Map<String, Image> images = new HashMap<String, Image>();
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "eu.tanov.epf.pv.ui.techniques"; //$NON-NLS-1$
@@ -60,17 +61,18 @@ public class TechniquesActivator extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	public ImageDescriptor getImage(String key) {
-		final ImageDescriptor result = images.get(key);
-		if (result != null) {
+	public Image getImage(String key) {
+		final Image cachedResult = images.get(key);
+		if (cachedResult != null) {
 			// use cached
-			return result;
+			return cachedResult;
 		}
 
 		// fetch
 		final ImageDescriptor imageDescriptor = imageDescriptorFromPlugin(PLUGIN_ID, ICON_PATH + key + EXTENSION_ICON);
-		images.put(key, imageDescriptor);
-		return imageDescriptor;
+		final Image result = imageDescriptor.createImage();
+		images.put(key, result);
+		return result;
 	}
 
 }

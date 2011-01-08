@@ -15,7 +15,7 @@ import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.MethodElement;
 import org.eclipse.epf.uma.UmaFactory;
 import org.eclipse.epf.uma.UmaPackage;
-import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
 
 import eu.tanov.epf.pv.ui.techniques.TechniquesActivator;
 import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
@@ -74,7 +74,7 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 	}
 
 	@Override
-	public ImageDescriptor getImage(Object object) {
+	public Image getImage(Object object) {
 		return TechniquesActivator.getDefault().getImage("full/obj16/Techniques"); //$NON-NLS-1$
 	}
 
@@ -88,12 +88,12 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 
 				final TechniqueItemProvider itemProvider = new TechniqueItemProvider(adapterFactory);
 				customCategory.eAdapters().add(itemProvider);
-			
-//TODO issue #56 use adapter factory extension
-//				final ILibraryItemProvider itemProvider = (ILibraryItemProvider) TngUtil
-//				.getBestAdapterFactory(adapterFactory).adapt(customCategory,
-//						ITreeItemContentProvider.class);
-				
+
+				// TODO issue #56 use adapter factory extension
+				// final ILibraryItemProvider itemProvider = (ILibraryItemProvider) TngUtil
+				// .getBestAdapterFactory(adapterFactory).adapt(customCategory,
+				// ITreeItemContentProvider.class);
+
 				itemProvider.setParent(object);
 			}
 		}
@@ -117,7 +117,7 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 		}
 		throw new IllegalStateException("Unknown child type for techniques: " + child);
 	}
-	
+
 	@Override
 	public Object getCreateChildImage(Object owner, Object feature, Object child, Collection<?> selection) {
 		if (child instanceof CustomCategory) {

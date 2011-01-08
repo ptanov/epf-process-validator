@@ -7,7 +7,7 @@ import org.eclipse.epf.library.edit.IDefaultNameSetter;
 import org.eclipse.epf.library.edit.ILibraryItemProvider;
 import org.eclipse.epf.library.edit.IStatefulItemProvider;
 import org.eclipse.epf.library.edit.internal.IListenerProvider;
-import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
 
 import eu.tanov.epf.pv.ui.techniques.TechniquesActivator;
 
@@ -24,7 +24,7 @@ public class TechniqueItemProvider extends org.eclipse.epf.library.edit.category
 	}
 
 	@Override
-	public ImageDescriptor getImage(Object object) {
+	public Image getImage(Object object) {
 		return TechniquesActivator.getDefault().getImage("full/obj16/Technique"); //$NON-NLS-1$
 	}
 
