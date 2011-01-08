@@ -7,6 +7,7 @@ epf-composer-plugins/target
 core/eu.tanov.epf.itemprovider/bin
 core/eu.tanov.epf.pv.ui.common/bin
 core/eu.tanov.epf.pv.ui.techniques/bin
+core/eu.tanov.epf.pv.ui.validator/bin
 
 #test.bin
 test/core/eu.tanov.epf.pv.ui.techniques-test/bin
