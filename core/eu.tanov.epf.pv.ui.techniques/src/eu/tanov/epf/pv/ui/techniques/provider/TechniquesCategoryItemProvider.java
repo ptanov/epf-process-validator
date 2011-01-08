@@ -115,6 +115,15 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 		if (child instanceof CustomCategory) {
 			return TechniquesUIResources.Techniques_child;
 		}
-		throw new IllegalStateException("Unknown child type: " + child);
+		throw new IllegalStateException("Unknown child type for techniques: " + child);
 	}
+	
+	@Override
+	public Object getCreateChildImage(Object owner, Object feature, Object child, Collection<?> selection) {
+		if (child instanceof CustomCategory) {
+			return TechniquesActivator.getDefault().getImage("full/obj16/Technique"); //$NON-NLS-1$
+		}
+		throw new IllegalStateException("Unknown child type for techniques: " + child);
+	}
+
 }
