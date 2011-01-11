@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.emf.validation.constraintProviders">
+		<category id="eu.tanov.epf.pv.validators.category.default"
+				name="%constraintCategory_Process_Default"/>
+		<constraintProvider cache="true">
+			<package namespaceUri="http://www.eclipse.org/epf/uma/1.0.6/uma.ecore"/>
+			<constraints categories="eu.tanov.epf.pv.validators.category.default, org.eclipse.epf.validation.library.category">
+				<constraint
+						class="eu.tanov.epf.pv.validators.example.SampleConstraint"
+						id="eu.tanov.epf.pv.validators.example.SampleConstraint"
+						lang="Java"
+						mode="Batch"
+						name="%constraint_name_SampleConstraint"
+						severity="WARNING"
+						statusCode="1">
+					<message>%constraint_message_SampleConstraint</message>
+					<target class="org.eclipse.epf.uma.ProcessComponent" />
+				</constraint>
+			</constraints>
+		</constraintProvider>
+	</extension>
+
+</plugin>

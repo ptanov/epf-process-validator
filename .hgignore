@@ -3,13 +3,16 @@ syntax: glob
 #epf composer source:
 epf-composer-plugins/target
 
-#bin:
+#core-bin:
 core/eu.tanov.epf.itemprovider/bin
 core/eu.tanov.epf.pv.ui.common/bin
 core/eu.tanov.epf.pv.ui.techniques/bin
 core/eu.tanov.epf.pv.ui.validator/bin
 core/eu.tanov.epf.pv.service.validator/bin
 
-#test.bin
+#validators-bin:
+validators/eu.tanov.epf.pv.validators.example/bin
+
+#test-bin
 test/core/eu.tanov.epf.pv.ui.techniques-test/bin
 
