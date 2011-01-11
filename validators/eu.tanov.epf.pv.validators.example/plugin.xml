@@ -13,7 +13,7 @@
 						lang="Java"
 						mode="Batch"
 						name="%constraint_name_SampleConstraint"
-						severity="WARNING"
+						severity="ERROR"
 						statusCode="1">
 					<message>%constraint_message_SampleConstraint</message>
 					<target class="ProcessComponent" />
