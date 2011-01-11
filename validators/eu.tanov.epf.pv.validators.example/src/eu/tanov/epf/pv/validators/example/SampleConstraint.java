@@ -11,7 +11,7 @@ public class SampleConstraint extends AbstractModelConstraint {
 	public IStatus validate(IValidationContext ctx) {
 		final EObject target = ctx.getTarget();
 		if (!(target instanceof org.eclipse.epf.uma.ProcessComponent)) {
-			return ctx.createSuccessStatus();
+			throw new IllegalStateException("SampleConstraint expects only ProcessComponent, not: " + target);
 		}
 		final String name = ((org.eclipse.epf.uma.ProcessComponent) target).getName();
 		if ("goodName".equals(name)) {
