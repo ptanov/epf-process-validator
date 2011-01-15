@@ -8,6 +8,7 @@
 
 	<modules>
 		<module>eu.tanov.epf.itemprovider</module>
+		<module>eu.tanov.epf.pv.ocl</module>
 		<module>eu.tanov.epf.pv.ui.common</module>
 		<module>eu.tanov.epf.pv.service.validator</module>
 		<module>eu.tanov.epf.pv.ui.techniques</module>

@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eu.tanov.epf.pv.ocl
+Bundle-SymbolicName: eu.tanov.epf.pv.ocl;singleton:=true
+Bundle-Version: 1.0.0.SNAPSHOT
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: .
