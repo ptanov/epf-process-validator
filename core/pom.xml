@@ -9,8 +9,24 @@
 	<modules>
 		<module>eu.tanov.epf.itemprovider</module>
 		<module>eu.tanov.epf.pv.ui.common</module>
+		<module>eu.tanov.epf.pv.service.validator</module>
+		<module>eu.tanov.epf.pv.ui.techniques</module>
+		<module>eu.tanov.epf.pv.ui.validator</module>
 	</modules>
-
+<!--
+	<dependencies>
+		<dependency>
+			<groupId>eu.tanov.epf</groupId>
+			<artifactId>eu.tanov.epf.pv.ui.common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>eu.tanov.epf</groupId>
+			<artifactId>eu.tanov.epf.itemprovider</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+-->
 	<build>
 		<plugins>
 			<plugin>

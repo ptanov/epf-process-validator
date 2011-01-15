@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: eu.tanov.epf.pv.service.validator
-Bundle-SymbolicName: eu.tanov.epf.pv.service.validator
-Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: eu.tanov.epf.pv.service.validator;singleton:=true
+Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.epf.uma;bundle-version="1.5.0"
+Bundle-ClassPath: .

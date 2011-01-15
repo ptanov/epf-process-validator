@@ -3,11 +3,6 @@ syntax: regexp
 
 syntax: glob
 
-#core-bin:
-core/eu.tanov.epf.pv.ui.techniques/bin
-core/eu.tanov.epf.pv.ui.validator/bin
-core/eu.tanov.epf.pv.service.validator/bin
-
 #validators-bin:
 validators/eu.tanov.epf.pv.validators.example/bin
 

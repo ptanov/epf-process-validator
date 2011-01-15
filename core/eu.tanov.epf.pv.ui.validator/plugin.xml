@@ -4,8 +4,7 @@
 
 	<extension point="org.eclipse.ui.popupMenus"> 
 	   <objectContribution id="org.eclipse.ui.articles.action.contribution.popup.object"
-	      objectClass="eu.tanov.epf.pv.ui.validator.i18n.ValidatorUIResources">
-	      <!-- TODO should be: objectClass="org.eclipse.epf.uma.ProcessComponent"> -->
+	      objectClass="org.eclipse.epf.uma.ProcessComponent"> 
 	      <action
 	         id="eu.tanov.epf.pv.ui.validator.actions.ValidateAction" 
 	         label="%ValidateProcess_text"

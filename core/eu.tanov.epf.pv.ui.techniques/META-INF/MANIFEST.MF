@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: eu.tanov.epf.pv.ui.techniques
 Bundle-SymbolicName: eu.tanov.epf.pv.ui.techniques;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.epf.library;bundle-version="1.5.0",
  org.eclipse.epf.authoring.ui;bundle-version="1.5.0",
@@ -10,3 +10,4 @@ Require-Bundle: org.eclipse.epf.library;bundle-version="1.5.0",
  eu.tanov.epf.itemprovider;bundle-version="1.0.0"
 Bundle-Activator: eu.tanov.epf.pv.ui.techniques.TechniquesActivator
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
