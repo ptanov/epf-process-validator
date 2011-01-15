@@ -1,10 +1,9 @@
+syntax: regex
+/target/
+
 syntax: glob
 
-#epf composer source:
-epf-composer-plugins/target
-
 #core-bin:
-core/eu.tanov.epf.itemprovider/bin
 core/eu.tanov.epf.pv.ui.common/bin
 core/eu.tanov.epf.pv.ui.techniques/bin
 core/eu.tanov.epf.pv.ui.validator/bin

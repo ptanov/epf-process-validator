@@ -2,8 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: eu.tanov.epf.itemprovider
 Bundle-SymbolicName: eu.tanov.epf.itemprovider;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.epf.library.edit;bundle-version="1.5.0"
 Export-Package: eu.tanov.epf.itemprovider.extension,
  eu.tanov.epf.itemprovider.util
+Bundle-ClassPath: .
