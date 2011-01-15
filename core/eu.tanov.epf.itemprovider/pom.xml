@@ -10,6 +10,6 @@
 
 	<groupId>eu.tanov.epf</groupId>
 	<artifactId>eu.tanov.epf.itemprovider</artifactId>
-	<name>${artifactId}</name>
+	<name>${project.artifactId}</name>
 
 </project>
