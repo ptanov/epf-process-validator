@@ -1,4 +1,4 @@
-syntax: regex
+syntax: regexp
 /target/
 
 syntax: glob
