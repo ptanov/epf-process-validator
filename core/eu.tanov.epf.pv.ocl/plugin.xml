@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="CustomTypeHandler" name="Handler for Custom Type" schema="schema/CustomTypeHandler.exsd"/>
       <extension
          point="org.eclipse.emf.validation.constraintProviders"
          id="oclProvider">
@@ -17,5 +18,10 @@
          <ocl path="constraints/library.ocl"/>
       </constraintProvider>
   </extension>
+
+
+   <extension point="org.eclipse.ui.startup">
+      <startup class="eu.tanov.epf.pv.ocl.RegisterValidatorAtStartup"/>
+   </extension>
 
 </plugin>
