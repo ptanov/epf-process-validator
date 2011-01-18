@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="eu.tanov.epf.pv.service.ocl" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="eu.tanov.epf.pv.service.ocl" id="OCLConstraints" name="OCL Constraints"/>
+      </appinfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="constraints" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="constraints">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="category" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="mandatory" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Indicates whether the category is mandatory or not.  The user cannot disable
+constraints that are in mandatory categories, so care must be taken in 
+designating a category as mandatory.  It must really be essential
+to the correct functioning of the application!
+
+If not specified, the implied value is false.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="severity" use="default" value="ERROR">
+            <annotation>
+               <documentation>
+                  The severity of the problem if the constraint is violated.  This correlates to
+the severity of tasks in the Tasks view of the Eclipse environment.
+&lt;p&gt;
+The default severity (if none specified) is ERROR.  The CANCEL severity should
+be used with caution, as it causes the validation operation to be interrupted,
+possibly resulting in the loss of valuable diagnostic information from other
+constraints.
+&lt;/p&gt;
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="INFO">
+                  </enumeration>
+                  <enumeration value="WARNING">
+                  </enumeration>
+                  <enumeration value="ERROR">
+                  </enumeration>
+                  <enumeration value="CANCEL">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="content" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="message" type="string" use="default" value="Constraint %s violated on {0}">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="CustomTypeHandler" name="Handler for Custom Type" schema="schema/CustomTypeHandler.exsd"/>
-      <extension
+	<extension-point id="CustomTypeHandler" name="Handler for Custom Type" schema="schema/CustomTypeHandler.exsd"/>
+	<extension-point id="OCLConstraints" name="OCL Constraints" schema="schema/OCLConstraints.exsd"/>
+	<extension
          point="org.eclipse.emf.validation.constraintProviders"
          id="oclProvider">
-      
-      <!-- Custom constraint provider using OCL documents -->
-      <constraintProvider
-            class="eu.tanov.epf.pv.service.ocl.provider.OCLConstraintProvider"
-            category="Constraints from an OCL Document">
-         			<package namespaceUri="http://www.eclipse.org/epf/uma/1.0.6/uma.ecore"/>
-         
-<!--
-         <package namespaceUri="http:///org/eclipse/emf/examples/library/extlibrary.ecore/1.0.0"/>
-    -->     
-         <ocl path="constraints/library.ocl"/>
-      </constraintProvider>
-  </extension>
 
-   <extension point="org.eclipse.ui.startup">
-      <startup class="eu.tanov.epf.pv.service.ocl.InitExtendedUmaPackageAtStartup" />
-   </extension>
+		<!-- Custom constraint provider using OCL documents -->
+		<constraintProvider
+            class="eu.tanov.epf.pv.service.ocl.provider.OCLConstraintProvider">
+			<package namespaceUri="http://www.eclipse.org/epf/uma/1.0.6/uma.ecore"/>
+		</constraintProvider>
+	</extension>
+
+	<extension point="org.eclipse.ui.startup">
+		<startup class="eu.tanov.epf.pv.service.ocl.InitExtendedUmaPackageAtStartup" />
+	</extension>
 
 </plugin>

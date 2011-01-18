@@ -9,76 +9,82 @@ import org.eclipse.emf.validation.service.AbstractConstraintDescriptor;
 import org.eclipse.ocl.ecore.Constraint;
 
 import eu.tanov.epf.pv.service.ocl.CustomTypeHandlersRegistry;
+import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
 
 /**
  * Based on org.eclipse.emf.validation.examples.ocl example
  */
 public class OCLConstraintDescriptor extends AbstractConstraintDescriptor {
+	private final OCLConstraintsDefinition definition;
 	private final Constraint constraint;
 	private final String id;
 	private final String name;
-	private final String namespace;
 	private final int code;
 
-	public OCLConstraintDescriptor(String namespace, Constraint constraint, int code) {
+	public OCLConstraintDescriptor(OCLConstraintsDefinition definition, Constraint constraint, int code) {
+		this.definition = definition;
 		this.constraint = constraint;
 
-		String name = constraint.getName();
-		if (name == null) {
+		this.name = constraint.getName();
+		if (this.name == null) {
 			throw new IllegalArgumentException("Constraint without name: " + constraint);
 		}
 
-		id = namespace + '.' + name;
-		this.name = name;
-		this.namespace = namespace;
+		id = this.definition.getId() + '.' + name;
 		this.code = code;
 	}
 
-	final Constraint getConstraint() {
-		return constraint;
-	}
-
+	@Override
 	public String getBody() {
 		return constraint.getSpecification().getBodyExpression().toString();
 	}
 
+	@Override
 	public String getDescription() {
 		return getBody();
 	}
 
+	@Override
 	public EvaluationMode<?> getEvaluationMode() {
 		return EvaluationMode.BATCH;
 	}
 
+	@Override
 	public String getId() {
 		return id;
 	}
 
+	@Override
 	public String getMessagePattern() {
-		// TODO i18n
-		return String.format("Constraint %s violated on {0}", getName()); //$NON-NLS-1$
+		return String.format(definition.getMessage(), getName());
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public String getPluginId() {
-		return namespace;
+		return definition.getPluginId();
 	}
 
+	@Override
 	public ConstraintSeverity getSeverity() {
-		return ConstraintSeverity.WARNING;
+		return definition.getSeverity();
 	}
 
+	@Override
 	public int getStatusCode() {
 		return code;
 	}
 
+	@Override
 	public boolean targetsEvent(Notification notification) {
 		return false;
 	}
 
+	@Override
 	public boolean targetsTypeOf(EObject eObject) {
 		final EClassifier type = constraint.getSpecification().getContextVariable().getType();
 		if (type.isInstance(eObject)) {

@@ -1,5 +1,0 @@
---context uma::CustomCategory
---inv SOME: not self.categorizedElements->isEmpty()
-
-context ExtendedUma::Technique 
-inv SOME: not self.tasks->isEmpty()
