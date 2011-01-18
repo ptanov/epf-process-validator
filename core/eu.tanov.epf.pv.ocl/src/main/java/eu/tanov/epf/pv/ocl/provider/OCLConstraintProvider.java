@@ -26,6 +26,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
 import org.osgi.framework.Bundle;
 
 import eu.tanov.epf.pv.ocl.Activator;
+import eu.tanov.epf.pv.ocl.factory.ExtendedEcoreEnvironmentFactory;
 
 /**
  * Based on org.eclipse.emf.validation.examples.ocl example
@@ -102,7 +103,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider {
 	private void parseConstraints(Category category, String namespace, InputStream input) throws ParserException {
 
 		final OCLInput oclInput = new OCLInput(input);
-		final OCL ocl = OCL.newInstance();
+		final OCL ocl = createOCL();
 
 		for (Constraint constraint : ocl.parse(oclInput)) {
 			if (isInvariant(constraint)) {
@@ -110,6 +111,10 @@ public class OCLConstraintProvider extends AbstractConstraintProvider {
 				addConstraint(category, namespace, ocl, constraint);
 			}
 		}
+	}
+
+	private OCL createOCL() {
+		return OCL.newInstance(new ExtendedEcoreEnvironmentFactory());
 	}
 
 	private boolean isInvariant(Constraint constraint) {

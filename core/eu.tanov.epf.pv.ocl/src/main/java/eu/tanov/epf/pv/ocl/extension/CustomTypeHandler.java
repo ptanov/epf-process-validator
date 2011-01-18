@@ -1,5 +1,6 @@
 package eu.tanov.epf.pv.ocl.extension;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -24,4 +25,9 @@ public interface CustomTypeHandler {
 	 * @return true if object is holder for this custom type and can be wrapped
 	 */
 	public boolean matches(EObject object);
+	
+	/**
+	 * @return type of custom type
+	 */
+	public EClass getCustomType();
 }

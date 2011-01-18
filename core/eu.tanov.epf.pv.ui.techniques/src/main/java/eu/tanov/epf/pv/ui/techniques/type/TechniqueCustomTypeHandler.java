@@ -50,4 +50,9 @@ public class TechniqueCustomTypeHandler implements CustomTypeHandler {
 		return TechniquesHelper.isTechnique(object);
 	}
 
+	@Override
+	public EClass getCustomType() {
+		return techniqueEClass;
+	}
+
 }

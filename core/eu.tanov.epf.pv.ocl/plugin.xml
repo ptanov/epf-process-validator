@@ -19,9 +19,8 @@
       </constraintProvider>
   </extension>
 
-
    <extension point="org.eclipse.ui.startup">
-      <startup class="eu.tanov.epf.pv.ocl.RegisterValidatorAtStartup"/>
+      <startup class="eu.tanov.epf.pv.ocl.InitExtendedUmaPackageAtStartup" />
    </extension>
 
 </plugin>
