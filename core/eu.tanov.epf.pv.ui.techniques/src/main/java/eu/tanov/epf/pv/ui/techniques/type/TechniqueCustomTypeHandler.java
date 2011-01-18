@@ -6,8 +6,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.epf.uma.UmaPackage;
 
-import eu.tanov.epf.pv.ocl.extension.CustomTypeHandler;
-import eu.tanov.epf.pv.ocl.util.CustomTypeHelper;
+import eu.tanov.epf.pv.service.ocl.extension.CustomTypeHandler;
+import eu.tanov.epf.pv.service.ocl.util.CustomTypeHelper;
 import eu.tanov.epf.pv.ui.techniques.util.TechniquesHelper;
 
 public class TechniqueCustomTypeHandler implements CustomTypeHandler {

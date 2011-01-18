@@ -11,7 +11,7 @@ import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.DescribableElement;
 import org.eclipse.epf.uma.WorkProduct;
 
-import eu.tanov.epf.pv.ocl.util.AbstractReadOnlySettingDelegate;
+import eu.tanov.epf.pv.service.ocl.util.AbstractReadOnlySettingDelegate;
 
 public class WorkProductsSettingDelegateFactory implements SettingDelegate.Factory {
 	/**
