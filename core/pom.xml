@@ -13,6 +13,7 @@
 		<module>eu.tanov.epf.pv.service.validator</module>
 		<module>eu.tanov.epf.pv.ui.techniques</module>
 		<module>eu.tanov.epf.pv.ui.validator</module>
+		<module>eu.tanov.epf.pv.ui.ocl</module>
 	</modules>
 <!--
 	<dependencies>
