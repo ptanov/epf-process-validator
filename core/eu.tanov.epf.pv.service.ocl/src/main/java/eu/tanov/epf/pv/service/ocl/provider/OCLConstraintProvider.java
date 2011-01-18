@@ -125,7 +125,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider {
 				final String category = configuration.getAttribute("category"); //$NON-NLS-1$
 				final boolean mandatory = Boolean.getBoolean(configuration.getAttribute("mandatory")); //$NON-NLS-1$
 				final ConstraintSeverity severity = ConstraintSeverity.valueOf(configuration.getAttribute("severity")); //$NON-NLS-1$
-				final String content = configuration.getAttribute("content"); //$NON-NLS-1$
+				final String content = getContent(configuration);
 				final String message = configuration.getAttribute("message"); //$NON-NLS-1$
 
 				final OCLConstraintsDefinition definition = new OCLConstraintsDefinition(pluginId, id, category, mandatory,
@@ -136,6 +136,14 @@ public class OCLConstraintProvider extends AbstractConstraintProvider {
 				Activator.log("could not parse configuration: " + configuration, e);
 			}
 		}
+	}
+
+	private String getContent(IConfigurationElement configuration) {
+		final IConfigurationElement[] children = configuration.getChildren("content"); //$NON-NLS-1$
+		if (children == null || children.length != 1) {
+			throw new IllegalArgumentException("could not find content in: " +configuration);
+		}
+		return children[0].getValue();
 	}
 
 	/**

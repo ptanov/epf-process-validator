@@ -49,6 +49,9 @@
 
    <element name="constraints">
       <complexType>
+         <sequence>
+            <element ref="content"/>
+         </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
@@ -101,13 +104,6 @@ constraints.
                </restriction>
             </simpleType>
          </attribute>
-         <attribute name="content" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
          <attribute name="message" type="string" use="default" value="Constraint %s violated on {0}">
             <annotation>
                <documentation>
@@ -119,6 +115,9 @@ constraints.
             </annotation>
          </attribute>
       </complexType>
+   </element>
+
+   <element name="content" type="string">
    </element>
 
    <annotation>
