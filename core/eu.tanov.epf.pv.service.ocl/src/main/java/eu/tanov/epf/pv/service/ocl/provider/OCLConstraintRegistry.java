@@ -41,7 +41,7 @@ public class OCLConstraintRegistry {
 	public void registerConstraintsDefinition(OCLConstraintsDefinition definition) throws ParserException, IllegalArgumentException,
 			ConstraintExistsException {
 		if (provider != null) {
-			registerConstraintsDefinition(definition);
+			provider.registerConstraintsDefinition(definition);
 		} else {
 			if (definitions.contains(definition)) {
 				throw new IllegalArgumentException("Definition already registered: "+definition);
@@ -56,7 +56,7 @@ public class OCLConstraintRegistry {
 	 */
 	public void removeConstraintsDefinition(OCLConstraintsDefinition definition) throws IllegalArgumentException {
 		if (provider != null) {
-			removeConstraintsDefinition(definition);
+			provider.removeConstraintsDefinition(definition);
 		} else {
 			if (!definitions.remove(definition)) {
 				throw new IllegalArgumentException("Definition not registered: "+definition);
