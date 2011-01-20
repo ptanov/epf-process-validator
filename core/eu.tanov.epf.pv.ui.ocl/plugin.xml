@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="eu.tanov.epf.pv.ui.ocl.preference.OCLConstraintsPreference"
+            id="eu.tanov.epf.pv.ui.ocl.preferences"
+            category="org.eclipse.emf.validation.ui.rootPage"
+            name="%preferencePage_name"
+            >
+      </page>
+   </extension>
+
+	<extension point="org.eclipse.emf.validation.constraintProviders">
+		<category id="eu.tanov.epf.pv.validators.category.default/OCL"
+				name="%constraintCategory_ocl"/>
+		<category id="eu.tanov.epf.pv.validators.category.default/OCL/preferences"
+				name="%constraintCategory_ocl_preferences"/>
+	</extension>
+
+</plugin>

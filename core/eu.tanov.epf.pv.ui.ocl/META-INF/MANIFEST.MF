@@ -3,5 +3,12 @@ Bundle-ManifestVersion: 2
 Bundle-Name: eu.tanov.epf.pv.ui.ocl
 Bundle-SymbolicName: eu.tanov.epf.pv.ui.ocl;singleton:=true
 Bundle-Version: 1.0.0.SNAPSHOT
+Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.validation;bundle-version="1.4.0",
+ eu.tanov.epf.pv.service.ocl;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: eu.tanov.epf.pv.ui.ocl.OCLActivator
 Bundle-ClassPath: .
