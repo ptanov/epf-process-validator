@@ -95,10 +95,12 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 	}
 
 	public void constraintsDefinitionRemoved(OCLConstraintsDefinition definition) {
-		final List<OCLConstraint> constraints = definitionToConstraintsMap.get(definition);
+		final List<OCLConstraint> constraintsToRemove = definitionToConstraintsMap.get(definition);
+		final List<IModelConstraint> allConstraints = getConstraints();
 
-		for (OCLConstraint oclConstraint : constraints) {
-			ConstraintRegistry.getInstance().unregister(oclConstraint.getDescriptor());
+		for (OCLConstraint constraintToRemove : constraintsToRemove) {
+			allConstraints.remove(constraintToRemove);
+			ConstraintRegistry.getInstance().unregister(constraintToRemove.getDescriptor());
 		}
 	}
 

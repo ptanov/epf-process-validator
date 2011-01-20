@@ -7,7 +7,7 @@
          id="oclProvider">
 
 		<!-- Custom constraint provider using OCL documents -->
-		<constraintProvider
+		<constraintProvider cache="false"
             class="eu.tanov.epf.pv.service.ocl.provider.OCLConstraintProvider">
 			<package namespaceUri="http://www.eclipse.org/epf/uma/1.0.6/uma.ecore"/>
 		</constraintProvider>
