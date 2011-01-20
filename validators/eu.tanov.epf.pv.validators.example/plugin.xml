@@ -4,9 +4,11 @@
 	<extension point="org.eclipse.emf.validation.constraintProviders">
 		<category id="eu.tanov.epf.pv.validators.category.default"
 				name="%constraintCategory_Process_Default"/>
+		<category id="eu.tanov.epf.pv.validators.category.default/eu.tanov.epf.pv.validators.example.category"
+				name="%constraintCategory_Process_Example"/>
 		<constraintProvider cache="true">
 			<package namespaceUri="http://www.eclipse.org/epf/uma/1.0.6/uma.ecore"/>
-			<constraints categories="eu.tanov.epf.pv.validators.category.default, org.eclipse.epf.validation.library.category">
+			<constraints categories="eu.tanov.epf.pv.validators.category.default/eu.tanov.epf.pv.validators.example.category, org.eclipse.epf.validation.library.category">
 				<constraint
 						class="eu.tanov.epf.pv.validators.example.SampleConstraint"
 						id="eu.tanov.epf.pv.validators.example.SampleConstraint"
