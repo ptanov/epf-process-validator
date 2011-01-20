@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.service.ocl;
+package eu.tanov.epf.pv.service.ocl.service.impl;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,26 +7,27 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.epf.library.edit.util.ExtensionManager;
 
+import eu.tanov.epf.pv.service.ocl.Activator;
 import eu.tanov.epf.pv.service.ocl.extension.CustomTypeHandler;
 
 /**
  * TODO how to avoid singleton pattern?
  */
-public class CustomTypeHandlersRegistry {
+public class CustomTypeHandlersServiceImpl {
 	private static final String EXTENSION_POINT_NAME = "CustomTypeHandler";
 
-	private static final CustomTypeHandlersRegistry INSTANCE = new CustomTypeHandlersRegistry();
+	private static final CustomTypeHandlersServiceImpl INSTANCE = new CustomTypeHandlersServiceImpl();
 
 	private final List<CustomTypeHandler> handlers;
 
-	public static CustomTypeHandlersRegistry getInstance() {
+	public static CustomTypeHandlersServiceImpl getInstance() {
 		return INSTANCE;
 	}
 
 	/**
 	 * singleton
 	 */
-	private CustomTypeHandlersRegistry() {
+	private CustomTypeHandlersServiceImpl() {
 		// from extension
 		handlers = ExtensionManager.getExtensions(Activator.PLUGIN_ID, EXTENSION_POINT_NAME, CustomTypeHandler.class);
 	}

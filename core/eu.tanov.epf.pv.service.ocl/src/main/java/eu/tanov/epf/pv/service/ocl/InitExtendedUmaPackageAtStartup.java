@@ -7,12 +7,13 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.ui.IStartup;
 
 import eu.tanov.epf.pv.service.ocl.extension.CustomTypeHandler;
+import eu.tanov.epf.pv.service.ocl.service.impl.CustomTypeHandlersServiceImpl;
 
 public class InitExtendedUmaPackageAtStartup implements IStartup {
 	private static final String NS_URI_EXTENDED_UMA = "http://www.tanov.eu/epf/pv/uma/extended/1.0.0/extendeduma.ecore";
 
 	public void earlyStartup() {
-		final List<CustomTypeHandler> customTypeHandlers = CustomTypeHandlersRegistry.getInstance().getHandlers();
+		final List<CustomTypeHandler> customTypeHandlers = CustomTypeHandlersServiceImpl.getInstance().getHandlers();
 
 		final EPackage extendedUmaPackage = createExtendedUmaPackage();
 

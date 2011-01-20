@@ -8,8 +8,8 @@ import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.AbstractConstraintDescriptor;
 import org.eclipse.ocl.ecore.Constraint;
 
-import eu.tanov.epf.pv.service.ocl.CustomTypeHandlersRegistry;
 import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
+import eu.tanov.epf.pv.service.ocl.service.impl.CustomTypeHandlersServiceImpl;
 
 /**
  * Based on org.eclipse.emf.validation.examples.ocl example
@@ -92,7 +92,7 @@ public class OCLConstraintDescriptor extends AbstractConstraintDescriptor {
 			return true;
 		}
 
-		return CustomTypeHandlersRegistry.getInstance().canWrapTo(eObject, type);
+		return CustomTypeHandlersServiceImpl.getInstance().canWrapTo(eObject, type);
 	}
 
 }

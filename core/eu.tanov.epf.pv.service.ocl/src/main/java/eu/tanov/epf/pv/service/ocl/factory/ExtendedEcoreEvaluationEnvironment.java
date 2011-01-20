@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 
-import eu.tanov.epf.pv.service.ocl.CustomTypeHandlersRegistry;
+import eu.tanov.epf.pv.service.ocl.service.impl.CustomTypeHandlersServiceImpl;
 
 public class ExtendedEcoreEvaluationEnvironment extends EcoreEvaluationEnvironment {
 
@@ -28,7 +28,7 @@ public class ExtendedEcoreEvaluationEnvironment extends EcoreEvaluationEnvironme
 			throws IllegalArgumentException {
 		if (target instanceof EObject) {
 			// wrap first
-			target = CustomTypeHandlersRegistry.getInstance().wrapObjectIfNeeded((EObject) target);
+			target = CustomTypeHandlersServiceImpl.getInstance().wrapObjectIfNeeded((EObject) target);
 		}
 		return super.navigateProperty(property, qualifiers, target);
 		// XXX or first try super.navigateProperty() and catch exception - if exception - try wrapping?
