@@ -20,4 +20,8 @@
 				name="%constraintCategory_ocl_preferences"/>
 	</extension>
 
+	<extension point="org.eclipse.ui.startup">
+      <startup class="eu.tanov.epf.pv.ui.ocl.preference.AddConstraintAtStartup"/>
+	</extension>
+   
 </plugin>
