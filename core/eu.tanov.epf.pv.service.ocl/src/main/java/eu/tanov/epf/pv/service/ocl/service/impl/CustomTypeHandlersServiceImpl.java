@@ -9,25 +9,14 @@ import org.eclipse.epf.library.edit.util.ExtensionManager;
 
 import eu.tanov.epf.pv.service.ocl.Activator;
 import eu.tanov.epf.pv.service.ocl.extension.CustomTypeHandler;
+import eu.tanov.epf.pv.service.ocl.service.CustomTypeHandlersService;
 
-/**
- * TODO how to avoid singleton pattern?
- */
-public class CustomTypeHandlersServiceImpl {
+public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService {
 	private static final String EXTENSION_POINT_NAME = "CustomTypeHandler";
-
-	private static final CustomTypeHandlersServiceImpl INSTANCE = new CustomTypeHandlersServiceImpl();
 
 	private final List<CustomTypeHandler> handlers;
 
-	public static CustomTypeHandlersServiceImpl getInstance() {
-		return INSTANCE;
-	}
-
-	/**
-	 * singleton
-	 */
-	private CustomTypeHandlersServiceImpl() {
+	public CustomTypeHandlersServiceImpl() {
 		// from extension
 		handlers = ExtensionManager.getExtensions(Activator.PLUGIN_ID, EXTENSION_POINT_NAME, CustomTypeHandler.class);
 	}
@@ -36,10 +25,6 @@ public class CustomTypeHandlersServiceImpl {
 		return Collections.unmodifiableList(handlers);
 	}
 
-	/**
-	 * @param eObject
-	 * @return same eObject if it is not holder for custom type
-	 */
 	public EObject wrapObjectIfNeeded(EObject eObject) {
 		final CustomTypeHandler handler = getHandlerFor(eObject);
 		if (handler == null) {
@@ -69,11 +54,6 @@ public class CustomTypeHandlersServiceImpl {
 		return result;
 	}
 
-	/**
-	 * @param eObject
-	 * @param type
-	 * @return true if eObject can be wrapped to type using registered custom type handler
-	 */
 	public boolean canWrapTo(EObject eObject, EClassifier type) {
 		final CustomTypeHandler handler = getHandlerFor(eObject);
 

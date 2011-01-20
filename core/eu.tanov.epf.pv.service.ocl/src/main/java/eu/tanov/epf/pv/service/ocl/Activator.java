@@ -7,7 +7,9 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 
+import eu.tanov.epf.pv.service.ocl.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
+import eu.tanov.epf.pv.service.ocl.service.impl.CustomTypeHandlersServiceImpl;
 import eu.tanov.epf.pv.service.ocl.service.impl.OCLConstraintsServiceImpl;
 
 public class Activator extends Plugin {
@@ -21,6 +23,7 @@ public class Activator extends Plugin {
 	private BundleContext context;
 
 	private ServiceRegistration oclConstraintsServiceRegistration;
+	private ServiceRegistration customTypeHandlersServiceRegistration;
 
 	/**
 	 * The constructor
@@ -44,11 +47,18 @@ public class Activator extends Plugin {
 	private void registerServices() {
 		oclConstraintsServiceRegistration = context.registerService(OCLConstraintsService.class.getName(),
 				new OCLConstraintsServiceImpl(), null);
+
+		customTypeHandlersServiceRegistration = context.registerService(CustomTypeHandlersService.class.getName(),
+				new CustomTypeHandlersServiceImpl(), null);
 	}
 
 	private void unregisterServices() {
 		if (oclConstraintsServiceRegistration != null) {
 			oclConstraintsServiceRegistration.unregister();
+		}
+
+		if (customTypeHandlersServiceRegistration != null) {
+			customTypeHandlersServiceRegistration.unregister();
 		}
 	}
 
