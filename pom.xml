@@ -9,21 +9,22 @@
 	<modules>
 		<module>core</module>
 	</modules>
-
-<!--
-	<dependencies>
-		<dependency>
-			<groupId>eu.tanov.epf</groupId>
-			<artifactId>eu.tanov.epf.pv.ui.common</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.tanov.epf</groupId>
-			<artifactId>eu.tanov.epf.itemprovider</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-	</dependencies>
--->
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>eu.tanov.epf</groupId>
+				<artifactId>eu.tanov.epf.pv.ui.common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>eu.tanov.epf</groupId>
+				<artifactId>eu.tanov.epf.itemprovider</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
 	<build>
 		<plugins>
 			<plugin>
