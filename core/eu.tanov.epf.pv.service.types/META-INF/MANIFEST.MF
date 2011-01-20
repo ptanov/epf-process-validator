@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: eu.tanov.epf.pv.service.types
+Bundle-SymbolicName: eu.tanov.epf.pv.service.types;singleton:=true
+Bundle-Version: 1.0.0.SNAPSHOT
+Bundle-Activator: eu.tanov.epf.pv.service.types.TypesActivator
+Require-Bundle: org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: .
