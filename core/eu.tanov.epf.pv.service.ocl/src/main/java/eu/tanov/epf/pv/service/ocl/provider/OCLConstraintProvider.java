@@ -31,11 +31,12 @@ import eu.tanov.epf.pv.service.ocl.Activator;
 import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
 import eu.tanov.epf.pv.service.ocl.factory.ExtendedEcoreEnvironmentFactory;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
+import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsServiceListener;
 
 /**
  * Based on org.eclipse.emf.validation.examples.ocl example
  */
-public class OCLConstraintProvider extends AbstractConstraintProvider {
+public class OCLConstraintProvider extends AbstractConstraintProvider implements OCLConstraintsServiceListener {
 	private static final String EXTENDSION_POINT_NAME_OCL_CONSTRAINTS = "OCLConstraints";
 
 	private static final Category defaultCateogry = CategoryManager.getInstance().getCategory(
@@ -48,8 +49,10 @@ public class OCLConstraintProvider extends AbstractConstraintProvider {
 		super.setInitializationData(config, propertyName, data);
 
 		final OCLConstraintsService service = Activator.getDefault().getService(OCLConstraintsService.class);
-		// XXX this is not good, but how to accumulate definitions before provider is created?
-		final Collection<OCLConstraintsDefinition> acumulatedDefinitions = service.setProvider(this);
+
+		service.addListener(this);
+		final Collection<OCLConstraintsDefinition> acumulatedDefinitions = service.getConstraintsDefinitions();
+
 		registerAcumulatedDefinitions(acumulatedDefinitions);
 
 		processOCLConstraintsExtensions();
@@ -65,41 +68,27 @@ public class OCLConstraintProvider extends AbstractConstraintProvider {
 
 	private void registerAcumulatedDefinitions(Collection<OCLConstraintsDefinition> definitionsBeforeProvider)
 			throws CoreException {
-		// XXX if exception - it will be not handled properly :(
 		for (OCLConstraintsDefinition definition : definitionsBeforeProvider) {
-			try {
-				registerConstraintsDefinition(definition);
-			} catch (Exception e) {
-				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 1,
-						"Registration of acumulated OCL constraints failed", e));
-
+			if (definitionToConstraintsMap.containsKey(definition)) {
+				// already registered
+				continue;
 			}
 
+			constraintsDefinitionRegistered(definition);
 		}
 	}
 
-	/**
-	 * Should be used only by OCLConstraintRegistry or from this class
-	 * 
-	 * @param definition
-	 * @throws ParserException
-	 *             on failure to parse, either because of a syntactic or semantic problem or because of an I/O failure
-	 * @throws ConstraintExistsException
-	 *             in case any of the constraints has an ID that is already registered for a different constraint
-	 */
-	public void registerConstraintsDefinition(OCLConstraintsDefinition definition) throws ParserException,
-			ConstraintExistsException {
-		addConstraintsDefinition(definition);
+	public void constraintsDefinitionRegistered(OCLConstraintsDefinition definition) {
+		try {
+			addConstraintsDefinition(definition);
+			registerConstraints(definitionToConstraintsMap.get(definition));
+		} catch (Exception e) {
+			Activator.log("could not add definition: " + definition, e);
+		}
 
-		registerConstraints(definitionToConstraintsMap.get(definition));
 	}
 
-	/**
-	 * Should be used only by OCLConstraintRegistry
-	 * 
-	 * @param definition
-	 */
-	public void removeConstraintsDefinition(OCLConstraintsDefinition definition) {
+	public void constraintsDefinitionRemoved(OCLConstraintsDefinition definition) {
 		final List<OCLConstraint> constraints = definitionToConstraintsMap.get(definition);
 
 		for (OCLConstraint oclConstraint : constraints) {
@@ -143,7 +132,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider {
 	private String getContent(IConfigurationElement configuration) {
 		final IConfigurationElement[] children = configuration.getChildren("content"); //$NON-NLS-1$
 		if (children == null || children.length != 1) {
-			throw new IllegalArgumentException("could not find content in: " +configuration);
+			throw new IllegalArgumentException("could not find content in: " + configuration);
 		}
 		return children[0].getValue();
 	}

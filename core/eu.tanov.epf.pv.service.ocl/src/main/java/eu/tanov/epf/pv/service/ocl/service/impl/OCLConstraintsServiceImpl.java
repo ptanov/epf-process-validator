@@ -1,61 +1,67 @@
 package eu.tanov.epf.pv.service.ocl.service.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
-import org.eclipse.emf.validation.service.ConstraintExistsException;
-import org.eclipse.ocl.ParserException;
-
 import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
-import eu.tanov.epf.pv.service.ocl.provider.OCLConstraintProvider;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
+import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsServiceListener;
 
 /**
- * XXX not synchronized 
+ * TODO not synchronized
  */
 public class OCLConstraintsServiceImpl implements OCLConstraintsService {
-	private OCLConstraintProvider provider;
-
 	private final Set<OCLConstraintsDefinition> definitions = new HashSet<OCLConstraintsDefinition>();
 
-	public void registerConstraintsDefinition(OCLConstraintsDefinition definition) throws ParserException, IllegalArgumentException,
-			ConstraintExistsException {
-		if (provider != null) {
-			provider.registerConstraintsDefinition(definition);
-		} else {
-			if (definitions.contains(definition)) {
-				throw new IllegalArgumentException("Definition already registered: "+definition);
-			}
-			definitions.add(definition);
+	private final LinkedList<OCLConstraintsServiceListener> listeners = new LinkedList<OCLConstraintsServiceListener>();
+
+	@Override
+	public void registerConstraintsDefinition(OCLConstraintsDefinition definition) throws IllegalArgumentException {
+		if (definitions.contains(definition)) {
+			throw new IllegalArgumentException("Definition already registered: " + definition);
 		}
+		definitions.add(definition);
+
+		notifyListenersRegistered(definition);
 	}
 
+	@Override
 	public void removeConstraintsDefinition(OCLConstraintsDefinition definition) throws IllegalArgumentException {
-		if (provider != null) {
-			provider.removeConstraintsDefinition(definition);
-		} else {
-			if (!definitions.remove(definition)) {
-				throw new IllegalArgumentException("Definition not registered: "+definition);
-			}
+		if (!definitions.remove(definition)) {
+			throw new IllegalArgumentException("Definition not registered: " + definition);
 		}
-	}
-	
-	/**
-	 * Should be used only by OCLConstraintProvider
-	 * @param provider
-	 * @return already accumulated definitions (before provider was created)
-	 */
-	public Collection<OCLConstraintsDefinition> setProvider(OCLConstraintProvider provider) {
-		if (provider == null) {
-			throw new NullPointerException("null provider passed");
-		}
-		if (this.provider != null) {
-			throw new IllegalStateException(String.format("provider already set, old: %s, new: %s", this.provider, provider));
-		}
-		this.provider = provider;
 
-		return definitions;
-		//definitions list will not be used any more
+		notifyListenersRemoved(definition);
 	}
+
+	@Override
+	public void addListener(OCLConstraintsServiceListener listener) {
+		listeners.add(listener);
+	}
+
+	@Override
+	public void removeListener(OCLConstraintsServiceListener listener) {
+		listeners.remove(listener);
+	}
+
+	private void notifyListenersRegistered(OCLConstraintsDefinition definition) {
+		for (OCLConstraintsServiceListener listener : listeners) {
+			listener.constraintsDefinitionRegistered(definition);
+		}
+	}
+
+	private void notifyListenersRemoved(OCLConstraintsDefinition definition) {
+		for (OCLConstraintsServiceListener listener : listeners) {
+			listener.constraintsDefinitionRemoved(definition);
+		}
+	}
+
+	@Override
+	public Collection<OCLConstraintsDefinition> getConstraintsDefinitions() {
+		return Collections.unmodifiableCollection(definitions);
+	}
+
 }
