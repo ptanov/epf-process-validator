@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.service.ocl.provider;
+package eu.tanov.epf.pv.service.ocl.service;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,12 +8,13 @@ import org.eclipse.emf.validation.service.ConstraintExistsException;
 import org.eclipse.ocl.ParserException;
 
 import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
+import eu.tanov.epf.pv.service.ocl.provider.OCLConstraintProvider;
 
 /**
- * TODO synchronized errors may occurs here 
+ * XXX not synchronized 
  */
-public class OCLConstraintRegistry {
-	private static final OCLConstraintRegistry INSTANCE = new OCLConstraintRegistry();
+public class OCLConstraintsServiceImpl {
+	private static final OCLConstraintsServiceImpl INSTANCE = new OCLConstraintsServiceImpl();
 
 	private OCLConstraintProvider provider;
 
@@ -22,10 +23,10 @@ public class OCLConstraintRegistry {
 	/**
 	 * singleton
 	 */
-	private OCLConstraintRegistry() {
+	private OCLConstraintsServiceImpl() {
 	}
 
-	public static OCLConstraintRegistry getInstance() {
+	public static OCLConstraintsServiceImpl getInstance() {
 		return INSTANCE;
 	}
 
