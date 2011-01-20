@@ -21,5 +21,23 @@
 			</constraints>
 		</constraintProvider>
 	</extension>
+	<extension point="eu.tanov.epf.pv.service.ocl.OCLConstraints">
+		<constraints
+			  category="eu.tanov.epf.pv.validators.example.constraints31111"
+			  id="eu.tanov.epf.pv.validators.example.constraints31111"
+			  mandatory="false"
+			  message="Constraint1111 %s violated on {0}"
+			  severity="ERROR">
+			<content>
 
+package uma
+
+context ExtendedUma::Technique 
+inv SOMEqqer: not self.tasks->isEmpty()
+
+endpackage
+
+			</content>
+		</constraints>
+	</extension>
 </plugin>
