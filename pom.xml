@@ -1,21 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.tanov.epf</groupId>
-	<artifactId>eu.tanov.epf.core</artifactId>
+	<artifactId>eu.tanov.epf</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>eu.tanov.epf.itemprovider</module>
-		<module>eu.tanov.epf.pv.service.ocl</module>
-		<module>eu.tanov.epf.pv.ui.common</module>
-		<module>eu.tanov.epf.pv.service.validator</module>
-		<module>eu.tanov.epf.pv.ui.techniques</module>
-		<module>eu.tanov.epf.pv.ui.validator</module>
-		<module>eu.tanov.epf.pv.ui.ocl</module>
-		<module>eu.tanov.epf.pv.service.types</module>
+		<module>core</module>
 	</modules>
+
 <!--
 	<dependencies>
 		<dependency>
