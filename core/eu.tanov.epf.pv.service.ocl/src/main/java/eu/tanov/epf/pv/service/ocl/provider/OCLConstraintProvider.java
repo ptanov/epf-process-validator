@@ -30,7 +30,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
 import eu.tanov.epf.pv.service.ocl.Activator;
 import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
 import eu.tanov.epf.pv.service.ocl.factory.ExtendedEcoreEnvironmentFactory;
-import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsServiceImpl;
+import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
 
 /**
  * Based on org.eclipse.emf.validation.examples.ocl example
@@ -47,8 +47,9 @@ public class OCLConstraintProvider extends AbstractConstraintProvider {
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		super.setInitializationData(config, propertyName, data);
 
+		final OCLConstraintsService service = Activator.getDefault().getService(OCLConstraintsService.class);
 		// XXX this is not good, but how to accumulate definitions before provider is created?
-		final Collection<OCLConstraintsDefinition> acumulatedDefinitions = OCLConstraintsServiceImpl.getInstance().setProvider(this);
+		final Collection<OCLConstraintsDefinition> acumulatedDefinitions = service.setProvider(this);
 		registerAcumulatedDefinitions(acumulatedDefinitions);
 
 		processOCLConstraintsExtensions();
