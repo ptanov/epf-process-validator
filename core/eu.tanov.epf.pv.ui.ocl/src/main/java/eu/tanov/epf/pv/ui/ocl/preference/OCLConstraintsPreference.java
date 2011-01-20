@@ -52,6 +52,7 @@ public class OCLConstraintsPreference extends FieldEditorPreferencePage implemen
 		final OCLConstraintsDefinition definition = new OCLConstraintsDefinition(OCLActivator.PLUGIN_ID, NAME_OCL_CONTENT,
 				CATEGORY, false, ConstraintSeverity.ERROR, oclContent, OCLUIResources.ocl_error_message);
 		service.registerConstraintsDefinition(definition);
+		OCLActivator.getDefault().setDefinitionFromPreferences(definition);
 	}
 
 }
