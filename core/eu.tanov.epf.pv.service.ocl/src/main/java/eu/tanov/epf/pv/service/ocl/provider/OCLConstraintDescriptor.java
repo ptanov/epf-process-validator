@@ -10,7 +10,7 @@ import org.eclipse.ocl.ecore.Constraint;
 
 import eu.tanov.epf.pv.service.ocl.Activator;
 import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
-import eu.tanov.epf.pv.service.ocl.service.CustomTypeHandlersService;
+import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 
 /**
  * Based on org.eclipse.emf.validation.examples.ocl example

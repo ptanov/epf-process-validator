@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-	<extension-point id="CustomTypeHandler" name="Handler for Custom Type" schema="schema/CustomTypeHandler.exsd"/>
 	<extension-point id="OCLConstraints" name="OCL Constraints" schema="schema/OCLConstraints.exsd"/>
 	<extension
          point="org.eclipse.emf.validation.constraintProviders"
@@ -12,10 +11,6 @@
             class="eu.tanov.epf.pv.service.ocl.provider.OCLConstraintProvider">
 			<package namespaceUri="http://www.eclipse.org/epf/uma/1.0.6/uma.ecore"/>
 		</constraintProvider>
-	</extension>
-
-	<extension point="org.eclipse.ui.startup">
-		<startup class="eu.tanov.epf.pv.service.ocl.InitExtendedUmaPackageAtStartup" />
 	</extension>
 
 </plugin>

@@ -11,7 +11,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 
 import eu.tanov.epf.pv.service.ocl.Activator;
-import eu.tanov.epf.pv.service.ocl.service.CustomTypeHandlersService;
+import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 
 public class ExtendedEcoreEvaluationEnvironment extends EcoreEvaluationEnvironment {
 

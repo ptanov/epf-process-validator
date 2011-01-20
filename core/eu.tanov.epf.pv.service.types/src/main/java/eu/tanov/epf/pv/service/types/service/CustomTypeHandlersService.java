@@ -1,11 +1,11 @@
-package eu.tanov.epf.pv.service.ocl.service;
+package eu.tanov.epf.pv.service.types.service;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 
-import eu.tanov.epf.pv.service.ocl.extension.CustomTypeHandler;
+import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 
 public interface CustomTypeHandlersService {
 

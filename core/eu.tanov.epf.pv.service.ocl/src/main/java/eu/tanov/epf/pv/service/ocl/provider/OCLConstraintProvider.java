@@ -32,6 +32,7 @@ import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
 import eu.tanov.epf.pv.service.ocl.factory.ExtendedEcoreEnvironmentFactory;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsServiceListener;
+import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 
 /**
  * Based on org.eclipse.emf.validation.examples.ocl example
@@ -44,10 +45,15 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 
 	private final IdentityHashMap<OCLConstraintsDefinition, List<OCLConstraint>> definitionToConstraintsMap = new IdentityHashMap<OCLConstraintsDefinition, List<OCLConstraint>>();
 
+	public OCLConstraintProvider() {
+		//load types service
+		Activator.getDefault().getService(CustomTypeHandlersService.class);
+	}
+
 	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		super.setInitializationData(config, propertyName, data);
-
+		
 		final OCLConstraintsService service = Activator.getDefault().getService(OCLConstraintsService.class);
 
 		service.addListener(this);
