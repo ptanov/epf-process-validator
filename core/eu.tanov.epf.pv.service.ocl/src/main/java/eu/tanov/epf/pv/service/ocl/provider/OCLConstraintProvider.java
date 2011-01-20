@@ -27,7 +27,7 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.utilities.UMLReflection;
 
-import eu.tanov.epf.pv.service.ocl.Activator;
+import eu.tanov.epf.pv.service.ocl.OCLActivator;
 import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
 import eu.tanov.epf.pv.service.ocl.factory.ExtendedEcoreEnvironmentFactory;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
@@ -47,14 +47,14 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 
 	public OCLConstraintProvider() {
 		//load types service
-		Activator.getDefault().getService(CustomTypeHandlersService.class);
+		OCLActivator.getDefault().getService(CustomTypeHandlersService.class);
 	}
 
 	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		super.setInitializationData(config, propertyName, data);
 		
-		final OCLConstraintsService service = Activator.getDefault().getService(OCLConstraintsService.class);
+		final OCLConstraintsService service = OCLActivator.getDefault().getService(OCLConstraintsService.class);
 
 		service.addListener(this);
 		final Collection<OCLConstraintsDefinition> acumulatedDefinitions = service.getConstraintsDefinitions();
@@ -68,7 +68,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 		} catch (ConstraintExistsException e) {
 			// TODO i18n
 			throw new CoreException(
-					new Status(IStatus.ERROR, Activator.PLUGIN_ID, 1, "Registration of OCL constraints failed", e));
+					new Status(IStatus.ERROR, OCLActivator.PLUGIN_ID, 1, "Registration of OCL constraints failed", e));
 		}
 	}
 
@@ -89,7 +89,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 			addConstraintsDefinition(definition);
 			registerConstraints(definitionToConstraintsMap.get(definition));
 		} catch (Exception e) {
-			Activator.log("could not add definition: " + definition, e);
+			OCLActivator.log("could not add definition: " + definition, e);
 		}
 
 	}
@@ -104,7 +104,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 
 	private void processOCLConstraintsExtensions() {
 		final IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
-		final IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint(Activator.PLUGIN_ID,
+		final IExtensionPoint extensionPoint = extensionRegistry.getExtensionPoint(OCLActivator.PLUGIN_ID,
 				EXTENDSION_POINT_NAME_OCL_CONSTRAINTS);
 
 		for (IExtension extension : extensionPoint.getExtensions()) {
@@ -130,7 +130,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 
 				addConstraintsDefinition(definition);
 			} catch (Exception e) {
-				Activator.log("could not parse configuration: " + configuration, e);
+				OCLActivator.log("could not parse configuration: " + configuration, e);
 			}
 		}
 	}

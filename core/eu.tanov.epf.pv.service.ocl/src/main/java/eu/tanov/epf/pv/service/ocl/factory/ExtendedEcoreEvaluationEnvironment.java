@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 
-import eu.tanov.epf.pv.service.ocl.Activator;
+import eu.tanov.epf.pv.service.ocl.OCLActivator;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 
 public class ExtendedEcoreEvaluationEnvironment extends EcoreEvaluationEnvironment {
@@ -29,7 +29,7 @@ public class ExtendedEcoreEvaluationEnvironment extends EcoreEvaluationEnvironme
 			throws IllegalArgumentException {
 		if (target instanceof EObject) {
 			// wrap first
-			final CustomTypeHandlersService service = Activator.getDefault().getService(CustomTypeHandlersService.class);
+			final CustomTypeHandlersService service = OCLActivator.getDefault().getService(CustomTypeHandlersService.class);
 			target = service.wrapObjectIfNeeded((EObject) target);
 		}
 		return super.navigateProperty(property, qualifiers, target);

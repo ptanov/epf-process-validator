@@ -10,13 +10,13 @@ import org.osgi.framework.ServiceRegistration;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
 import eu.tanov.epf.pv.service.ocl.service.impl.OCLConstraintsServiceImpl;
 
-public class Activator extends Plugin {
+public class OCLActivator extends Plugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "eu.tanov.epf.pv.service.ocl"; //$NON-NLS-1$
 
 	// The shared instance
-	private static Activator plugin;
+	private static OCLActivator plugin;
 
 	private BundleContext context;
 
@@ -25,7 +25,7 @@ public class Activator extends Plugin {
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public OCLActivator() {
 	}
 
 	/*
@@ -69,7 +69,7 @@ public class Activator extends Plugin {
 	 * 
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static OCLActivator getDefault() {
 		return plugin;
 	}
 
