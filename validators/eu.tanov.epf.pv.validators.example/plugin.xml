@@ -6,6 +6,9 @@
 				name="%constraintCategory_Process_Default"/>
 		<category id="eu.tanov.epf.pv.validators.category.default/eu.tanov.epf.pv.validators.example.category"
 				name="%constraintCategory_Process_Example"/>
+
+		<category id="eu.tanov.epf.pv.validators.category.default/OCL/fromExtension"
+				name="%constraintCategory_fromExtension"/>
 		<constraintProvider cache="true">
 			<package namespaceUri="http://www.eclipse.org/epf/uma/1.0.6/uma.ecore"/>
 			<constraints categories="eu.tanov.epf.pv.validators.category.default/eu.tanov.epf.pv.validators.example.category, org.eclipse.epf.validation.library.category">
@@ -25,20 +28,18 @@
 	</extension>
 	<extension point="eu.tanov.epf.pv.service.ocl.OCLConstraints">
 		<constraints
-			  category="eu.tanov.epf.pv.validators.example.constraints31111"
-			  id="eu.tanov.epf.pv.validators.example.constraints31111"
+			  category="eu.tanov.epf.pv.validators.category.default/OCL/fromExtension"
+			  id="eu.tanov.epf.pv.validators.example.constraints.notEmptyTaskInTechnique"
 			  mandatory="false"
-			  message="Constraint1111 %s violated on {0}"
+			  message="Empty task in {0}"
 			  severity="ERROR">
 			<content>
-
 package uma
 
 context ExtendedUma::Technique 
-inv SOMEqqer: not self.tasks->isEmpty()
+inv notEmptyTaskInTechnique: not self.tasks->isEmpty()
 
 endpackage
-
 			</content>
 		</constraints>
 	</extension>
