@@ -10,6 +10,7 @@ import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
 import eu.tanov.epf.pv.ui.ocl.OCLActivator;
 import eu.tanov.epf.pv.ui.ocl.i18n.OCLUIResources;
+import eu.tanov.epf.pv.ui.ocl.preference.OneColumnMultilineStringFieldEditor.StringFieldValidator;
 
 public class OCLConstraintsPreference extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
@@ -23,7 +24,22 @@ public class OCLConstraintsPreference extends FieldEditorPreferencePage implemen
 
 	@Override
 	public void createFieldEditors() {
-		addField(new OneColumnMultilineStringFieldEditor(NAME_OCL_CONTENT, OCLUIResources.preferences_ocl_label, getFieldEditorParent()));
+		final OneColumnMultilineStringFieldEditor content = new OneColumnMultilineStringFieldEditor(NAME_OCL_CONTENT,
+				OCLUIResources.preferences_ocl_label, getFieldEditorParent());
+		final OCLConstraintsService service = OCLActivator.getDefault().getService(OCLConstraintsService.class);
+		content.setContentValidator(new StringFieldValidator() {
+			@Override
+			public boolean validate(final String content) {
+				try {
+					service.checkInvariantOCL(content);
+				} catch (Exception e) {
+					// TODO set corresponding message in dialog
+					return false;
+				}
+				return true;
+			}
+		});
+		addField(content);
 	}
 
 	@Override
@@ -42,18 +58,18 @@ public class OCLConstraintsPreference extends FieldEditorPreferencePage implemen
 	}
 
 	/**
-	 * first try to unregister previous
+	 * Registers OCL constraint specified in preferences page. First try to unregister previous
 	 */
 	public static void registerOCLContent() {
 		final OCLConstraintsService service = OCLActivator.getDefault().getService(OCLConstraintsService.class);
 		final String oclContent = PREFERENCE_STORE.getString(NAME_OCL_CONTENT);
 
-		//unregister previous if any:
+		// unregister previous if any:
 		final OCLConstraintsDefinition definitionFromPreferences = OCLActivator.getDefault().getDefinitionFromPreferences();
 		if (definitionFromPreferences != null) {
 			service.removeConstraintsDefinition(definitionFromPreferences);
 		}
-		//register new:
+		// register new:
 		final OCLConstraintsDefinition definition = new OCLConstraintsDefinition(OCLActivator.PLUGIN_ID, NAME_OCL_CONTENT,
 				CATEGORY, false, ConstraintSeverity.ERROR, oclContent, OCLUIResources.ocl_error_message);
 		service.registerConstraintsDefinition(definition);
