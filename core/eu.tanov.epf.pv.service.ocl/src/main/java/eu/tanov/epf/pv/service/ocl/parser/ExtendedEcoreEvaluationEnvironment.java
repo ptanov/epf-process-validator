@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.service.ocl.factory;
+package eu.tanov.epf.pv.service.ocl.parser;
 
 import java.util.List;
 

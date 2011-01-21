@@ -21,15 +21,13 @@ import org.eclipse.emf.validation.service.AbstractConstraintProvider;
 import org.eclipse.emf.validation.service.ConstraintExistsException;
 import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.epf.validation.LibraryEValidator;
-import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.utilities.UMLReflection;
 
 import eu.tanov.epf.pv.service.ocl.OCLActivator;
 import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
-import eu.tanov.epf.pv.service.ocl.factory.ExtendedEcoreEnvironmentFactory;
+import eu.tanov.epf.pv.service.ocl.parser.OCLParser;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsServiceListener;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
@@ -45,9 +43,17 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 
 	private final IdentityHashMap<OCLConstraintsDefinition, List<OCLConstraint>> definitionToConstraintsMap = new IdentityHashMap<OCLConstraintsDefinition, List<OCLConstraint>>();
 
+	private final OCLParser parser;
+
 	public OCLConstraintProvider() {
 		//load types service
 		OCLActivator.getDefault().getService(CustomTypeHandlersService.class);
+
+		this.parser = createParser();
+	}
+
+	protected OCLParser createParser() {
+		return new OCLParser();
 	}
 
 	@Override
@@ -148,31 +154,16 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 	/**
 	 * Only parse and add to list, does NOT call registerConstraints()
 	 */
-	private void addConstraintsDefinition(OCLConstraintsDefinition definition) throws ParserException {
-		final OCLInput oclInput = new OCLInput(definition.getContent());
-		final OCL ocl = createOCL();
-
+	private void addConstraintsDefinition(OCLConstraintsDefinition definition) throws ParserException, IllegalArgumentException {
 		if (definitionToConstraintsMap.containsKey(definition)) {
 			throw new IllegalArgumentException("Definition already added: " + definition);
 		}
-
-		final List<Constraint> constraints = ocl.parse(oclInput);
-
-		definitionToConstraintsMap.put(definition, new ArrayList<OCLConstraint>(constraints.size()));
-		for (Constraint constraint : constraints) {
-			if (isInvariant(constraint)) {
-				// only add invariant constraints for validation
-				addConstraint(definition, ocl, constraint);
-			}
+		final List<Constraint> invariantConstraints = parser.parseInvariants(definition.getContent());
+		
+		definitionToConstraintsMap.put(definition, new ArrayList<OCLConstraint>(invariantConstraints.size()));
+		for (Constraint constraint : invariantConstraints) {
+			addConstraint(definition, parser.getOCL(), constraint);
 		}
-	}
-
-	private static OCL createOCL() {
-		return OCL.newInstance(new ExtendedEcoreEnvironmentFactory());
-	}
-
-	private static boolean isInvariant(Constraint constraint) {
-		return UMLReflection.INVARIANT.equals(constraint.getStereotype());
 	}
 
 	private void addConstraint(OCLConstraintsDefinition definition, OCL ocl, Constraint constraint) {

@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.service.ocl.factory;
+package eu.tanov.epf.pv.service.ocl.parser;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
