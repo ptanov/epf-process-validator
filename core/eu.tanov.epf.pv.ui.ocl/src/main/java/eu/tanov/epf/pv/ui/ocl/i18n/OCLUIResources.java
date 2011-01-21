@@ -13,6 +13,10 @@ public final class OCLUIResources extends NLS {
 	public static String preferences_ocl_label;
 	public static String ocl_error_message;
 
+	public static String preferences_ocl_error_unknown;
+	public static String preferences_ocl_error_syntax;
+	public static String preferences_ocl_error_semantic;
+
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, OCLUIResources.class);
 	}

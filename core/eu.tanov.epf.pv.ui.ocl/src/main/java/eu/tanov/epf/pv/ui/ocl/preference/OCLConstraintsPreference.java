@@ -3,6 +3,9 @@ package eu.tanov.epf.pv.ui.ocl.preference;
 import org.eclipse.emf.validation.model.ConstraintSeverity;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.SyntaxException;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -29,14 +32,17 @@ public class OCLConstraintsPreference extends FieldEditorPreferencePage implemen
 		final OCLConstraintsService service = OCLActivator.getDefault().getService(OCLConstraintsService.class);
 		content.setContentValidator(new StringFieldValidator() {
 			@Override
-			public boolean validate(final String content) {
+			public String validate(final String content) {
 				try {
 					service.checkOCL(content);
-				} catch (Exception e) {
-					// TODO set corresponding message in dialog
-					return false;
+				} catch (SyntaxException e) {
+					return OCLUIResources.bind(OCLUIResources.preferences_ocl_error_syntax, e.getMessage());
+				} catch (SemanticException e) {
+					return OCLUIResources.bind(OCLUIResources.preferences_ocl_error_semantic, e.getMessage());
+				} catch (ParserException e) {
+					return OCLUIResources.bind(OCLUIResources.preferences_ocl_error_unknown, e.getMessage());
 				}
-				return true;
+				return null;
 			}
 		});
 		addField(content);

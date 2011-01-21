@@ -38,7 +38,11 @@ public class OneColumnMultilineStringFieldEditor extends StringFieldEditor {
 	private StringFieldValidator contentValidator;
 
 	public interface StringFieldValidator {
-		public boolean validate(String content);
+		/**
+		 * @param content
+		 * @return error message, or null if no errors
+		 */
+		public String validate(String content);
 	}
 
 	protected OneColumnMultilineStringFieldEditor() {
@@ -169,7 +173,11 @@ public class OneColumnMultilineStringFieldEditor extends StringFieldEditor {
 			return true;
 		}
 
-		return contentValidator.validate(getTextControl().getText());
+		final String errorMessage = contentValidator.validate(getTextControl().getText());
+		if (errorMessage != null) {
+			setErrorMessage(errorMessage);
+		}
+		return errorMessage == null;
 	}
 
 }
