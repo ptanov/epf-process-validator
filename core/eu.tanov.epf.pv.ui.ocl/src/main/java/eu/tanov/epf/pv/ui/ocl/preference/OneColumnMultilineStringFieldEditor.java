@@ -35,6 +35,12 @@ public class OneColumnMultilineStringFieldEditor extends StringFieldEditor {
 	 */
 	protected int validateStrategy = VALIDATE_ON_KEY_STROKE;
 
+	private StringFieldValidator contentValidator;
+
+	public interface StringFieldValidator {
+		public boolean validate(String content);
+	}
+
 	protected OneColumnMultilineStringFieldEditor() {
 	}
 
@@ -150,6 +156,20 @@ public class OneColumnMultilineStringFieldEditor extends StringFieldEditor {
 	public void setValidateStrategy(int value) {
 		Assert.isTrue(value == VALIDATE_ON_FOCUS_LOST || value == VALIDATE_ON_KEY_STROKE);
 		validateStrategy = value;
+	}
+
+	public void setContentValidator(StringFieldValidator contentValidator) {
+		this.contentValidator = contentValidator;
+	}
+
+	@Override
+	protected boolean doCheckState() {
+		if (contentValidator == null) {
+			// no content validator - validation is OK
+			return true;
+		}
+
+		return contentValidator.validate(getTextControl().getText());
 	}
 
 }
