@@ -28,16 +28,13 @@ public interface OCLConstraintsService {
 	public Collection<OCLConstraintsDefinition> getConstraintsDefinitions();
 
 	/**
-	 * Check if content is valid OCL containing only invariant constraints
+	 * Check if content contains valid OCL
 	 * 
 	 * @param content
 	 *            OCL text
 	 * @throws ParserException
 	 *             on failure to parse, either because of a syntactic or
 	 *             semantic problem or because of an I/O failure
-	 * 
-	 * @throws IllegalArgumentException
-	 *             if there is at least one constraint that is not invariant
 	 */
-	public void checkInvariantOCL(String content) throws IllegalArgumentException, ParserException;
+	public void checkOCL(String content) throws ParserException;
 }

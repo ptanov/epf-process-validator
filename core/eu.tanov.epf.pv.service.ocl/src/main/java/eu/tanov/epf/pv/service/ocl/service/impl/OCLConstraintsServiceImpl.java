@@ -83,7 +83,7 @@ public class OCLConstraintsServiceImpl implements OCLConstraintsService {
 	}
 
 	@Override
-	public void checkInvariantOCL(String content) throws IllegalArgumentException, ParserException {
+	public void checkOCL(String content) throws ParserException {
 		parser.parseInvariants(content);
 	}
 

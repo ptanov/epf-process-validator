@@ -18,17 +18,15 @@ public class OCLParser {
 	}
 
 	/**
+	 * Adds only invariants
 	 * @param content
 	 *            OCL text
 	 * @return list of constraints from content
 	 * @throws ParserException
 	 *             on failure to parse, either because of a syntactic or
 	 *             semantic problem or because of an I/O failure
-	 * 
-	 * @throws IllegalArgumentException
-	 *             if there is at least one constraint that is not invariant
 	 */
-	public List<Constraint> parseInvariants(String content) throws ParserException, IllegalArgumentException {
+	public List<Constraint> parseInvariants(String content) throws ParserException {
 		final OCLInput oclInput = new OCLInput(content);
 
 		final List<Constraint> constraints = ocl.parse(oclInput);
@@ -36,10 +34,9 @@ public class OCLParser {
 		final List<Constraint> result = new ArrayList<Constraint>(constraints.size());
 		for (Constraint constraint : constraints) {
 			// only add invariant constraints to result
-			if (!isInvariant(constraint)) {
-				throw new IllegalArgumentException("Constraint is not invariant: " + constraint);
+			if (isInvariant(constraint)) {
+				result.add(constraint);
 			}
-			result.add(constraint);
 		}
 
 		return result;

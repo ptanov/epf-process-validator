@@ -31,7 +31,7 @@ public class OCLConstraintsPreference extends FieldEditorPreferencePage implemen
 			@Override
 			public boolean validate(final String content) {
 				try {
-					service.checkInvariantOCL(content);
+					service.checkOCL(content);
 				} catch (Exception e) {
 					// TODO set corresponding message in dialog
 					return false;
