@@ -26,7 +26,7 @@ public class CustomCategoryCategorizedElementsReadOnlySettingDelegate<T extends 
 		if (!(owner instanceof CustomCategory)) {
 			throw new IllegalArgumentException("Holder object is not CustomCategory: " + owner);
 		}
-		final List<DescribableElement> categorizedElements = ((CustomCategory) owner).getCategorizedElements();
+		final List<DescribableElement> categorizedElements = getList((CustomCategory) owner);
 
 		final List<T> result = new LinkedList<T>();
 
@@ -38,6 +38,15 @@ public class CustomCategoryCategorizedElementsReadOnlySettingDelegate<T extends 
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Can be overrided if some modification of list is needed
+	 * @param customCategory
+	 * @return categorizedElements structural feature for the given customCategory
+	 */
+	protected List<DescribableElement> getList(CustomCategory customCategory) {
+		return customCategory.getCategorizedElements();
 	}
 
 }
