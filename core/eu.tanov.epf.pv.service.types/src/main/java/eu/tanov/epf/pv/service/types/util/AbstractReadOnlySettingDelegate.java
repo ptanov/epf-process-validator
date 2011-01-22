@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.service.ocl.util;
+package eu.tanov.epf.pv.service.types.util;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.DynamicValueHolder;

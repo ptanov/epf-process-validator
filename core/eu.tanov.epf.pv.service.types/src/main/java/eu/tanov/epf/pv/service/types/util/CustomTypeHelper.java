@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.service.ocl.util;
+package eu.tanov.epf.pv.service.types.util;
 
 import java.util.ArrayList;
 import java.util.List;
