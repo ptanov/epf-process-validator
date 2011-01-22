@@ -18,7 +18,7 @@ import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.swt.graphics.Image;
 
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
-import eu.tanov.epf.pv.types.technique.ui.TechniquesActivator;
+import eu.tanov.epf.pv.types.technique.ui.TechniqueActivator;
 import eu.tanov.epf.pv.types.technique.ui.i18n.TechniquesUIResources;
 
 public class TechniquesCategoryItemProvider extends TransientCategoryPackageItemProvider {
@@ -75,7 +75,7 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 
 	@Override
 	public Image getImage(Object object) {
-		return TechniquesActivator.getDefault().getImage("full/obj16/Techniques"); //$NON-NLS-1$
+		return TechniqueActivator.getDefault().getImage("full/obj16/Techniques"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 	@Override
 	public Object getCreateChildImage(Object owner, Object feature, Object child, Collection<?> selection) {
 		if (child instanceof CustomCategory) {
-			return TechniquesActivator.getDefault().getImage("full/obj16/Technique"); //$NON-NLS-1$
+			return TechniqueActivator.getDefault().getImage("full/obj16/Technique"); //$NON-NLS-1$
 		}
 		throw new IllegalStateException("Unknown child type for techniques: " + child);
 	}

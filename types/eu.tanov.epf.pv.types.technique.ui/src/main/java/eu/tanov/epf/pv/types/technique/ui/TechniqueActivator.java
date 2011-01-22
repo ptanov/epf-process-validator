@@ -11,7 +11,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class TechniquesActivator extends AbstractUIPlugin {
+public class TechniqueActivator extends AbstractUIPlugin {
 	private static final String EXTENSION_ICON = ".png";
 
 	// The relative path to the icons.
@@ -24,12 +24,12 @@ public class TechniquesActivator extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "eu.tanov.epf.pv.types.technique.ui"; //$NON-NLS-1$
 
 	// The shared instance
-	private static TechniquesActivator plugin;
+	private static TechniqueActivator plugin;
 
 	/**
 	 * The constructor
 	 */
-	public TechniquesActivator() {
+	public TechniqueActivator() {
 	}
 
 	/*
@@ -57,7 +57,7 @@ public class TechniquesActivator extends AbstractUIPlugin {
 	 * 
 	 * @return the shared instance
 	 */
-	public static TechniquesActivator getDefault() {
+	public static TechniqueActivator getDefault() {
 		return plugin;
 	}
 

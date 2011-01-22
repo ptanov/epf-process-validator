@@ -9,7 +9,7 @@ import org.eclipse.epf.library.edit.IStatefulItemProvider;
 import org.eclipse.epf.library.edit.internal.IListenerProvider;
 import org.eclipse.swt.graphics.Image;
 
-import eu.tanov.epf.pv.types.technique.ui.TechniquesActivator;
+import eu.tanov.epf.pv.types.technique.ui.TechniqueActivator;
 
 public class TechniqueItemProvider extends org.eclipse.epf.library.edit.category.CustomCategoryItemProvider implements
 		ILibraryItemProvider, IStatefulItemProvider, IDefaultNameSetter, IListenerProvider {
@@ -29,7 +29,7 @@ public class TechniqueItemProvider extends org.eclipse.epf.library.edit.category
 	}
 
 	public static Image getTechniqueImage() {
-		return TechniquesActivator.getDefault().getImage("full/obj16/Technique"); //$NON-NLS-1$
+		return TechniqueActivator.getDefault().getImage("full/obj16/Technique"); //$NON-NLS-1$
 	}
 
 	@Override
