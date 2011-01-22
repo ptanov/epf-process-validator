@@ -10,7 +10,9 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
 import eu.tanov.epf.pv.type.technique.util.TechniqueHelper;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
+import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.ui.techniques.provider.TechniqueItemProvider;
 import eu.tanov.epf.pv.ui.techniques.provider.TechniquesCategoryItemProvider;
 
 public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
@@ -18,6 +20,7 @@ public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
 
 	public TechniqueTasksPage(FormEditor editor) {
 		super(editor, FORM_PAGE_ID, AuthoringUIText.TASKS_PAGE_TITLE, Task.class, TechniquesUIResources.technique_text);
+		EditorHelper.updateTitleImage(editor, TechniqueItemProvider.getTechniqueImage());
 	}
 
 	@Override

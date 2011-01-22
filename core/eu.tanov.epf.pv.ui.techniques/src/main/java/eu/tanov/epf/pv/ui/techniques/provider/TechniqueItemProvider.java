@@ -25,6 +25,10 @@ public class TechniqueItemProvider extends org.eclipse.epf.library.edit.category
 
 	@Override
 	public Image getImage(Object object) {
+		return getTechniqueImage();
+	}
+	
+	public static Image getTechniqueImage() {
 		return TechniquesActivator.getDefault().getImage("full/obj16/Technique"); //$NON-NLS-1$
 	}
 

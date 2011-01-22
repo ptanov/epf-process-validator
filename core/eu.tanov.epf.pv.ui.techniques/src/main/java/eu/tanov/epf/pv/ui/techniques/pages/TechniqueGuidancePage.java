@@ -8,14 +8,17 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
+import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 import eu.tanov.epf.pv.ui.common.util.FormHelper;
 import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.ui.techniques.provider.TechniqueItemProvider;
 
 public class TechniqueGuidancePage extends ContentElementGuidancePage {
 	private static final String classNameForFormTitle = TechniquesUIResources.technique_text;
 
 	public TechniqueGuidancePage(FormEditor editor) {
 		super(editor);
+		EditorHelper.updateTitleImage(editor, TechniqueItemProvider.getTechniqueImage());
 	}
 
 	@Override
