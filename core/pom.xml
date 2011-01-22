@@ -21,6 +21,7 @@
 		<module>eu.tanov.epf.pv.ui.validator</module>
 		<module>eu.tanov.epf.pv.ui.ocl</module>
 		<module>eu.tanov.epf.pv.service.types</module>
+		<module>eu.tanov.epf.pv.type.technique</module>
 	</modules>
 
 </project>
