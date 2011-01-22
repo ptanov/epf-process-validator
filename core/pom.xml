@@ -2,13 +2,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>eu.tanov.epf</groupId>
-		<artifactId>eu.tanov.epf</artifactId>
+		<groupId>eu.tanov.epf.pv</groupId>
+		<artifactId>eu.tanov.epf.pv</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>eu.tanov.epf</groupId>
-	<artifactId>eu.tanov.epf.core</artifactId>
+	<groupId>eu.tanov.epf.pv.core</groupId>
+	<artifactId>eu.tanov.epf.pv.core</artifactId>
 	<name>${project.artifactId}</name>
 	<packaging>pom</packaging>
 
@@ -17,11 +17,9 @@
 		<module>eu.tanov.epf.pv.service.ocl</module>
 		<module>eu.tanov.epf.pv.ui.common</module>
 		<module>eu.tanov.epf.pv.service.validator</module>
-		<module>eu.tanov.epf.pv.ui.techniques</module>
 		<module>eu.tanov.epf.pv.ui.validator</module>
 		<module>eu.tanov.epf.pv.ui.ocl</module>
 		<module>eu.tanov.epf.pv.service.types</module>
-		<module>eu.tanov.epf.pv.type.technique</module>
 	</modules>
 
 </project>

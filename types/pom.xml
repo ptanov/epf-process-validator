@@ -2,14 +2,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>eu.tanov.epf.pv.core</groupId>
-		<artifactId>eu.tanov.epf.core</artifactId>
+		<groupId>eu.tanov.epf.pv</groupId>
+		<artifactId>eu.tanov.epf.pv</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-
-	<groupId>eu.tanov.epf.pv.core</groupId>
-	<artifactId>eu.tanov.epf.pv.service.types</artifactId>
+	<groupId>eu.tanov.epf.pv.types</groupId>
+	<artifactId>eu.tanov.epf.pv.types</artifactId>
 	<name>${project.artifactId}</name>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>eu.tanov.epf.pv.types.technique.common</module>
+		<module>eu.tanov.epf.pv.types.technique.ui</module>
+	</modules>
 
 </project>
