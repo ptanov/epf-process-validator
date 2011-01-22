@@ -19,7 +19,7 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>eu.tanov.epf.pv.core</groupId>
+				<groupId>eu.tanov.epf</groupId>
 				<artifactId>eu.tanov.epf.itemprovider</artifactId>
 				<version>${project.version}</version>
 			</dependency>

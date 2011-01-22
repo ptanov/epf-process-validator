@@ -8,7 +8,7 @@
 	</parent>
 
 
-	<groupId>eu.tanov.epf.pv</groupId>
+	<groupId>eu.tanov.epf.pv.types</groupId>
 	<artifactId>eu.tanov.epf.pv.types.technique.ui</artifactId>
 	<name>${project.artifactId}</name>
 
@@ -19,7 +19,7 @@
 			<artifactId>eu.tanov.epf.pv.ui.common</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>eu.tanov.epf.pv.core</groupId>
+			<groupId>eu.tanov.epf</groupId>
 			<artifactId>eu.tanov.epf.itemprovider</artifactId>
 		</dependency>
 	</dependencies>
