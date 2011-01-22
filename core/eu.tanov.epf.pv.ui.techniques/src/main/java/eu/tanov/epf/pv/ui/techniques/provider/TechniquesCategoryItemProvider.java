@@ -17,18 +17,18 @@ import org.eclipse.epf.uma.UmaFactory;
 import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.swt.graphics.Image;
 
+import eu.tanov.epf.pv.type.technique.util.TechniqueHelper;
 import eu.tanov.epf.pv.ui.techniques.TechniquesActivator;
 import eu.tanov.epf.pv.ui.techniques.i18n.TechniquesUIResources;
 
 public class TechniquesCategoryItemProvider extends TransientCategoryPackageItemProvider {
 	private static final String NEW_NAME_TECHNIQUE = "new_technique";
-	public static final String TECHNIQUES_NAME = "Techniques"; //$NON-NLS-1$
 	public static final String[] TECHNIQUES_PATH;
 	static {
 		TECHNIQUES_PATH = new String[ModelStructure.DEFAULT_DOMAIN_PATH.length];
 		// -1, because last is used for Techniques
 		System.arraycopy(ModelStructure.DEFAULT_DOMAIN_PATH, 0, TECHNIQUES_PATH, 0, TECHNIQUES_PATH.length - 1);
-		TECHNIQUES_PATH[TECHNIQUES_PATH.length - 1] = TECHNIQUES_NAME;
+		TECHNIQUES_PATH[TECHNIQUES_PATH.length - 1] = TechniqueHelper.CATEGORY_NAME;
 	}
 
 	/**

@@ -14,11 +14,5 @@
             id="techniques">
       </provider>
    </extension>
-   <extension
-         point="eu.tanov.epf.pv.service.types.CustomTypeHandler">
-      <handler
-            class="eu.tanov.epf.pv.ui.techniques.type.TechniqueCustomTypeHandler">
-      </handler>
-   </extension>
 
 </plugin>

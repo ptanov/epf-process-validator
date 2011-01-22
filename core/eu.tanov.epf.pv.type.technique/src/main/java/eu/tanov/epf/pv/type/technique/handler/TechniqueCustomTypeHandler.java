@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.ui.techniques.type;
+package eu.tanov.epf.pv.type.technique.handler;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -8,7 +8,7 @@ import org.eclipse.epf.uma.UmaPackage;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
-import eu.tanov.epf.pv.ui.techniques.util.TechniquesHelper;
+import eu.tanov.epf.pv.type.technique.util.TechniqueHelper;
 
 public class TechniqueCustomTypeHandler implements CustomTypeHandler {
 
@@ -29,14 +29,15 @@ public class TechniqueCustomTypeHandler implements CustomTypeHandler {
 	 */
 	@Override
 	public void registerType(EPackage extendedUmaPackage) {
-		this.tasks = CustomTypeHelper.createStructuralFeatureList(extendedUmaPackage, techniqueEClass, STRUCTURAL_FEATURE_NAME_TASKS, UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
-		this.workProducts = CustomTypeHelper.createStructuralFeatureList(extendedUmaPackage, techniqueEClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
-				UmaPackage.eINSTANCE.getWorkProduct(), new WorkProductsSettingDelegateFactory());
+		this.tasks = CustomTypeHelper.createStructuralFeatureList(extendedUmaPackage, techniqueEClass,
+				STRUCTURAL_FEATURE_NAME_TASKS, UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
+		this.workProducts = CustomTypeHelper.createStructuralFeatureList(extendedUmaPackage, techniqueEClass,
+				STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS, UmaPackage.eINSTANCE.getWorkProduct(),
+				new WorkProductsSettingDelegateFactory());
 
 		techniqueEClass.getEStructuralFeatures().add(tasks);
 		techniqueEClass.getEStructuralFeatures().add(workProducts);
 
-		
 		extendedUmaPackage.getEClassifiers().add(techniqueEClass);
 	}
 
@@ -47,7 +48,7 @@ public class TechniqueCustomTypeHandler implements CustomTypeHandler {
 
 	@Override
 	public boolean matches(EObject object) {
-		return TechniquesHelper.isTechnique(object);
+		return TechniqueHelper.isTechnique(object);
 	}
 
 	@Override

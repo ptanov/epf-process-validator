@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.ui.common.util;
+package eu.tanov.epf.pv.service.types.util;
 
 import java.util.Collections;
 import java.util.List;

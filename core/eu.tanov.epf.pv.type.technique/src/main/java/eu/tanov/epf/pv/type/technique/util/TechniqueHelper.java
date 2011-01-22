@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.ui.techniques.util;
+package eu.tanov.epf.pv.type.technique.util;
 
 import java.util.HashSet;
 import java.util.List;
@@ -9,14 +9,15 @@ import org.eclipse.epf.uma.Task;
 import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.epf.uma.WorkProduct;
 
-import eu.tanov.epf.pv.ui.common.util.FilteredContentElementOrderList;
-import eu.tanov.epf.pv.ui.techniques.provider.TechniquesCategoryItemProvider;
+import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
 
-public class TechniquesHelper {
+public class TechniqueHelper {
+	public static final String CATEGORY_NAME = "Techniques"; //$NON-NLS-1$
+
 	/**
 	 * helper
 	 */
-	private TechniquesHelper() {
+	private TechniqueHelper() {
 	}
 
 	public static boolean isTechnique(Object o) {
@@ -30,7 +31,7 @@ public class TechniquesHelper {
 		}
 		final ContentPackage contentPackage = (ContentPackage) customCategory.eContainer();
 
-		return TechniquesCategoryItemProvider.TECHNIQUES_NAME.equals(contentPackage.getName());
+		return CATEGORY_NAME.equals(contentPackage.getName());
 	}
 
 	/**

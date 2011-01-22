@@ -19,6 +19,8 @@ import org.eclipse.epf.uma.WorkProduct;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import eu.tanov.epf.pv.type.technique.util.TechniqueHelper;
+
 public class TestTechniquesHelper {
 
 	@BeforeClass
@@ -28,7 +30,7 @@ public class TestTechniquesHelper {
 
 	@Test(expected = NullPointerException.class)
 	public void updateWorkProductsNullTechnique() {
-		TechniquesHelper.updateWorkProducts(null);
+		TechniqueHelper.updateWorkProducts(null);
 	}
 
 	@Test
@@ -48,7 +50,7 @@ public class TestTechniquesHelper {
 		assertEquals(1, beforeUpdate.size());
 		assertSame(task, beforeUpdate.get(0));
 
-		TechniquesHelper.updateWorkProducts(technique);
+		TechniqueHelper.updateWorkProducts(technique);
 
 		final List<DescribableElement> afterUpdate = technique.getCategorizedElements();
 		assertEquals(3, afterUpdate.size());
@@ -91,7 +93,7 @@ public class TestTechniquesHelper {
 
 		assertEquals(technique.getCategorizedElements(), Arrays.asList(workProduct1, workProduct2, task));
 
-		TechniquesHelper.updateWorkProducts(technique);
+		TechniqueHelper.updateWorkProducts(technique);
 
 		assertEquals(technique.getCategorizedElements(), Arrays.asList(workProduct1, workProduct2, task));
 	}
@@ -115,7 +117,7 @@ public class TestTechniquesHelper {
 
 		assertEquals(technique.getCategorizedElements(), Arrays.asList(workProduct1, task));
 
-		TechniquesHelper.updateWorkProducts(technique);
+		TechniqueHelper.updateWorkProducts(technique);
 
 		assertEquals(technique.getCategorizedElements(), Arrays.asList(workProduct1, task, workProduct2));
 	}
@@ -135,20 +137,20 @@ public class TestTechniquesHelper {
 
 		assertEquals(technique.getCategorizedElements(), Arrays.asList(task));
 
-		TechniquesHelper.updateWorkProducts(technique);
+		TechniqueHelper.updateWorkProducts(technique);
 
 		assertEquals(technique.getCategorizedElements(), Arrays.asList(task, workProduct1));
 	}
 
 	@Test
 	public void isTechniqueNotCustomCategory() {
-		assertFalse(TechniquesHelper.isTechnique(null));
-		assertFalse(TechniquesHelper.isTechnique(UmaFactory.eINSTANCE.createDiscipline()));
+		assertFalse(TechniqueHelper.isTechnique(null));
+		assertFalse(TechniqueHelper.isTechnique(UmaFactory.eINSTANCE.createDiscipline()));
 	}
 
 	@Test
 	public void isTechniqueCustomCategoryWithoutContainer() {
-		assertFalse(TechniquesHelper.isTechnique(UmaFactory.eINSTANCE.createCustomCategory()));
+		assertFalse(TechniqueHelper.isTechnique(UmaFactory.eINSTANCE.createCustomCategory()));
 	}
 
 	@Test
@@ -158,11 +160,11 @@ public class TestTechniquesHelper {
 		final CustomCategory category = UmaFactory.eINSTANCE.createCustomCategory();
 		contentPackage.getContentElements().add(category);
 
-		assertFalse(TechniquesHelper.isTechnique(category));
+		assertFalse(TechniqueHelper.isTechnique(category));
 
 		contentPackage.setName("Techniques");
 		// if name of content package is "Techniques" - then this is technique:
-		assertTrue(TechniquesHelper.isTechnique(category));
+		assertTrue(TechniqueHelper.isTechnique(category));
 	}
 
 }

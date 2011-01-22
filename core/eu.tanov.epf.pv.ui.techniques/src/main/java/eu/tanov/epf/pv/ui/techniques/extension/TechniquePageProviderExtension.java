@@ -8,17 +8,17 @@ import org.eclipse.epf.authoring.ui.forms.CustomCategoryDescriptionPage;
 import org.eclipse.epf.authoring.ui.providers.IMethodElementEditorPageProviderExtension;
 import org.eclipse.ui.forms.editor.FormEditor;
 
+import eu.tanov.epf.pv.type.technique.util.TechniqueHelper;
 import eu.tanov.epf.pv.ui.techniques.pages.TechniqueDescriptionPage;
 import eu.tanov.epf.pv.ui.techniques.pages.TechniqueGuidancePage;
 import eu.tanov.epf.pv.ui.techniques.pages.TechniqueTasksPage;
 import eu.tanov.epf.pv.ui.techniques.pages.TechniqueWorkProductsPage;
-import eu.tanov.epf.pv.ui.techniques.util.TechniquesHelper;
 
 public class TechniquePageProviderExtension implements IMethodElementEditorPageProviderExtension {
 
 	@Override
 	public Map<Object, String> getPages(Map<Object, String> pageMap, FormEditor editor, Object input) {
-		if (TechniquesHelper.isTechnique(input)) {
+		if (TechniqueHelper.isTechnique(input)) {
 			removeDescriptionPage(pageMap);
 			removeAssignPage(pageMap);
 			pageMap.put(new TechniqueDescriptionPage(editor), null);

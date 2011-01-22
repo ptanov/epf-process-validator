@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.ui.techniques.type;
+package eu.tanov.epf.pv.type.technique.handler;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.eclipse.epf.uma.DescribableElement;
 import org.eclipse.epf.uma.WorkProduct;
 
 import eu.tanov.epf.pv.service.types.util.CustomCategoryCategorizedElementsReadOnlySettingDelegate;
-import eu.tanov.epf.pv.ui.techniques.util.TechniquesHelper;
+import eu.tanov.epf.pv.type.technique.util.TechniqueHelper;
 
 public class WorkProductsSettingDelegateFactory implements SettingDelegate.Factory {
 
@@ -21,7 +21,7 @@ public class WorkProductsSettingDelegateFactory implements SettingDelegate.Facto
 
 		@Override
 		protected List<DescribableElement> getList(CustomCategory customCategory) {
-			TechniquesHelper.updateWorkProducts(customCategory);
+			TechniqueHelper.updateWorkProducts(customCategory);
 			return super.getList(customCategory);
 		}
 	}

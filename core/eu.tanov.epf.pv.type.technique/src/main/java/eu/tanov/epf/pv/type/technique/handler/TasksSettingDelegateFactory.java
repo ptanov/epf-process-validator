@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.ui.techniques.type;
+package eu.tanov.epf.pv.type.technique.handler;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;

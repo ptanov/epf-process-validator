@@ -26,7 +26,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.ui.common.util.FilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
 import eu.tanov.epf.pv.ui.common.util.FormHelper;
 
 public abstract class AbstractCustomCategoryPage<T extends DescribableElement> extends AssociationFormPage {
