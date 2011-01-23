@@ -13,6 +13,4 @@ Require-Bundle: org.eclipse.epf.library;bundle-version="1.5.0",
  eu.tanov.epf.pv.types.projectpractice.common;bundle-version="1.0.0"
 Bundle-Activator: eu.tanov.epf.pv.types.projectpractice.ui.ProjectPracticeActivator
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .,
- eu.tanov.epf.itemprovider-1.0.0-SNAPSHOT.jar,
- eu.tanov.epf.pv.ui.common-1.0.0-SNAPSHOT.jar
+Bundle-ClassPath: .
