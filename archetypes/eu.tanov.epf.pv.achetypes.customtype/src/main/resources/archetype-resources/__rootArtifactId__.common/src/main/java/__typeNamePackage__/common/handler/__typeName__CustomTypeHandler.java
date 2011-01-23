@@ -2,19 +2,22 @@ package eu.tanov.epf.pv.types.${typeNamePackage}.common.handler;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.UmaPackage;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
 import eu.tanov.epf.pv.types.${typeNamePackage}.common.util.${typeName}Helper;
 
-public class ${typeName}CustomTypeHandler implements CustomTypeHandler {
+public class ${typeName}CustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
 	private static final String STRUCTURAL_FEATURE_NAME_TASKS = "tasks";
 	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
-	private static final String TYPE_NAME = "${typeName}";
+	/**
+	 * XXX if used outside - move to ${typeName}Helper
+	 */
+	public static final String TYPE_NAME = "${typeName}";
 
 	private final EClass ${typeNameVariable}EClass;
 	private EReference tasks;
@@ -28,17 +31,16 @@ public class ${typeName}CustomTypeHandler implements CustomTypeHandler {
 	 * based on http://www.ibm.com/developerworks/library/os-eclipse-dynamicemf/
 	 */
 	@Override
-	public void registerType(EPackage extendedUmaPackage) {
-		this.tasks = CustomTypeHelper.createStructuralFeatureList(extendedUmaPackage, ${typeNameVariable}EClass,
-				STRUCTURAL_FEATURE_NAME_TASKS, UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
-		this.workProducts = CustomTypeHelper.createStructuralFeatureList(extendedUmaPackage, ${typeNameVariable}EClass,
-				STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS, UmaPackage.eINSTANCE.getWorkProduct(),
-				new WorkProductsSettingDelegateFactory());
+	public void registerType() {
+		this.tasks = CustomTypeHelper.createStructuralFeatureList(${typeNameVariable}EClass, STRUCTURAL_FEATURE_NAME_TASKS,
+				UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
+		this.workProducts = CustomTypeHelper.createStructuralFeatureList(${typeNameVariable}EClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
+				UmaPackage.eINSTANCE.getWorkProduct(), new WorkProductsSettingDelegateFactory());
 
 		${typeNameVariable}EClass.getEStructuralFeatures().add(tasks);
 		${typeNameVariable}EClass.getEStructuralFeatures().add(workProducts);
 
-		extendedUmaPackage.getEClassifiers().add(${typeNameVariable}EClass);
+		CustomTypeHelper.getExtendedUmaPackage().getEClassifiers().add(${typeNameVariable}EClass);
 	}
 
 	@Override
@@ -54,6 +56,16 @@ public class ${typeName}CustomTypeHandler implements CustomTypeHandler {
 	@Override
 	public EClass getCustomType() {
 		return ${typeNameVariable}EClass;
+	}
+
+	@Override
+	public Class<CustomCategory> getHolderType() {
+		return CustomCategory.class;
+	}
+	
+	@Override
+	public String[] getCategoryPkgPath() {
+		return ${typeName}Helper.${typeNamePluralConst}_PATH;
 	}
 
 }

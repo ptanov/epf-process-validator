@@ -6,13 +6,14 @@ import org.eclipse.epf.uma.ContentPackage;
 
 import eu.tanov.epf.itemprovider.extension.AbstractExtendedItemProvider;
 import eu.tanov.epf.itemprovider.extension.ExtendedItemProvider;
+import eu.tanov.epf.pv.types.${typeNamePackage}.common.util.${typeName}Helper;
 import eu.tanov.epf.pv.types.${typeNamePackage}.ui.i18n.${typeName}UIResources;
 import eu.tanov.epf.pv.types.${typeNamePackage}.ui.provider.${typeNamePlural}CategoryItemProvider;
 
 public class ${typeNamePlural}ExtendedItemProvider extends AbstractExtendedItemProvider implements ExtendedItemProvider {
 
 	public ${typeNamePlural}ExtendedItemProvider() {
-		super(${typeNamePlural}CategoryItemProvider.${typeNamePluralConst}_PATH);
+		super(${typeName}Helper.${typeNamePluralConst}_PATH);
 	}
 
 	@Override

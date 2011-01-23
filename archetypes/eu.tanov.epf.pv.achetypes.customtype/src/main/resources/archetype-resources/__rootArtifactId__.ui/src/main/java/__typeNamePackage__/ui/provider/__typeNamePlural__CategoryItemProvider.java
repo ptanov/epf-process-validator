@@ -7,7 +7,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.epf.library.edit.category.TransientCategoryPackageItemProvider;
-import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.library.edit.util.TngUtil;
 import org.eclipse.epf.uma.ContentCategory;
 import org.eclipse.epf.uma.ContentPackage;
@@ -17,19 +16,11 @@ import org.eclipse.epf.uma.UmaFactory;
 import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.swt.graphics.Image;
 
-import eu.tanov.epf.pv.types.${typeNamePackage}.common.util.${typeName}Helper;
 import eu.tanov.epf.pv.types.${typeNamePackage}.ui.${typeName}Activator;
 import eu.tanov.epf.pv.types.${typeNamePackage}.ui.i18n.${typeName}UIResources;
 
 public class ${typeNamePlural}CategoryItemProvider extends TransientCategoryPackageItemProvider {
 	private static final String NEW_NAME = "new_${typeNameNewInstanceName}";
-	public static final String[] ${typeNamePluralConst}_PATH;
-	static {
-		${typeNamePluralConst}_PATH = new String[ModelStructure.DEFAULT_DOMAIN_PATH.length];
-		// -1, because last is used for ${typeNameString} category
-		System.arraycopy(ModelStructure.DEFAULT_DOMAIN_PATH, 0, ${typeNamePluralConst}_PATH, 0, ${typeNamePluralConst}_PATH.length - 1);
-		${typeNamePluralConst}_PATH[${typeNamePluralConst}_PATH.length - 1] = ${typeName}Helper.CATEGORY_NAME;
-	}
 
 	/**
 	 * Creates a new instance.

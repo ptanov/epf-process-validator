@@ -7,11 +7,11 @@ import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.Task;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.AbstractFilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
 import eu.tanov.epf.pv.types.${typeNamePackage}.common.util.${typeName}Helper;
 import eu.tanov.epf.pv.types.${typeNamePackage}.ui.i18n.${typeName}UIResources;
 import eu.tanov.epf.pv.types.${typeNamePackage}.ui.provider.${typeName}ItemProvider;
-import eu.tanov.epf.pv.types.${typeNamePackage}.ui.provider.${typeNamePlural}CategoryItemProvider;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 
@@ -50,12 +50,12 @@ public class ${typeName}TasksPage extends AbstractCustomCategoryPage<Task> {
 
 	@Override
 	protected String[] modelStructurePath() {
-		return ${typeNamePlural}CategoryItemProvider.${typeNamePluralConst}_PATH;
+		return ${typeName}Helper.${typeNamePluralConst}_PATH;
 	}
 
 	@Override
-	protected FilteredContentElementOrderList<Task> createFilteredContentElementOderList() {
-		return new FilteredContentElementOrderList<Task>(contentElement, getOrderFeature(), clazz) {
+	protected AbstractFilteredContentElementOrderList<Task> createFilteredContentElementOderList() {
+		return new TypeFilteredContentElementOrderList<Task>(contentElement, getOrderFeature(), clazz) {
 			private static final long serialVersionUID = -4411920693746082284L;
 
 			@Override
