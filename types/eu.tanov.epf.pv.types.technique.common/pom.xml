@@ -8,7 +8,7 @@
 	</parent>
 
 
-	<groupId>eu.tanov.epf.pv</groupId>
+	<groupId>eu.tanov.epf.pv.types</groupId>
 	<artifactId>eu.tanov.epf.pv.types.technique.common</artifactId>
 	<name>${project.artifactId}</name>
 
