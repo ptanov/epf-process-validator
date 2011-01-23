@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.epf.uma.UmaPackage;
 
-import eu.tanov.epf.pv.service.types.TypesActivator;
+import eu.tanov.epf.pv.service.types.service.impl.CustomTypeHandlersServiceImpl;
 
 public class CustomTypeHelper {
 	private static final String PATTERN_SETTING_DELEGATE_NAME = "%s-%s";
@@ -111,7 +111,7 @@ public class CustomTypeHelper {
 	}
 
 	public static EPackage getExtendedUmaPackage() {
-		final Object result = EPackage.Registry.INSTANCE.get(TypesActivator.NS_URI_EXTENDED_UMA);
+		final Object result = EPackage.Registry.INSTANCE.get(CustomTypeHandlersServiceImpl.NS_URI_EXTENDED_UMA);
 
 		if (!(result instanceof EPackage)) {
 			throw new IllegalStateException(String.format("ExtendedUmaPackage is not EPackage, but %s", result));

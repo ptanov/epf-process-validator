@@ -1,24 +1,14 @@
 package eu.tanov.epf.pv.service.types;
 
-import java.util.Collection;
-
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 
-import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.types.service.impl.CustomTypeHandlersServiceImpl;
 
 public class TypesActivator extends Plugin {
-	/**
-	 * XXX if used outside - move to CustomTypeHelper
-	 */
-	public static final String NS_URI_EXTENDED_UMA = "http://www.tanov.eu/epf/pv/uma/extended/1.0.0/extendeduma.ecore";
-
 	// The plug-in ID
 	public static final String PLUGIN_ID = "eu.tanov.epf.pv.service.types"; //$NON-NLS-1$
 
@@ -35,8 +25,6 @@ public class TypesActivator extends Plugin {
 		this.context = context;
 
 		registerServices();
-
-		initExtendedUmaPackage();
 	}
 
 	public void stop(BundleContext context) throws Exception {
@@ -57,8 +45,10 @@ public class TypesActivator extends Plugin {
 	}
 
 	private void registerServices() {
-		customTypeHandlersServiceRegistration = context.registerService(CustomTypeHandlersService.class.getName(),
-				new CustomTypeHandlersServiceImpl(), null);
+		final CustomTypeHandlersServiceImpl service = new CustomTypeHandlersServiceImpl();
+		customTypeHandlersServiceRegistration = context.registerService(CustomTypeHandlersService.class.getName(), service, null);
+
+		service.initTypeContributions();
 	}
 
 	private void unregisterServices() {
@@ -79,34 +69,6 @@ public class TypesActivator extends Plugin {
 		}
 
 		throw new IllegalArgumentException("Service not found: " + serviceClass.getName());
-	}
-
-	// TODO what if called twice?
-	public void initExtendedUmaPackage() {
-		createExtendedUmaPackage();
-
-		final CustomTypeHandlersService service = TypesActivator.getDefault().getService(CustomTypeHandlersService.class);
-		final Collection<CustomTypeHandler<?>> customTypeHandlers = service.getHandlers();
-
-		createCustomTypes(customTypeHandlers);
-	}
-
-	private void createCustomTypes(Collection<CustomTypeHandler<?>> customTypeHandlers) {
-		for (CustomTypeHandler<?> customTypeHandler : customTypeHandlers) {
-			customTypeHandler.registerType();
-		}
-	}
-
-	/**
-	 * based on http://www.ibm.com/developerworks/library/os-eclipse-dynamicemf/
-	 */
-	private void createExtendedUmaPackage() {
-		final EPackage extendedUmaPackage = EcoreFactory.eINSTANCE.createEPackage();
-		extendedUmaPackage.setName("ExtendedUma");
-		extendedUmaPackage.setNsPrefix("eUma");
-		extendedUmaPackage.setNsURI(NS_URI_EXTENDED_UMA);
-
-		EPackage.Registry.INSTANCE.put(NS_URI_EXTENDED_UMA, extendedUmaPackage);
 	}
 
 }

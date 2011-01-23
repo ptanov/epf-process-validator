@@ -9,6 +9,8 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.epf.library.edit.util.ExtensionManager;
 import org.eclipse.epf.uma.DescribableElement;
 
@@ -17,20 +19,30 @@ import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 
 public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService {
+	/**
+	 * XXX if used outside - move to CustomTypeHelper
+	 */
+	public static final String NS_URI_EXTENDED_UMA = "http://www.tanov.eu/epf/pv/uma/extended/1.0.0/extendeduma.ecore";
+
 	private static final String EXTENSION_POINT_NAME = "CustomTypeHandler";
 
 	/**
 	 * Custom type to corresponding handler
 	 */
-	private final Map<EClass, CustomTypeHandler<?>> customTypeToHandlerMap;
+	private final Map<EClass, CustomTypeHandler<?>> customTypeToHandlerMap = new HashMap<EClass, CustomTypeHandler<?>>();
 
 	public CustomTypeHandlersServiceImpl() {
+		createExtendedUmaPackage();
+	}
+
+	/**
+	 * TODO what if called twice?
+	 */
+	public void initTypeContributions() {
 		// get from extension
 		@SuppressWarnings("unchecked")
 		final List<? extends CustomTypeHandler<?>> handlers = (List<? extends CustomTypeHandler<?>>) ExtensionManager
 				.getExtensions(TypesActivator.PLUGIN_ID, EXTENSION_POINT_NAME, CustomTypeHandler.class);
-
-		customTypeToHandlerMap = new HashMap<EClass, CustomTypeHandler<?>>(handlers.size());
 
 		for (CustomTypeHandler<?> handler : handlers) {
 			final CustomTypeHandler<?> old = customTypeToHandlerMap.put(handler.getCustomType(), handler);
@@ -39,7 +51,22 @@ public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService 
 				throw new IllegalStateException(String.format("Two handlers for type %s, first: %s, second: %s",
 						handler.getCustomType(), old, handler));
 			}
+
+			handler.registerType();
 		}
+	}
+
+	/**
+	 * TODO what if called twice?
+	 * based on http://www.ibm.com/developerworks/library/os-eclipse-dynamicemf/
+	 */
+	private void createExtendedUmaPackage() {
+		final EPackage extendedUmaPackage = EcoreFactory.eINSTANCE.createEPackage();
+		extendedUmaPackage.setName("ExtendedUma");
+		extendedUmaPackage.setNsPrefix("eUma");
+		extendedUmaPackage.setNsURI(NS_URI_EXTENDED_UMA);
+
+		EPackage.Registry.INSTANCE.put(NS_URI_EXTENDED_UMA, extendedUmaPackage);
 	}
 
 	@Override
