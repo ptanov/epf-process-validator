@@ -12,7 +12,6 @@ import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
 import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniqueItemProvider;
-import eu.tanov.epf.pv.types.technique.ui.provider.TechniquesCategoryItemProvider;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 
@@ -53,7 +52,7 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 
 	@Override
 	protected String[] modelStructurePath() {
-		return TechniquesCategoryItemProvider.TECHNIQUES_PATH;
+		return TechniqueHelper.TECHNIQUES_PATH;
 	}
 
 	@Override

@@ -6,13 +6,14 @@ import org.eclipse.epf.uma.ContentPackage;
 
 import eu.tanov.epf.itemprovider.extension.AbstractExtendedItemProvider;
 import eu.tanov.epf.itemprovider.extension.ExtendedItemProvider;
+import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.projectpractice.ui.i18n.ProjectPracticeUIResources;
 import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticesCategoryItemProvider;
 
 public class ProjectPracticesExtendedItemProvider extends AbstractExtendedItemProvider implements ExtendedItemProvider {
 
 	public ProjectPracticesExtendedItemProvider() {
-		super(ProjectPracticesCategoryItemProvider.PROJECT_PRACTICES_PATH);
+		super(ProjectPracticeHelper.PROJECT_PRACTICES_PATH);
 	}
 
 	@Override

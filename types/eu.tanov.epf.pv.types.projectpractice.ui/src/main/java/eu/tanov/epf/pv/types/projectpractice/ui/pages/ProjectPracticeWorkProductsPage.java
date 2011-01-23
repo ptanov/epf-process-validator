@@ -12,7 +12,6 @@ import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.projectpractice.ui.i18n.ProjectPracticeUIResources;
 import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticeItemProvider;
-import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticesCategoryItemProvider;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 
@@ -53,7 +52,7 @@ public class ProjectPracticeWorkProductsPage extends AbstractCustomCategoryPage<
 
 	@Override
 	protected String[] modelStructurePath() {
-		return ProjectPracticesCategoryItemProvider.PROJECT_PRACTICES_PATH;
+		return ProjectPracticeHelper.PROJECT_PRACTICES_PATH;
 	}
 
 	@Override

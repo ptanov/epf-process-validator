@@ -62,5 +62,10 @@ public class TechniqueCustomTypeHandler implements CustomTypeHandler<CustomCateg
 	public Class<CustomCategory> getHolderType() {
 		return CustomCategory.class;
 	}
+	
+	@Override
+	public String[] getCategoryPkgPath() {
+		return TechniqueHelper.TECHNIQUES_PATH;
+	}
 
 }

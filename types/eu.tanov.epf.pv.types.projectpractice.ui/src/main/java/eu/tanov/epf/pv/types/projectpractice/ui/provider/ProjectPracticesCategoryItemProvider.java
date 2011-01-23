@@ -7,7 +7,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.epf.library.edit.category.TransientCategoryPackageItemProvider;
-import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.library.edit.util.TngUtil;
 import org.eclipse.epf.uma.ContentCategory;
 import org.eclipse.epf.uma.ContentPackage;
@@ -17,19 +16,11 @@ import org.eclipse.epf.uma.UmaFactory;
 import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.swt.graphics.Image;
 
-import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.projectpractice.ui.ProjectPracticeActivator;
 import eu.tanov.epf.pv.types.projectpractice.ui.i18n.ProjectPracticeUIResources;
 
 public class ProjectPracticesCategoryItemProvider extends TransientCategoryPackageItemProvider {
 	private static final String NEW_NAME = "new_project_practice";
-	public static final String[] PROJECT_PRACTICES_PATH;
-	static {
-		PROJECT_PRACTICES_PATH = new String[ModelStructure.DEFAULT_DOMAIN_PATH.length];
-		// -1, because last is used for Project Practice category
-		System.arraycopy(ModelStructure.DEFAULT_DOMAIN_PATH, 0, PROJECT_PRACTICES_PATH, 0, PROJECT_PRACTICES_PATH.length - 1);
-		PROJECT_PRACTICES_PATH[PROJECT_PRACTICES_PATH.length - 1] = ProjectPracticeHelper.CATEGORY_NAME;
-	}
 
 	/**
 	 * Creates a new instance.

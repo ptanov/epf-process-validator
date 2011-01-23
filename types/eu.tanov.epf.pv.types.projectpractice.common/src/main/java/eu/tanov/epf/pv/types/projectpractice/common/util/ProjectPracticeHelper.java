@@ -3,6 +3,7 @@ package eu.tanov.epf.pv.types.projectpractice.common.util;
 import java.util.HashSet;
 import java.util.List;
 
+import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.Task;
@@ -13,6 +14,14 @@ import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
 
 public class ProjectPracticeHelper {
 	public static final String CATEGORY_NAME = "ProjectPractices"; //$NON-NLS-1$
+
+	public static final String[] PROJECT_PRACTICES_PATH;
+	static {
+		PROJECT_PRACTICES_PATH = new String[ModelStructure.DEFAULT_DOMAIN_PATH.length];
+		// -1, because last is used for Project Practice category
+		System.arraycopy(ModelStructure.DEFAULT_DOMAIN_PATH, 0, PROJECT_PRACTICES_PATH, 0, PROJECT_PRACTICES_PATH.length - 1);
+		PROJECT_PRACTICES_PATH[PROJECT_PRACTICES_PATH.length - 1] = ProjectPracticeHelper.CATEGORY_NAME;
+	}
 
 	/**
 	 * helper

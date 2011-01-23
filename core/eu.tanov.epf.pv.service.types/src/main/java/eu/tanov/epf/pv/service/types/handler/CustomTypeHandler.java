@@ -33,4 +33,10 @@ public interface CustomTypeHandler<T extends DescribableElement> {
 	 * @return type of class that holds this custom type
 	 */
 	public Class<T> getHolderType();
+	
+	/**
+	 * Should not be changed in any way!
+	 * @return path where elements are persisted
+	 */
+	public String[] getCategoryPkgPath();
 }

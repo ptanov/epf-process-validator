@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.Task;
@@ -16,6 +17,14 @@ import eu.tanov.epf.pv.types.technique.common.handler.TechniqueCustomTypeHandler
 
 public class TechniqueHelper {
 	public static final String CATEGORY_NAME = "Techniques"; //$NON-NLS-1$
+
+	public static final String[] TECHNIQUES_PATH;
+	static {
+		TECHNIQUES_PATH = new String[ModelStructure.DEFAULT_DOMAIN_PATH.length];
+		// -1, because last is used for Technique category
+		System.arraycopy(ModelStructure.DEFAULT_DOMAIN_PATH, 0, TECHNIQUES_PATH, 0, TECHNIQUES_PATH.length - 1);
+		TECHNIQUES_PATH[TECHNIQUES_PATH.length - 1] = TechniqueHelper.CATEGORY_NAME;
+	}
 
 	/**
 	 * helper
@@ -68,4 +77,5 @@ public class TechniqueHelper {
 	public static EClass getCustomType() {
 		return CustomTypeHelper.getCustomType(TechniqueCustomTypeHandler.TYPE_NAME);
 	}
+
 }

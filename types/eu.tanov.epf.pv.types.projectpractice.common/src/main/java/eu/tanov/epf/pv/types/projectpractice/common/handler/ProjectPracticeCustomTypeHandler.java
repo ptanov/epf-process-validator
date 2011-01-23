@@ -61,4 +61,9 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<Custo
 		return CustomCategory.class;
 	}
 
+	@Override
+	public String[] getCategoryPkgPath() {
+		return ProjectPracticeHelper.PROJECT_PRACTICES_PATH;
+	}
+
 }

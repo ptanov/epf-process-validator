@@ -6,13 +6,14 @@ import org.eclipse.epf.uma.ContentPackage;
 
 import eu.tanov.epf.itemprovider.extension.AbstractExtendedItemProvider;
 import eu.tanov.epf.itemprovider.extension.ExtendedItemProvider;
+import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
 import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniquesCategoryItemProvider;
 
 public class TechniquesExtendedItemProvider extends AbstractExtendedItemProvider implements ExtendedItemProvider {
 
 	public TechniquesExtendedItemProvider() {
-		super(TechniquesCategoryItemProvider.TECHNIQUES_PATH);
+		super(TechniqueHelper.TECHNIQUES_PATH);
 	}
 
 	@Override

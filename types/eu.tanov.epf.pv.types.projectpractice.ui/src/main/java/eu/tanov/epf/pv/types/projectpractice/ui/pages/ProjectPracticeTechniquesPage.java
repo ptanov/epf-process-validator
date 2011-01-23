@@ -5,10 +5,10 @@ import org.eclipse.ui.forms.editor.FormEditor;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
+import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.projectpractice.ui.ProjectPracticeActivator;
 import eu.tanov.epf.pv.types.projectpractice.ui.i18n.ProjectPracticeUIResources;
 import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticeItemProvider;
-import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticesCategoryItemProvider;
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomTypeCategoryPage;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
@@ -57,7 +57,7 @@ public class ProjectPracticeTechniquesPage extends AbstractCustomTypeCategoryPag
 
 	@Override
 	protected String[] modelStructurePath() {
-		return ProjectPracticesCategoryItemProvider.PROJECT_PRACTICES_PATH;
+		return ProjectPracticeHelper.PROJECT_PRACTICES_PATH;
 	}
 
 }

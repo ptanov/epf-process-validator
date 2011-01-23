@@ -4,9 +4,9 @@ import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.Tool;
 import org.eclipse.ui.forms.editor.FormEditor;
 
+import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.projectpractice.ui.i18n.ProjectPracticeUIResources;
 import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticeItemProvider;
-import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticesCategoryItemProvider;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 
@@ -47,7 +47,7 @@ public class ProjectPracticeToolsPage extends AbstractCustomCategoryPage<Tool> {
 
 	@Override
 	protected String[] modelStructurePath() {
-		return ProjectPracticesCategoryItemProvider.PROJECT_PRACTICES_PATH;
+		return ProjectPracticeHelper.PROJECT_PRACTICES_PATH;
 	}
 
 }

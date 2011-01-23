@@ -7,7 +7,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.epf.library.edit.category.TransientCategoryPackageItemProvider;
-import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.library.edit.util.TngUtil;
 import org.eclipse.epf.uma.ContentCategory;
 import org.eclipse.epf.uma.ContentPackage;
@@ -17,19 +16,11 @@ import org.eclipse.epf.uma.UmaFactory;
 import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.swt.graphics.Image;
 
-import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
 import eu.tanov.epf.pv.types.technique.ui.TechniqueActivator;
 import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 
 public class TechniquesCategoryItemProvider extends TransientCategoryPackageItemProvider {
 	private static final String NEW_NAME = "new_technique";
-	public static final String[] TECHNIQUES_PATH;
-	static {
-		TECHNIQUES_PATH = new String[ModelStructure.DEFAULT_DOMAIN_PATH.length];
-		// -1, because last is used for Technique category
-		System.arraycopy(ModelStructure.DEFAULT_DOMAIN_PATH, 0, TECHNIQUES_PATH, 0, TECHNIQUES_PATH.length - 1);
-		TECHNIQUES_PATH[TECHNIQUES_PATH.length - 1] = TechniqueHelper.CATEGORY_NAME;
-	}
 
 	/**
 	 * Creates a new instance.
