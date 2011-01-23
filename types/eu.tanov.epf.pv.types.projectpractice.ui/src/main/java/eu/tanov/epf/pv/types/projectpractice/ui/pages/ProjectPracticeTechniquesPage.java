@@ -26,10 +26,7 @@ public class ProjectPracticeTechniquesPage extends AbstractCustomTypeCategoryPag
 	private static CustomTypeHandler<CustomCategory> getTypeHelper() {
 		final CustomTypeHandlersService service = ProjectPracticeActivator.getDefault().getService(
 				CustomTypeHandlersService.class);
-		@SuppressWarnings("unchecked")
-		final CustomTypeHandler<CustomCategory> result = (CustomTypeHandler<CustomCategory>) service
-				.getHandlerForType(TechniqueHelper.getCustomType());
-		return result;
+		return service.getHandlerForType(TechniqueHelper.getCustomType(), CustomCategory.class);
 	}
 
 	@Override

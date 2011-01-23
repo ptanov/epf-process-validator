@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.epf.library.edit.util.ExtensionManager;
+import org.eclipse.epf.uma.DescribableElement;
 
 import eu.tanov.epf.pv.service.types.TypesActivator;
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
@@ -89,13 +90,21 @@ public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService 
 	}
 
 	@Override
-	public CustomTypeHandler<?> getHandlerForType(EClass customType) throws IllegalArgumentException {
+	public <T extends DescribableElement> CustomTypeHandler<T> getHandlerForType(EClass customType, Class<T> expectedHolderType)
+			throws IllegalArgumentException, ClassCastException {
 		final CustomTypeHandler<?> result = customTypeToHandlerMap.get(customType);
 		if (result == null) {
 			throw new IllegalArgumentException("No handler for type " + customType);
 		}
 
-		return result;
+		final Class<?> actualHolderType = result.getHolderType();
+		if (actualHolderType != expectedHolderType) {
+			throw new ClassCastException(String.format("Handler for type %s works with %s, not with %s: %s", customType,
+					actualHolderType, expectedHolderType, result));
+		}
+		@SuppressWarnings("unchecked")
+		final CustomTypeHandler<T> casted = (CustomTypeHandler<T>) result;
+		return casted;
 	}
 
 }

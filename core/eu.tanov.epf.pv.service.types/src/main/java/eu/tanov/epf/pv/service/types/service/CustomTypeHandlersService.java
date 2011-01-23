@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.epf.uma.DescribableElement;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 
@@ -26,10 +27,16 @@ public interface CustomTypeHandlersService {
 	public boolean canWrapTo(EObject eObject, EClassifier type);
 
 	/**
+	 * @param <T>
+	 *            generic type of returned CustomTypeHandler
 	 * @param customType
+	 *            type that handler should handle
+	 * @param expectedHolderType
+	 *            expected generic type of CustomTypeHandler
 	 * @return handler for customType
 	 * @throws IllegalArgumentException
 	 *             if there is no registered handler for customType
 	 */
-	public CustomTypeHandler<?> getHandlerForType(EClass customType) throws IllegalArgumentException;
+	public <T extends DescribableElement> CustomTypeHandler<T> getHandlerForType(EClass customType, Class<T> expectedHolderType)
+			throws IllegalArgumentException;
 }
