@@ -5,7 +5,6 @@ import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.Role;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
 import eu.tanov.epf.pv.types.projectpractice.ui.i18n.ProjectPracticeUIResources;
 import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticeItemProvider;
 import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticesCategoryItemProvider;
@@ -49,11 +48,6 @@ public class ProjectPracticeRolesPage extends AbstractCustomCategoryPage<Role> {
 	@Override
 	protected String[] modelStructurePath() {
 		return ProjectPracticesCategoryItemProvider.PROJECT_PRACTICES_PATH;
-	}
-
-	@Override
-	protected FilteredContentElementOrderList<Role> createFilteredContentElementOderList() {
-		return new FilteredContentElementOrderList<Role>(contentElement, getOrderFeature(), clazz);
 	}
 
 }
