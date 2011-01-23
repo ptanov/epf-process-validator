@@ -174,8 +174,17 @@ public abstract class AbstractCustomCategoryPage<T extends DescribableElement> e
 
 	@Override
 	protected IFilter getFilter() {
-		filter = new TypeContentFilter();
+		filter = createFilter();
 		return filter;
+	}
+
+	/**
+	 * Can be extended for more flexible filter
+	 * 
+	 * @return new filter
+	 */
+	protected IFilter createFilter() {
+		return new TypeContentFilter();
 	}
 
 	@Override
