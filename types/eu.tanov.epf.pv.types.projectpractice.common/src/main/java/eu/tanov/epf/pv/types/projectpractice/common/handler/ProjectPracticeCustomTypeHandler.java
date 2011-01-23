@@ -12,13 +12,18 @@ import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 
 public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
+	private static final String STRUCTURAL_FEATURE_NAME_TOOLS = "tools";
 	private static final String STRUCTURAL_FEATURE_NAME_TASKS = "tasks";
 	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
+	private static final String STRUCTURAL_FEATURE_NAME_ROLES = "roles";
+
 	private static final String TYPE_NAME = "ProjectPractice";
 
 	private final EClass projectPracticeEClass;
+	private EReference tools;
 	private EReference tasks;
 	private EReference workProducts;
+	private EReference roles;
 
 	public ProjectPracticeCustomTypeHandler() {
 		this.projectPracticeEClass = CustomTypeHelper.createType(TYPE_NAME);
@@ -29,14 +34,20 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<Custo
 	 */
 	@Override
 	public void registerType() {
+		this.tools = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_TOOLS,
+				UmaPackage.eINSTANCE.getTool(), new ToolsSettingDelegateFactory());
 		this.tasks = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_TASKS,
 				UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
 		this.workProducts = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass,
 				STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS, UmaPackage.eINSTANCE.getWorkProduct(),
 				new WorkProductsSettingDelegateFactory());
+		this.roles = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_ROLES,
+				UmaPackage.eINSTANCE.getRole(), new RolesSettingDelegateFactory());
 
+		projectPracticeEClass.getEStructuralFeatures().add(tools);
 		projectPracticeEClass.getEStructuralFeatures().add(tasks);
 		projectPracticeEClass.getEStructuralFeatures().add(workProducts);
+		projectPracticeEClass.getEStructuralFeatures().add(roles);
 
 		CustomTypeHelper.getExtendedUmaPackage().getEClassifiers().add(projectPracticeEClass);
 	}
