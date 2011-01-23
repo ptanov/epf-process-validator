@@ -3,13 +3,16 @@ package eu.tanov.epf.pv.types.technique.common.util;
 import java.util.HashSet;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.Task;
 import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.epf.uma.WorkProduct;
 
-import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
+import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
+import eu.tanov.epf.pv.types.technique.common.handler.TechniqueCustomTypeHandler;
 
 public class TechniqueHelper {
 	public static final String CATEGORY_NAME = "Techniques"; //$NON-NLS-1$
@@ -42,10 +45,10 @@ public class TechniqueHelper {
 	 */
 	public static void updateWorkProducts(CustomCategory technique) {
 		final HashSet<WorkProduct> directWorkProducts = new HashSet<WorkProduct>(
-				FilteredContentElementOrderList.<WorkProduct> toFilteredList(technique,
+				TypeFilteredContentElementOrderList.<WorkProduct> toFilteredList(technique,
 						UmaPackage.eINSTANCE.getCustomCategory_CategorizedElements(), WorkProduct.class));
 
-		final List<Task> tasks = FilteredContentElementOrderList.<Task> toFilteredList(technique,
+		final List<Task> tasks = TypeFilteredContentElementOrderList.<Task> toFilteredList(technique,
 				UmaPackage.eINSTANCE.getCustomCategory_CategorizedElements(), Task.class);
 
 		// set in order to avoid adding some work product twice
@@ -60,5 +63,9 @@ public class TechniqueHelper {
 		}
 
 		technique.getCategorizedElements().addAll(workProductsToAdd);
+	}
+
+	public static EClass getCustomType() {
+		return CustomTypeHelper.getCustomType(TechniqueCustomTypeHandler.TYPE_NAME);
 	}
 }

@@ -9,7 +9,7 @@ import org.eclipse.epf.uma.Task;
 import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.epf.uma.WorkProduct;
 
-import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
 
 public class ProjectPracticeHelper {
 	public static final String CATEGORY_NAME = "ProjectPractices"; //$NON-NLS-1$
@@ -35,17 +35,18 @@ public class ProjectPracticeHelper {
 	}
 
 	/**
-	 * (#42) If task contains work products as mandatory input and task is selected in Project Practice - automatically add its work
+	 * (#42) If task contains work products as mandatory input and task is selected in Project Practice - automatically add its
+	 * work
 	 * products (that are mandatory inputs) to Project Practice
 	 * 
 	 * Order of automatically added work products is not guaranteed (HashSet is used)
 	 */
 	public static void updateWorkProducts(CustomCategory projectPractice) {
 		final HashSet<WorkProduct> directWorkProducts = new HashSet<WorkProduct>(
-				FilteredContentElementOrderList.<WorkProduct> toFilteredList(projectPractice,
+				TypeFilteredContentElementOrderList.<WorkProduct> toFilteredList(projectPractice,
 						UmaPackage.eINSTANCE.getCustomCategory_CategorizedElements(), WorkProduct.class));
 
-		final List<Task> tasks = FilteredContentElementOrderList.<Task> toFilteredList(projectPractice,
+		final List<Task> tasks = TypeFilteredContentElementOrderList.<Task> toFilteredList(projectPractice,
 				UmaPackage.eINSTANCE.getCustomCategory_CategorizedElements(), Task.class);
 
 		// set in order to avoid adding some work product twice

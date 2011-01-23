@@ -4,17 +4,21 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.UmaPackage;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
 
-public class TechniqueCustomTypeHandler implements CustomTypeHandler {
+public class TechniqueCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
 	private static final String STRUCTURAL_FEATURE_NAME_TASKS = "tasks";
 	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
-	private static final String TYPE_NAME = "Technique";
+	/**
+	 * XXX if used outside - move to TechniqueHelper
+	 */
+	public static final String TYPE_NAME = "Technique";
 
 	private final EClass techniqueEClass;
 	private EReference tasks;
@@ -54,6 +58,11 @@ public class TechniqueCustomTypeHandler implements CustomTypeHandler {
 	@Override
 	public EClass getCustomType() {
 		return techniqueEClass;
+	}
+
+	@Override
+	public Class<CustomCategory> getHolderType() {
+		return CustomCategory.class;
 	}
 
 }

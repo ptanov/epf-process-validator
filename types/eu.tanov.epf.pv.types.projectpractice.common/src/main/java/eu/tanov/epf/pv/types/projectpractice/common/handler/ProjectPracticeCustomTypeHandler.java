@@ -4,13 +4,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.UmaPackage;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 
-public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler {
+public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
 	private static final String STRUCTURAL_FEATURE_NAME_TASKS = "tasks";
 	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
@@ -54,6 +55,11 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler {
 	@Override
 	public EClass getCustomType() {
 		return projectPracticeEClass;
+	}
+
+	@Override
+	public Class<CustomCategory> getHolderType() {
+		return CustomCategory.class;
 	}
 
 }

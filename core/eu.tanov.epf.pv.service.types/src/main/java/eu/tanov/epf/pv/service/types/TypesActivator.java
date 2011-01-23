@@ -1,6 +1,6 @@
 package eu.tanov.epf.pv.service.types;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.emf.ecore.EPackage;
@@ -14,7 +14,10 @@ import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.types.service.impl.CustomTypeHandlersServiceImpl;
 
 public class TypesActivator extends Plugin {
-	private static final String NS_URI_EXTENDED_UMA = "http://www.tanov.eu/epf/pv/uma/extended/1.0.0/extendeduma.ecore";
+	/**
+	 * XXX if used outside - move to CustomTypeHelper
+	 */
+	public static final String NS_URI_EXTENDED_UMA = "http://www.tanov.eu/epf/pv/uma/extended/1.0.0/extendeduma.ecore";
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "eu.tanov.epf.pv.service.types"; //$NON-NLS-1$
@@ -32,7 +35,7 @@ public class TypesActivator extends Plugin {
 		this.context = context;
 
 		registerServices();
-		
+
 		initExtendedUmaPackage();
 	}
 
@@ -77,19 +80,19 @@ public class TypesActivator extends Plugin {
 
 		throw new IllegalArgumentException("Service not found: " + serviceClass.getName());
 	}
-	
-	//TODO what if called twice?
+
+	// TODO what if called twice?
 	public void initExtendedUmaPackage() {
 		final EPackage extendedUmaPackage = createExtendedUmaPackage();
 
 		final CustomTypeHandlersService service = TypesActivator.getDefault().getService(CustomTypeHandlersService.class);
-		final List<CustomTypeHandler> customTypeHandlers = service.getHandlers();
+		final Collection<CustomTypeHandler<?>> customTypeHandlers = service.getHandlers();
 
 		createCustomTypes(extendedUmaPackage, customTypeHandlers);
 	}
 
-	private void createCustomTypes(EPackage extendedUmaPackage, List<CustomTypeHandler> customTypeHandlers) {
-		for (CustomTypeHandler customTypeHandler : customTypeHandlers) {
+	private void createCustomTypes(EPackage extendedUmaPackage, Collection<CustomTypeHandler<?>> customTypeHandlers) {
+		for (CustomTypeHandler<?> customTypeHandler : customTypeHandlers) {
 			customTypeHandler.registerType(extendedUmaPackage);
 		}
 	}
@@ -109,6 +112,5 @@ public class TypesActivator extends Plugin {
 
 		return extendedUmaPackage;
 	}
-
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -13,6 +14,8 @@ import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.epf.uma.UmaPackage;
+
+import eu.tanov.epf.pv.service.types.TypesActivator;
 
 public class CustomTypeHelper {
 	private static final String PATTERN_SETTING_DELEGATE_NAME = "%s-%s";
@@ -95,7 +98,24 @@ public class CustomTypeHelper {
 		return castedResult;
 	}
 
-	public static void addSettingDelegates() {
+	public static EClass getCustomType(String customTypeName) {
+		final EPackage extendedUmaPackage = getExtendedUmaPackage();
+		final EClassifier result = extendedUmaPackage.getEClassifier(customTypeName);
 
+		if (!(result instanceof EClass)) {
+			throw new IllegalArgumentException(String.format("Custom type %s is not EClass, but %s", customTypeName, result));
+		}
+
+		return (EClass) result;
+	}
+
+	public static EPackage getExtendedUmaPackage() {
+		final Object result = EPackage.Registry.INSTANCE.get(TypesActivator.NS_URI_EXTENDED_UMA);
+
+		if (!(result instanceof EPackage)) {
+			throw new IllegalStateException(String.format("ExtendedUmaPackage is not EPackage, but %s", result));
+		}
+
+		return (EPackage) result;
 	}
 }

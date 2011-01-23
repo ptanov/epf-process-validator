@@ -7,7 +7,8 @@ import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.WorkProduct;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.AbstractFilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.projectpractice.ui.i18n.ProjectPracticeUIResources;
 import eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticeItemProvider;
@@ -31,8 +32,8 @@ public class ProjectPracticeWorkProductsPage extends AbstractCustomCategoryPage<
 
 	@Override
 	protected String multipleSelectDescription(int count) {
-		return ProjectPracticeUIResources.bind(ProjectPracticeUIResources.projectPracticeWorkProductsPage_multipleSelectDescription, new Integer(
-				count));
+		return ProjectPracticeUIResources.bind(
+				ProjectPracticeUIResources.projectPracticeWorkProductsPage_multipleSelectDescription, new Integer(count));
 	}
 
 	@Override
@@ -56,8 +57,8 @@ public class ProjectPracticeWorkProductsPage extends AbstractCustomCategoryPage<
 	}
 
 	@Override
-	protected FilteredContentElementOrderList<WorkProduct> createFilteredContentElementOderList() {
-		return new FilteredContentElementOrderList<WorkProduct>(contentElement, getOrderFeature(), clazz) {
+	protected AbstractFilteredContentElementOrderList<WorkProduct> createFilteredContentElementOderList() {
+		return new TypeFilteredContentElementOrderList<WorkProduct>(contentElement, getOrderFeature(), clazz) {
 			private static final long serialVersionUID = 6454750512209162031L;
 
 			@Override

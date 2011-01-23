@@ -3,8 +3,9 @@ package eu.tanov.epf.pv.service.types.handler;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.epf.uma.DescribableElement;
 
-public interface CustomTypeHandler {
+public interface CustomTypeHandler<T extends DescribableElement> {
 
 	/**
 	 * Registers custom type in extedendedUmaPackage.
@@ -30,4 +31,9 @@ public interface CustomTypeHandler {
 	 * @return type of custom type
 	 */
 	public EClass getCustomType();
+	
+	/**
+	 * @return type of class that holds this custom type
+	 */
+	public Class<T> getHolderType();
 }

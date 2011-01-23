@@ -1,8 +1,12 @@
 package eu.tanov.epf.pv.service.types.service.impl;
 
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.epf.library.edit.util.ExtensionManager;
@@ -14,19 +18,37 @@ import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService {
 	private static final String EXTENSION_POINT_NAME = "CustomTypeHandler";
 
-	private final List<CustomTypeHandler> handlers;
+	/**
+	 * Custom type to corresponding handler
+	 */
+	private final Map<EClass, CustomTypeHandler<?>> customTypeToHandlerMap;
 
 	public CustomTypeHandlersServiceImpl() {
-		// from extension
-		handlers = ExtensionManager.getExtensions(TypesActivator.PLUGIN_ID, EXTENSION_POINT_NAME, CustomTypeHandler.class);
+		// get from extension
+		@SuppressWarnings("unchecked")
+		final List<? extends CustomTypeHandler<?>> handlers = (List<? extends CustomTypeHandler<?>>) ExtensionManager
+				.getExtensions(TypesActivator.PLUGIN_ID, EXTENSION_POINT_NAME, CustomTypeHandler.class);
+
+		customTypeToHandlerMap = new HashMap<EClass, CustomTypeHandler<?>>(handlers.size());
+
+		for (CustomTypeHandler<?> handler : handlers) {
+			final CustomTypeHandler<?> old = customTypeToHandlerMap.put(handler.getCustomType(), handler);
+
+			if (old != null) {
+				throw new IllegalStateException(String.format("Two handlers for type %s, first: %s, second: %s",
+						handler.getCustomType(), old, handler));
+			}
+		}
 	}
 
-	public List<CustomTypeHandler> getHandlers() {
-		return Collections.unmodifiableList(handlers);
+	@Override
+	public Collection<CustomTypeHandler<?>> getHandlers() {
+		return Collections.unmodifiableCollection(customTypeToHandlerMap.values());
 	}
 
+	@Override
 	public EObject wrapObjectIfNeeded(EObject eObject) {
-		final CustomTypeHandler handler = getHandlerFor(eObject);
+		final CustomTypeHandler<?> handler = getHandlerForObject(eObject);
 		if (handler == null) {
 			// no handler found - return object itself, without modifications
 			return eObject;
@@ -40,9 +62,9 @@ public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService 
 	 * @throws IllegalStateException
 	 *             if there are two handlers that matches this eObject
 	 */
-	private CustomTypeHandler getHandlerFor(EObject eObject) throws IllegalStateException {
-		CustomTypeHandler result = null;
-		for (CustomTypeHandler handler : handlers) {
+	private CustomTypeHandler<?> getHandlerForObject(EObject eObject) throws IllegalStateException {
+		CustomTypeHandler<?> result = null;
+		for (CustomTypeHandler<?> handler : customTypeToHandlerMap.values()) {
 			if (handler.matches(eObject)) {
 				if (result != null) {
 					throw new IllegalStateException(String.format("Two handlers found for object: %s, first: %s, second: %s",
@@ -54,8 +76,9 @@ public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService 
 		return result;
 	}
 
+	@Override
 	public boolean canWrapTo(EObject eObject, EClassifier type) {
-		final CustomTypeHandler handler = getHandlerFor(eObject);
+		final CustomTypeHandler<?> handler = getHandlerForObject(eObject);
 
 		if (handler == null) {
 			// there is no handler - can't wrap
@@ -64,4 +87,15 @@ public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService 
 
 		return handler.getCustomType() == type;
 	}
+
+	@Override
+	public CustomTypeHandler<?> getHandlerForType(EClass customType) throws IllegalArgumentException {
+		final CustomTypeHandler<?> result = customTypeToHandlerMap.get(customType);
+		if (result == null) {
+			throw new IllegalArgumentException("No handler for type " + customType);
+		}
+
+		return result;
+	}
+
 }

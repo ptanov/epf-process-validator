@@ -7,7 +7,8 @@ import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.WorkProduct;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.AbstractFilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
 import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniqueItemProvider;
@@ -56,8 +57,8 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 	}
 
 	@Override
-	protected FilteredContentElementOrderList<WorkProduct> createFilteredContentElementOderList() {
-		return new FilteredContentElementOrderList<WorkProduct>(contentElement, getOrderFeature(), clazz) {
+	protected AbstractFilteredContentElementOrderList<WorkProduct> createFilteredContentElementOderList() {
+		return new TypeFilteredContentElementOrderList<WorkProduct>(contentElement, getOrderFeature(), clazz) {
 			private static final long serialVersionUID = 6454750512209162031L;
 
 			@Override

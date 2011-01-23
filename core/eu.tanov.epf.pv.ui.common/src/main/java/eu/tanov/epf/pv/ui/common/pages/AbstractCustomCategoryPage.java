@@ -26,14 +26,15 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.AbstractFilteredContentElementOrderList;
+import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
 import eu.tanov.epf.pv.ui.common.util.FormHelper;
 
 public abstract class AbstractCustomCategoryPage<T extends DescribableElement> extends AssociationFormPage {
 
 	protected CustomCategory container;
 
-	private FilteredContentElementOrderList<T> allSteps;
+	protected AbstractFilteredContentElementOrderList<T> allSteps;
 
 	protected final String pageId;
 	protected final Class<T> clazz;
@@ -115,8 +116,8 @@ public abstract class AbstractCustomCategoryPage<T extends DescribableElement> e
 	/**
 	 * should be overrided if custom filtered content element order list is used
 	 */
-	protected FilteredContentElementOrderList<T> createFilteredContentElementOderList() {
-		return new FilteredContentElementOrderList<T>(contentElement, getOrderFeature(), clazz);
+	protected AbstractFilteredContentElementOrderList<T> createFilteredContentElementOderList() {
+		return new TypeFilteredContentElementOrderList<T>(contentElement, getOrderFeature(), clazz);
 	}
 
 	protected CustomCategory addToCategory(IActionManager actionMgr, CustomCategory categoryToModify, T objectToAdd) {

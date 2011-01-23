@@ -1,7 +1,8 @@
 package eu.tanov.epf.pv.service.types.service;
 
-import java.util.List;
+import java.util.Collection;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 
@@ -9,7 +10,7 @@ import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 
 public interface CustomTypeHandlersService {
 
-	public List<CustomTypeHandler> getHandlers();
+	public Collection<CustomTypeHandler<?>> getHandlers();
 
 	/**
 	 * @param eObject
@@ -24,4 +25,11 @@ public interface CustomTypeHandlersService {
 	 */
 	public boolean canWrapTo(EObject eObject, EClassifier type);
 
+	/**
+	 * @param customType
+	 * @return handler for customType
+	 * @throws IllegalArgumentException
+	 *             if there is no registered handler for customType
+	 */
+	public CustomTypeHandler<?> getHandlerForType(EClass customType) throws IllegalArgumentException;
 }
