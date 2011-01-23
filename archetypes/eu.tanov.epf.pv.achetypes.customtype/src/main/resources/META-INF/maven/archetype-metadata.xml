@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor name="eu.tanov.epf.pv.archetypes.customtype">
+
+	<requiredProperties>
+		<requiredProperty key="typeName">
+			<defaultValue>CustomType</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="typeNamePlural">
+			<defaultValue>CustomTypes</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="typeNameString">
+			<defaultValue>Custom Type</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="typeNamePackage">
+			<defaultValue>customtype</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="typeNameVariable">
+			<defaultValue>customType</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="typeNamePluralConst">
+			<defaultValue>CUSTOM_TYPES</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="typeNameNewInstanceName">
+			<defaultValue>custom_type</defaultValue>
+		</requiredProperty>
+
+	</requiredProperties>
+
+	<modules>
+		<module id="${rootArtifactId}.common" dir="__rootArtifactId__.common" name="${rootArtifactId}.common">
+			<fileSets>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="false" encoding="UTF-8">
+					<directory>META-INF</directory>
+					<includes>
+						<include>MANIFEST.MF</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="false" encoding="UTF-8">
+					<directory>/</directory>
+					<includes>
+						<include>build.properties</include>
+						<include>plugin.xml</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="${rootArtifactId}.ui" dir="__rootArtifactId__.ui" name="${rootArtifactId}.ui">
+			<fileSets>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="false" encoding="UTF-8">
+					<directory>/</directory>
+					<includes>
+						<include>build.properties</include>
+						<include>plugin.xml</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/main/resources</directory>
+					<includes>
+						<include>**/*.properties</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="false" encoding="UTF-8">
+					<directory>META-INF</directory>
+					<includes>
+						<include>MANIFEST.MF</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="false" packaged="false" >
+					<directory>icons/full/obj16</directory>
+					<includes>
+						<include>*.png</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+
+	</modules>
+</archetype-descriptor>
