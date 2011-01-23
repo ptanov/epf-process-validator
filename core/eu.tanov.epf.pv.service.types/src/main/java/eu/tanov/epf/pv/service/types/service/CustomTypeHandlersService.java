@@ -1,7 +1,5 @@
 package eu.tanov.epf.pv.service.types.service;
 
-import java.util.Collection;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -10,8 +8,6 @@ import org.eclipse.epf.uma.DescribableElement;
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 
 public interface CustomTypeHandlersService {
-
-	public Collection<CustomTypeHandler<?>> getHandlers();
 
 	/**
 	 * @param eObject

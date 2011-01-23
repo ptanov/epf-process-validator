@@ -1,7 +1,5 @@
 package eu.tanov.epf.pv.service.types.service.impl;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,11 +65,6 @@ public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService 
 		extendedUmaPackage.setNsURI(NS_URI_EXTENDED_UMA);
 
 		EPackage.Registry.INSTANCE.put(NS_URI_EXTENDED_UMA, extendedUmaPackage);
-	}
-
-	@Override
-	public Collection<CustomTypeHandler<?>> getHandlers() {
-		return Collections.unmodifiableCollection(customTypeToHandlerMap.values());
 	}
 
 	@Override
