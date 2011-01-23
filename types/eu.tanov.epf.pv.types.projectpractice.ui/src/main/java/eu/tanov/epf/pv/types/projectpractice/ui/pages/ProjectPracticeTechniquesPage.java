@@ -1,6 +1,5 @@
 package eu.tanov.epf.pv.types.projectpractice.ui.pages;
 
-import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
 import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.ui.forms.editor.FormEditor;
 
@@ -32,7 +31,7 @@ public class ProjectPracticeTechniquesPage extends AbstractCustomTypeCategoryPag
 	@Override
 	protected String tabString() {
 		// FIXME: filter techniques
-		return FilterConstants.TASKS;
+		return ProjectPracticeUIResources.projectPracticeTechniquesPage_filterTabString;
 	}
 
 	@Override
