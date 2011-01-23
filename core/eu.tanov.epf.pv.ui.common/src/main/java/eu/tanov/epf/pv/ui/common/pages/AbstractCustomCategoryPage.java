@@ -40,6 +40,16 @@ public abstract class AbstractCustomCategoryPage<T extends DescribableElement> e
 	protected final Class<T> clazz;
 	protected final String classNameForFormTitle;
 
+	protected class TypeContentFilter extends ContentFilter {
+		protected boolean childAccept(Object obj) {
+			if (obj instanceof ContentElement) {
+				if (getHelper().isContributor((ContentElement) obj))
+					return false;
+			}
+			return clazz.isInstance(obj);
+		}
+	}
+
 	public AbstractCustomCategoryPage(FormEditor editor, String pageId, String title, Class<T> clazz, String classNameForFormTitle) {
 		super(editor, pageId, title);
 		this.pageId = pageId;
@@ -164,15 +174,8 @@ public abstract class AbstractCustomCategoryPage<T extends DescribableElement> e
 
 	@Override
 	protected IFilter getFilter() {
-		return filter = new ContentFilter() {
-			protected boolean childAccept(Object obj) {
-				if (obj instanceof ContentElement) {
-					if (getHelper().isContributor((ContentElement) obj))
-						return false;
-				}
-				return clazz.isInstance(obj);
-			}
-		};
+		filter = new TypeContentFilter();
+		return filter;
 	}
 
 	@Override
