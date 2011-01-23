@@ -7,8 +7,11 @@ import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.UmaPackage;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
+import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
+import eu.tanov.epf.pv.types.projectpractice.common.ProjectPracticeActivator;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
+import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
 
 public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
@@ -16,6 +19,7 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<Custo
 	private static final String STRUCTURAL_FEATURE_NAME_TASKS = "tasks";
 	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
 	private static final String STRUCTURAL_FEATURE_NAME_ROLES = "roles";
+	private static final String STRUCTURAL_FEATURE_NAME_TECHNIQUES = "techniques";
 
 	private static final String TYPE_NAME = "ProjectPractice";
 
@@ -24,6 +28,7 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<Custo
 	private EReference tasks;
 	private EReference workProducts;
 	private EReference roles;
+	private EReference techniques;
 
 	public ProjectPracticeCustomTypeHandler() {
 		this.projectPracticeEClass = CustomTypeHelper.createType(TYPE_NAME);
@@ -44,12 +49,25 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<Custo
 		this.roles = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_ROLES,
 				UmaPackage.eINSTANCE.getRole(), new RolesSettingDelegateFactory());
 
+		final CustomTypeHandler<CustomCategory> techniqueTypeHandler = getTechniqueTypeHandler();
+		this.techniques = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_TECHNIQUES,
+				techniqueTypeHandler.getCustomType(), new TechniquesSettingDelegateFactory(techniqueTypeHandler));
+
 		projectPracticeEClass.getEStructuralFeatures().add(tools);
 		projectPracticeEClass.getEStructuralFeatures().add(tasks);
 		projectPracticeEClass.getEStructuralFeatures().add(workProducts);
 		projectPracticeEClass.getEStructuralFeatures().add(roles);
+		projectPracticeEClass.getEStructuralFeatures().add(techniques);
 
 		CustomTypeHelper.getExtendedUmaPackage().getEClassifiers().add(projectPracticeEClass);
+	}
+
+	private CustomTypeHandler<CustomCategory> getTechniqueTypeHandler() {
+		final CustomTypeHandlersService service = ProjectPracticeActivator.getDefault().getService(
+				CustomTypeHandlersService.class);
+		final EClass techniqueType = TechniqueHelper.getCustomType();
+
+		return service.getHandlerForType(techniqueType, CustomCategory.class);
 	}
 
 	@Override
