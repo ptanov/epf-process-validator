@@ -1,0 +1,32 @@
+<projectDescription>
+  <name>eu.tanov.epf.pv.types.projectpractice.ui</name>
+  <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects/>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.pde.ManifestBuilder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.pde.SchemaBuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+    <nature>org.eclipse.pde.PluginNature</nature>
+  </natures>
+  <linkedResources>
+    <link>
+      <name>eu.tanov.epf.itemprovider-1.0.0-SNAPSHOT.jar</name>
+      <type>1</type>
+      <location>C:/Documents and Settings/plamen/.m2/repository/eu/tanov/epf/eu.tanov.epf.itemprovider/1.0.0-SNAPSHOT/eu.tanov.epf.itemprovider-1.0.0-SNAPSHOT.jar</location>
+    </link>
+    <link>
+      <name>eu.tanov.epf.pv.ui.common-1.0.0-SNAPSHOT.jar</name>
+      <type>1</type>
+      <location>C:/Documents and Settings/plamen/.m2/repository/eu/tanov/epf/pv/core/eu.tanov.epf.pv.ui.common/1.0.0-SNAPSHOT/eu.tanov.epf.pv.ui.common-1.0.0-SNAPSHOT.jar</location>
+    </link>
+  </linkedResources>
+</projectDescription>

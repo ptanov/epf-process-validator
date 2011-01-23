@@ -1,0 +1,9 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="lib" path="eu.tanov.epf.itemprovider-1.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="lib" path="eu.tanov.epf.pv.ui.common-1.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+</classpath>
