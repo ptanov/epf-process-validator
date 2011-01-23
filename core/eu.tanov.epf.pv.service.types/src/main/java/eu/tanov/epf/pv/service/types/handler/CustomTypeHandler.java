@@ -2,7 +2,6 @@ package eu.tanov.epf.pv.service.types.handler;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.epf.uma.DescribableElement;
 
 public interface CustomTypeHandler<T extends DescribableElement> {
@@ -10,10 +9,8 @@ public interface CustomTypeHandler<T extends DescribableElement> {
 	/**
 	 * Registers custom type in extedendedUmaPackage.
 	 * Should be called only once, before any other call of object.
-	 * 
-	 * @param extendedUmaPackage
 	 */
-	public void registerType(EPackage extendedUmaPackage);
+	public void registerType();
 
 	/**
 	 * @param object
@@ -31,7 +28,7 @@ public interface CustomTypeHandler<T extends DescribableElement> {
 	 * @return type of custom type
 	 */
 	public EClass getCustomType();
-	
+
 	/**
 	 * @return type of class that holds this custom type
 	 */

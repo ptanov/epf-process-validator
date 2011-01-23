@@ -51,7 +51,7 @@ public class CustomTypeHelper {
 		return result;
 	}
 
-	public static EReference createStructuralFeatureList(EPackage extendedUmaPackage, EClass clazz, String name, EClass type,
+	public static EReference createStructuralFeatureList(EClass clazz, String name, EClass type,
 			SettingDelegate.Factory settingDelegate) {
 		final EReference result = EcoreFactory.eINSTANCE.createEReference();
 		result.setName(name);
@@ -63,8 +63,7 @@ public class CustomTypeHelper {
 		result.setChangeable(false);
 		result.setContainment(false);
 
-		addSettingDelegate(extendedUmaPackage, result, settingDelegate,
-				String.format(PATTERN_SETTING_DELEGATE_NAME, clazz.getName(), name));
+		addSettingDelegate(result, settingDelegate, String.format(PATTERN_SETTING_DELEGATE_NAME, clazz.getName(), name));
 
 		return result;
 	}
@@ -72,8 +71,10 @@ public class CustomTypeHelper {
 	/**
 	 * XXX really it is so hard to register setting delegate?
 	 */
-	private static void addSettingDelegate(EPackage extendedUmaPackage, EReference structuralFeature,
-			SettingDelegate.Factory settingDelegate, String settingDelegateName) {
+	private static void addSettingDelegate(EReference structuralFeature, SettingDelegate.Factory settingDelegate,
+			String settingDelegateName) {
+		final EPackage extendedUmaPackage = getExtendedUmaPackage();
+
 		final EAnnotation settingDelegateAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 		settingDelegateAnnotation.setSource(settingDelegateName);
 		structuralFeature.getEAnnotations().add(settingDelegateAnnotation);

@@ -83,34 +83,30 @@ public class TypesActivator extends Plugin {
 
 	// TODO what if called twice?
 	public void initExtendedUmaPackage() {
-		final EPackage extendedUmaPackage = createExtendedUmaPackage();
+		createExtendedUmaPackage();
 
 		final CustomTypeHandlersService service = TypesActivator.getDefault().getService(CustomTypeHandlersService.class);
 		final Collection<CustomTypeHandler<?>> customTypeHandlers = service.getHandlers();
 
-		createCustomTypes(extendedUmaPackage, customTypeHandlers);
+		createCustomTypes(customTypeHandlers);
 	}
 
-	private void createCustomTypes(EPackage extendedUmaPackage, Collection<CustomTypeHandler<?>> customTypeHandlers) {
+	private void createCustomTypes(Collection<CustomTypeHandler<?>> customTypeHandlers) {
 		for (CustomTypeHandler<?> customTypeHandler : customTypeHandlers) {
-			customTypeHandler.registerType(extendedUmaPackage);
+			customTypeHandler.registerType();
 		}
 	}
 
 	/**
 	 * based on http://www.ibm.com/developerworks/library/os-eclipse-dynamicemf/
-	 * 
-	 * @return created package
 	 */
-	private EPackage createExtendedUmaPackage() {
+	private void createExtendedUmaPackage() {
 		final EPackage extendedUmaPackage = EcoreFactory.eINSTANCE.createEPackage();
 		extendedUmaPackage.setName("ExtendedUma");
 		extendedUmaPackage.setNsPrefix("eUma");
 		extendedUmaPackage.setNsURI(NS_URI_EXTENDED_UMA);
 
 		EPackage.Registry.INSTANCE.put(NS_URI_EXTENDED_UMA, extendedUmaPackage);
-
-		return extendedUmaPackage;
 	}
 
 }

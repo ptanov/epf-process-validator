@@ -2,7 +2,6 @@ package eu.tanov.epf.pv.types.technique.common.handler;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.UmaPackage;
@@ -32,17 +31,16 @@ public class TechniqueCustomTypeHandler implements CustomTypeHandler<CustomCateg
 	 * based on http://www.ibm.com/developerworks/library/os-eclipse-dynamicemf/
 	 */
 	@Override
-	public void registerType(EPackage extendedUmaPackage) {
-		this.tasks = CustomTypeHelper.createStructuralFeatureList(extendedUmaPackage, techniqueEClass,
-				STRUCTURAL_FEATURE_NAME_TASKS, UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
-		this.workProducts = CustomTypeHelper.createStructuralFeatureList(extendedUmaPackage, techniqueEClass,
-				STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS, UmaPackage.eINSTANCE.getWorkProduct(),
-				new WorkProductsSettingDelegateFactory());
+	public void registerType() {
+		this.tasks = CustomTypeHelper.createStructuralFeatureList(techniqueEClass, STRUCTURAL_FEATURE_NAME_TASKS,
+				UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
+		this.workProducts = CustomTypeHelper.createStructuralFeatureList(techniqueEClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
+				UmaPackage.eINSTANCE.getWorkProduct(), new WorkProductsSettingDelegateFactory());
 
 		techniqueEClass.getEStructuralFeatures().add(tasks);
 		techniqueEClass.getEStructuralFeatures().add(workProducts);
 
-		extendedUmaPackage.getEClassifiers().add(techniqueEClass);
+		CustomTypeHelper.getExtendedUmaPackage().getEClassifiers().add(techniqueEClass);
 	}
 
 	@Override
