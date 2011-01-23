@@ -10,6 +10,12 @@ public final class ProjectPracticeUIResources extends NLS {
 		// Do not instantiate.
 	}
 
+	public static String projectPracticeToolsPage_sectionDescription;
+	public static String projectPracticeToolsPage_sectionName;
+	public static String projectPracticeToolsPage_multipleSelectDescription;
+	public static String projectPracticeToolsPage_selectedLabel;
+	public static String projectPracticeToolsPage_title;
+	
 	public static String projectPracticeTasksPage_sectionDescription;
 	public static String projectPracticeTasksPage_sectionName;
 	public static String projectPracticeTasksPage_multipleSelectDescription;
@@ -19,6 +25,11 @@ public final class ProjectPracticeUIResources extends NLS {
 	public static String projectPracticeWorkProductsPage_sectionName;
 	public static String projectPracticeWorkProductsPage_sectionDescription;
 	public static String projectPracticeWorkProductsPage_multipleSelectDescription;
+
+	public static String projectPracticeRolesPage_sectionDescription;
+	public static String projectPracticeRolesPage_sectionName;
+	public static String projectPracticeRolesPage_multipleSelectDescription;
+	public static String projectPracticeRolesPage_selectedLabel;
 
 	public static String _UI_ProjectPractices_group;
 
