@@ -31,7 +31,7 @@ public class CustomCategoryCategorizedElementsReadOnlySettingDelegate<T extends 
 		final List<T> result = new LinkedList<T>();
 
 		for (DescribableElement next : categorizedElements) {
-			if (clazz.isInstance(next)) {
+			if (matches(next)) {
 				@SuppressWarnings("unchecked")
 				final T casted = (T) next;
 				result.add(casted);
@@ -41,7 +41,18 @@ public class CustomCategoryCategorizedElementsReadOnlySettingDelegate<T extends 
 	}
 
 	/**
+	 * Can be extended in order to have more flexible match
+	 * 
+	 * @param element
+	 * @return
+	 */
+	protected boolean matches(DescribableElement element) {
+		return clazz.isInstance(element);
+	}
+
+	/**
 	 * Can be overrided if some modification of list is needed
+	 * 
 	 * @param customCategory
 	 * @return categorizedElements structural feature for the given customCategory
 	 */
