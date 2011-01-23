@@ -11,7 +11,7 @@
          point="eu.tanov.epf.itemprovider.StandardCategoriesItemProviders">
       <provider
             class="eu.tanov.epf.pv.types.technique.ui.extension.TechniquesExtendedItemProvider"
-            id="techniques">
+            id="Techniques">
       </provider>
    </extension>
 

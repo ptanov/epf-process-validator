@@ -16,13 +16,13 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.types.technique.ui.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniqueItemProvider;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 import eu.tanov.epf.pv.ui.common.util.FormHelper;
 
 public class TechniqueDescriptionPage extends CustomCategoryDescriptionPage {
-	private static final String classNameForFormTitle = TechniquesUIResources.technique_text;
+	private static final String classNameForFormTitle = TechniqueUIResources.technique_text;
 
 	/**
 	 * because disposed is private in parent
@@ -38,7 +38,7 @@ public class TechniqueDescriptionPage extends CustomCategoryDescriptionPage {
 	public void init(IEditorSite site, IEditorInput input) {
 		super.init(site, input);
 
-		// without variability - if on - it searches in custom categories, not in techniques
+		// without variability - if on - it searches in custom categories, not in Techniques
 		// but it is not used - so disable
 		this.variabilitySectionOn = false;
 	}
@@ -131,11 +131,11 @@ public class TechniqueDescriptionPage extends CustomCategoryDescriptionPage {
 
 	@Override
 	public void loadSectionDescription() {
-		this.generalSectionDescription = TechniquesUIResources.technique_generalInfoSection_desc;
-		this.detailSectionDescription = TechniquesUIResources.technique_detailSection_desc;
-		this.variabilitySectionDescription = TechniquesUIResources.technique_variabilitySection_desc;
-		this.versionSectionDescription = TechniquesUIResources.technique_versionInfoSection_desc;
-		this.iconSectionDescription = TechniquesUIResources.technique_IconSection_desc;
+		this.generalSectionDescription = TechniqueUIResources.technique_generalInfoSection_desc;
+		this.detailSectionDescription = TechniqueUIResources.technique_detailSection_desc;
+		this.variabilitySectionDescription = TechniqueUIResources.technique_variabilitySection_desc;
+		this.versionSectionDescription = TechniqueUIResources.technique_versionInfoSection_desc;
+		this.iconSectionDescription = TechniqueUIResources.technique_IconSection_desc;
 	}
 
 }

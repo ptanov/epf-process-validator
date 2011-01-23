@@ -19,14 +19,14 @@ import org.eclipse.swt.graphics.Image;
 
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
 import eu.tanov.epf.pv.types.technique.ui.TechniqueActivator;
-import eu.tanov.epf.pv.types.technique.ui.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 
 public class TechniquesCategoryItemProvider extends TransientCategoryPackageItemProvider {
-	private static final String NEW_NAME_TECHNIQUE = "new_technique";
+	private static final String NEW_NAME = "new_technique";
 	public static final String[] TECHNIQUES_PATH;
 	static {
 		TECHNIQUES_PATH = new String[ModelStructure.DEFAULT_DOMAIN_PATH.length];
-		// -1, because last is used for Techniques
+		// -1, because last is used for Technique category
 		System.arraycopy(ModelStructure.DEFAULT_DOMAIN_PATH, 0, TECHNIQUES_PATH, 0, TECHNIQUES_PATH.length - 1);
 		TECHNIQUES_PATH[TECHNIQUES_PATH.length - 1] = TechniqueHelper.CATEGORY_NAME;
 	}
@@ -106,16 +106,16 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 			@SuppressWarnings("unchecked")
 			final List<CustomCategory> onlyTechniques = TngUtil.extract(((ContentPackage) target).getContentElements(),
 					CustomCategory.class);
-			TngUtil.setDefaultName(onlyTechniques, (MethodElement) obj, NEW_NAME_TECHNIQUE);
+			TngUtil.setDefaultName(onlyTechniques, (MethodElement) obj, NEW_NAME);
 		}
 	}
 
 	@Override
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
 		if (child instanceof CustomCategory) {
-			return TechniquesUIResources.Techniques_child;
+			return TechniqueUIResources.Techniques_child;
 		}
-		throw new IllegalStateException("Unknown child type for techniques: " + child);
+		throw new IllegalStateException("Unknown child type for Techniques: " + child);
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class TechniquesCategoryItemProvider extends TransientCategoryPackageItem
 		if (child instanceof CustomCategory) {
 			return TechniqueActivator.getDefault().getImage("full/obj16/Technique"); //$NON-NLS-1$
 		}
-		throw new IllegalStateException("Unknown child type for techniques: " + child);
+		throw new IllegalStateException("Unknown child type for Techniques: " + child);
 	}
 
 }

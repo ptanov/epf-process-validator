@@ -9,7 +9,7 @@ import org.eclipse.ui.forms.editor.FormEditor;
 
 import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
-import eu.tanov.epf.pv.types.technique.ui.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniqueItemProvider;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniquesCategoryItemProvider;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
@@ -19,7 +19,7 @@ public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
 	private static final String FORM_PAGE_ID = "techniqueTasksPage"; //$NON-NLS-1$	
 
 	public TechniqueTasksPage(FormEditor editor) {
-		super(editor, FORM_PAGE_ID, AuthoringUIText.TASKS_PAGE_TITLE, Task.class, TechniquesUIResources.technique_text);
+		super(editor, FORM_PAGE_ID, AuthoringUIText.TASKS_PAGE_TITLE, Task.class, TechniqueUIResources.technique_text);
 		EditorHelper.updateTitleImage(editor, TechniqueItemProvider.getTechniqueImage());
 	}
 
@@ -30,22 +30,22 @@ public class TechniqueTasksPage extends AbstractCustomCategoryPage<Task> {
 
 	@Override
 	protected String multipleSelectDescription(int count) {
-		return TechniquesUIResources.bind(TechniquesUIResources.techniqueTasksPage_multipleSelectDescription, new Integer(count));
+		return TechniqueUIResources.bind(TechniqueUIResources.techniqueTasksPage_multipleSelectDescription, new Integer(count));
 	}
 
 	@Override
 	protected String sectionDescription() {
-		return TechniquesUIResources.techniqueTasksPage_sectionDescription;
+		return TechniqueUIResources.techniqueTasksPage_sectionDescription;
 	}
 
 	@Override
 	protected String sectionName() {
-		return TechniquesUIResources.techniqueTasksPage_sectionName;
+		return TechniqueUIResources.techniqueTasksPage_sectionName;
 	}
 
 	@Override
 	protected String selectedLabel() {
-		return TechniquesUIResources.techniqueTasksPage_selectedLabel;
+		return TechniqueUIResources.techniqueTasksPage_selectedLabel;
 	}
 
 	@Override

@@ -2,11 +2,11 @@ package eu.tanov.epf.pv.types.technique.ui.i18n;
 
 import org.eclipse.osgi.util.NLS;
 
-public final class TechniquesUIResources extends NLS {
+public final class TechniqueUIResources extends NLS {
 
-	private static String BUNDLE_NAME = TechniquesUIResources.class.getPackage().getName() + ".Resources"; //$NON-NLS-1$
+	private static String BUNDLE_NAME = TechniqueUIResources.class.getPackage().getName() + ".Resources"; //$NON-NLS-1$
 
-	private TechniquesUIResources() {
+	private TechniqueUIResources() {
 		// Do not instantiate.
 	}
 
@@ -33,7 +33,7 @@ public final class TechniquesUIResources extends NLS {
 	public static String Techniques_child;
 
 	static {
-		NLS.initializeMessages(BUNDLE_NAME, TechniquesUIResources.class);
+		NLS.initializeMessages(BUNDLE_NAME, TechniqueUIResources.class);
 	}
 
 }

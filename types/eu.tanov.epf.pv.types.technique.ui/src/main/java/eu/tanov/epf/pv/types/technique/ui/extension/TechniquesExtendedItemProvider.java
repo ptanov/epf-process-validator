@@ -6,7 +6,7 @@ import org.eclipse.epf.uma.ContentPackage;
 
 import eu.tanov.epf.itemprovider.extension.AbstractExtendedItemProvider;
 import eu.tanov.epf.itemprovider.extension.ExtendedItemProvider;
-import eu.tanov.epf.pv.types.technique.ui.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniquesCategoryItemProvider;
 
 public class TechniquesExtendedItemProvider extends AbstractExtendedItemProvider implements ExtendedItemProvider {
@@ -22,7 +22,7 @@ public class TechniquesExtendedItemProvider extends AbstractExtendedItemProvider
 
 	@Override
 	protected String getCategoryLocalizedName() {
-		return TechniquesUIResources._UI_Techniques_group;
+		return TechniqueUIResources._UI_Techniques_group;
 	}
 
 }

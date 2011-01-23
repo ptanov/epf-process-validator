@@ -35,8 +35,8 @@ public class TechniqueHelper {
 	}
 
 	/**
-	 * (#42) If task contains work products as mandatory input and task is selected in technique - automatically add its work
-	 * products (that are mandatory inputs) to technique
+	 * (#42) If task contains work products as mandatory input and task is selected in Technique - automatically add its work
+	 * products (that are mandatory inputs) to Technique
 	 * 
 	 * Order of automatically added work products is not guaranteed (HashSet is used)
 	 */

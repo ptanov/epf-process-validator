@@ -8,13 +8,13 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
-import eu.tanov.epf.pv.types.technique.ui.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniqueItemProvider;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 import eu.tanov.epf.pv.ui.common.util.FormHelper;
 
 public class TechniqueGuidancePage extends ContentElementGuidancePage {
-	private static final String classNameForFormTitle = TechniquesUIResources.technique_text;
+	private static final String classNameForFormTitle = TechniqueUIResources.technique_text;
 
 	public TechniqueGuidancePage(FormEditor editor) {
 		super(editor);
@@ -61,6 +61,6 @@ public class TechniqueGuidancePage extends ContentElementGuidancePage {
 
 	@Override
 	protected String getSectionDescription() {
-		return TechniquesUIResources.technique_guidancepage_sectiondescription;
+		return TechniqueUIResources.technique_guidancepage_sectiondescription;
 	}
 }

@@ -9,7 +9,7 @@ import org.eclipse.ui.forms.editor.FormEditor;
 
 import eu.tanov.epf.pv.service.types.util.FilteredContentElementOrderList;
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
-import eu.tanov.epf.pv.types.technique.ui.i18n.TechniquesUIResources;
+import eu.tanov.epf.pv.types.technique.ui.i18n.TechniqueUIResources;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniqueItemProvider;
 import eu.tanov.epf.pv.types.technique.ui.provider.TechniquesCategoryItemProvider;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
@@ -20,7 +20,7 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 
 	public TechniqueWorkProductsPage(FormEditor editor) {
 		super(editor, FORM_PAGE_ID, AuthoringUIText.WORK_PRODUCTS_PAGE_TITLE, WorkProduct.class,
-				TechniquesUIResources.technique_text);
+				TechniqueUIResources.technique_text);
 		EditorHelper.updateTitleImage(editor, TechniqueItemProvider.getTechniqueImage());
 	}
 
@@ -31,23 +31,23 @@ public class TechniqueWorkProductsPage extends AbstractCustomCategoryPage<WorkPr
 
 	@Override
 	protected String multipleSelectDescription(int count) {
-		return TechniquesUIResources.bind(TechniquesUIResources.techniqueWorkProductsPage_multipleSelectDescription, new Integer(
+		return TechniqueUIResources.bind(TechniqueUIResources.techniqueWorkProductsPage_multipleSelectDescription, new Integer(
 				count));
 	}
 
 	@Override
 	protected String sectionDescription() {
-		return TechniquesUIResources.techniqueWorkProductsPage_sectionDescription;
+		return TechniqueUIResources.techniqueWorkProductsPage_sectionDescription;
 	}
 
 	@Override
 	protected String sectionName() {
-		return TechniquesUIResources.techniqueWorkProductsPage_sectionName;
+		return TechniqueUIResources.techniqueWorkProductsPage_sectionName;
 	}
 
 	@Override
 	protected String selectedLabel() {
-		return TechniquesUIResources.techniqueWorkProductsPage_selectedLabel;
+		return TechniqueUIResources.techniqueWorkProductsPage_selectedLabel;
 	}
 
 	@Override
