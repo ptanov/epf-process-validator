@@ -8,6 +8,9 @@
 		<requiredProperty key="typeNamePlural">
 			<defaultValue>CustomTypes</defaultValue>
 		</requiredProperty>
+		<requiredProperty key="typeNameStringPlural">
+			<defaultValue>Custom Types</defaultValue>
+		</requiredProperty>
 		<requiredProperty key="typeNameString">
 			<defaultValue>Custom Type</defaultValue>
 		</requiredProperty>
