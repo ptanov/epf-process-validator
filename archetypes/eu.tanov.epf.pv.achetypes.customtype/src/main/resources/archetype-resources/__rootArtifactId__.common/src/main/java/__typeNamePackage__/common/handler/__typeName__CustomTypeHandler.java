@@ -4,10 +4,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.epf.uma.CustomCategory;
+import org.eclipse.epf.uma.Task;
 import org.eclipse.epf.uma.UmaPackage;
+import org.eclipse.epf.uma.WorkProduct;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
+import eu.tanov.epf.pv.service.types.util.UmaTypeSettingDelegateFactory;
 import eu.tanov.epf.pv.types.${typeNamePackage}.common.util.${typeName}Helper;
 
 public class ${typeName}CustomTypeHandler implements CustomTypeHandler<CustomCategory> {
@@ -33,9 +36,9 @@ public class ${typeName}CustomTypeHandler implements CustomTypeHandler<CustomCat
 	@Override
 	public void registerType() {
 		this.tasks = CustomTypeHelper.createStructuralFeatureList(${typeNameVariable}EClass, STRUCTURAL_FEATURE_NAME_TASKS,
-				UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
+				UmaPackage.eINSTANCE.getTask(), new UmaTypeSettingDelegateFactory<Task>(Task.class));
 		this.workProducts = CustomTypeHelper.createStructuralFeatureList(${typeNameVariable}EClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
-				UmaPackage.eINSTANCE.getWorkProduct(), new WorkProductsSettingDelegateFactory());
+				UmaPackage.eINSTANCE.getWorkProduct(), new UmaTypeSettingDelegateFactory<WorkProduct>(WorkProduct.class));
 
 		${typeNameVariable}EClass.getEStructuralFeatures().add(tasks);
 		${typeNameVariable}EClass.getEStructuralFeatures().add(workProducts);
