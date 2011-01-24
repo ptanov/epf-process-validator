@@ -4,12 +4,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.epf.uma.CustomCategory;
+import org.eclipse.epf.uma.Role;
+import org.eclipse.epf.uma.Task;
+import org.eclipse.epf.uma.Tool;
 import org.eclipse.epf.uma.UmaPackage;
+import org.eclipse.epf.uma.WorkProduct;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
 import eu.tanov.epf.pv.service.types.util.CustomTypeSettingDelegateFactory;
+import eu.tanov.epf.pv.service.types.util.UmaTypeSettingDelegateFactory;
 import eu.tanov.epf.pv.types.projectpractice.common.ProjectPracticeActivator;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
@@ -44,14 +49,14 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<Custo
 	@Override
 	public void registerType() {
 		this.tools = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_TOOLS,
-				UmaPackage.eINSTANCE.getTool(), new ToolsSettingDelegateFactory());
+				UmaPackage.eINSTANCE.getTool(), new UmaTypeSettingDelegateFactory<Tool>(Tool.class));
 		this.tasks = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_TASKS,
-				UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
+				UmaPackage.eINSTANCE.getTask(), new UmaTypeSettingDelegateFactory<Task>(Task.class));
 		this.workProducts = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass,
 				STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS, UmaPackage.eINSTANCE.getWorkProduct(),
-				new WorkProductsSettingDelegateFactory());
+				new UmaTypeSettingDelegateFactory<WorkProduct>(WorkProduct.class));
 		this.roles = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_ROLES,
-				UmaPackage.eINSTANCE.getRole(), new RolesSettingDelegateFactory());
+				UmaPackage.eINSTANCE.getRole(), new UmaTypeSettingDelegateFactory<Role>(Role.class));
 
 		final CustomTypeHandler<CustomCategory> techniqueTypeHandler = getTechniqueTypeHandler();
 		this.techniques = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_TECHNIQUES,

@@ -4,12 +4,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.epf.uma.CustomCategory;
+import org.eclipse.epf.uma.Role;
 import org.eclipse.epf.uma.UmaPackage;
+import org.eclipse.epf.uma.WorkProduct;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
 import eu.tanov.epf.pv.service.types.util.CustomTypeSettingDelegateFactory;
+import eu.tanov.epf.pv.service.types.util.UmaTypeSettingDelegateFactory;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.standard.common.StandardActivator;
 import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
@@ -39,9 +42,9 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 	@Override
 	public void registerType() {
 		this.workProducts = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
-				UmaPackage.eINSTANCE.getWorkProduct(), new WorkProductsSettingDelegateFactory());
+				UmaPackage.eINSTANCE.getWorkProduct(), new UmaTypeSettingDelegateFactory<WorkProduct>(WorkProduct.class));
 		this.roles = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_ROLES,
-				UmaPackage.eINSTANCE.getRole(), new RolesSettingDelegateFactory());
+				UmaPackage.eINSTANCE.getRole(), new UmaTypeSettingDelegateFactory<Role>(Role.class));
 
 		final CustomTypeHandler<CustomCategory> projectPracticeTypeHandler = getProjectPracticeTypeHandler();
 		this.projectPractices = CustomTypeHelper.createStructuralFeatureList(standardEClass,
