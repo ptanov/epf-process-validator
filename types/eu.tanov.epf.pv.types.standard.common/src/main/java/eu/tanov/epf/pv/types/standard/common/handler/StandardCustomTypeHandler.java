@@ -12,15 +12,15 @@ import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
 
 public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
-	private static final String STRUCTURAL_FEATURE_NAME_TASKS = "tasks";
 	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
+	private static final String STRUCTURAL_FEATURE_NAME_ROLES = "roles";
 	/**
 	 * XXX if used outside - move to StandardHelper
 	 */
 	public static final String TYPE_NAME = "Standard";
 
 	private final EClass standardEClass;
-	private EReference tasks;
+	private EReference roles;
 	private EReference workProducts;
 
 	public StandardCustomTypeHandler() {
@@ -32,12 +32,12 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 	 */
 	@Override
 	public void registerType() {
-		this.tasks = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_TASKS,
-				UmaPackage.eINSTANCE.getTask(), new TasksSettingDelegateFactory());
 		this.workProducts = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
 				UmaPackage.eINSTANCE.getWorkProduct(), new WorkProductsSettingDelegateFactory());
+		this.roles = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_ROLES,
+				UmaPackage.eINSTANCE.getRole(), new RolesSettingDelegateFactory());
 
-		standardEClass.getEStructuralFeatures().add(tasks);
+		standardEClass.getEStructuralFeatures().add(roles);
 		standardEClass.getEStructuralFeatures().add(workProducts);
 
 		CustomTypeHelper.getExtendedUmaPackage().getEClassifiers().add(standardEClass);

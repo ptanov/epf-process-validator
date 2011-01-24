@@ -10,15 +10,15 @@ public final class StandardUIResources extends NLS {
 		// Do not instantiate.
 	}
 
-	public static String standardTasksPage_sectionDescription;
-	public static String standardTasksPage_sectionName;
-	public static String standardTasksPage_multipleSelectDescription;
-	public static String standardTasksPage_selectedLabel;
-
 	public static String standardWorkProductsPage_selectedLabel;
 	public static String standardWorkProductsPage_sectionName;
 	public static String standardWorkProductsPage_sectionDescription;
 	public static String standardWorkProductsPage_multipleSelectDescription;
+
+	public static String standardRolesPage_sectionDescription;
+	public static String standardRolesPage_sectionName;
+	public static String standardRolesPage_multipleSelectDescription;
+	public static String standardRolesPage_selectedLabel;
 
 	public static String _UI_Standards_group;
 

@@ -11,7 +11,7 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardDescriptionPage;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardGuidancePage;
-import eu.tanov.epf.pv.types.standard.ui.pages.StandardTasksPage;
+import eu.tanov.epf.pv.types.standard.ui.pages.StandardRolesPage;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardWorkProductsPage;
 
 public class StandardPageProviderExtension implements IMethodElementEditorPageProviderExtension {
@@ -23,8 +23,8 @@ public class StandardPageProviderExtension implements IMethodElementEditorPagePr
 			removeAssignPage(pageMap);
 			pageMap.put(new StandardDescriptionPage(editor), null);
 
-			pageMap.put(new StandardTasksPage(editor), null);
 			pageMap.put(new StandardWorkProductsPage(editor), null);
+			pageMap.put(new StandardRolesPage(editor), null);
 			pageMap.put(new StandardGuidancePage(editor), null);
 		}
 
