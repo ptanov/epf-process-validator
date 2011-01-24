@@ -1,7 +1,9 @@
 package eu.tanov.epf.pv.service.types.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
@@ -37,6 +39,33 @@ public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService 
 	 * TODO what if called twice?
 	 */
 	public void initTypeContributions() {
+		loadContributions();
+		registerTypes();
+	}
+
+	private void registerTypes() {
+		final ArrayList<CustomTypeHandler<?>> notRegistered = new ArrayList<CustomTypeHandler<?>>(customTypeToHandlerMap.values());
+		boolean changed = true;
+		// if not changed last iteration - types can't be registered
+		while ((!notRegistered.isEmpty()) && changed) {
+			changed = false;
+			for (ListIterator<CustomTypeHandler<?>> iterator = notRegistered.listIterator(notRegistered.size()); iterator
+					.hasPrevious();) {
+				final CustomTypeHandler<?> typeHandler = iterator.previous();
+
+				if (typeHandler.isReadyToRegisterType()) {
+					typeHandler.registerType();
+					iterator.remove();
+					changed = true;
+				}
+			}
+		}
+		if (!notRegistered.isEmpty()) {
+			throw new IllegalStateException("There are not ready types: " + notRegistered);
+		}
+	}
+
+	private void loadContributions() {
 		// get from extension
 		@SuppressWarnings("unchecked")
 		final List<? extends CustomTypeHandler<?>> handlers = (List<? extends CustomTypeHandler<?>>) ExtensionManager
@@ -50,7 +79,6 @@ public class CustomTypeHandlersServiceImpl implements CustomTypeHandlersService 
 						handler.getCustomType(), old, handler));
 			}
 
-			handler.registerType();
 		}
 	}
 

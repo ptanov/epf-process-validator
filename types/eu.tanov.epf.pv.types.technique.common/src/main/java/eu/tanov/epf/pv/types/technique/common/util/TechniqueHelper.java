@@ -78,4 +78,8 @@ public class TechniqueHelper {
 		return CustomTypeHelper.getCustomType(TechniqueCustomTypeHandler.TYPE_NAME);
 	}
 
+	public static boolean isRegistered() {
+		return CustomTypeHelper.isRegistered(TechniqueCustomTypeHandler.TYPE_NAME);
+	}
+
 }

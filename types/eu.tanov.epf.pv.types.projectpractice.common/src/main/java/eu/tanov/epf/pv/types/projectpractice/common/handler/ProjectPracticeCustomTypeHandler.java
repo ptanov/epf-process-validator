@@ -95,4 +95,10 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<Custo
 		return ProjectPracticeHelper.PROJECT_PRACTICES_PATH;
 	}
 
+	@Override
+	public boolean isReadyToRegisterType() {
+		// depends on technique
+		return TechniqueHelper.isRegistered();
+	}
+
 }

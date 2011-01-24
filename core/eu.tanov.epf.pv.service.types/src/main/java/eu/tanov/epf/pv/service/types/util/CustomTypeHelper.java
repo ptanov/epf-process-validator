@@ -110,6 +110,11 @@ public class CustomTypeHelper {
 		return (EClass) result;
 	}
 
+	public static boolean isRegistered(String customTypeName) {
+		final EPackage extendedUmaPackage = getExtendedUmaPackage();
+		return extendedUmaPackage.getEClassifier(customTypeName) != null;
+	}
+
 	public static EPackage getExtendedUmaPackage() {
 		final Object result = EPackage.Registry.INSTANCE.get(CustomTypeHandlersServiceImpl.NS_URI_EXTENDED_UMA);
 
