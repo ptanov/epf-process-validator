@@ -3,6 +3,7 @@ package eu.tanov.epf.pv.types.projectpractice.common.util;
 import java.util.HashSet;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.epf.library.edit.util.ModelStructure;
 import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.CustomCategory;
@@ -10,7 +11,9 @@ import org.eclipse.epf.uma.Task;
 import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.epf.uma.WorkProduct;
 
+import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
 import eu.tanov.epf.pv.service.types.util.TypeFilteredContentElementOrderList;
+import eu.tanov.epf.pv.types.projectpractice.common.handler.ProjectPracticeCustomTypeHandler;
 
 public class ProjectPracticeHelper {
 	public static final String CATEGORY_NAME = "ProjectPractices"; //$NON-NLS-1$
@@ -71,4 +74,13 @@ public class ProjectPracticeHelper {
 
 		projectPractice.getCategorizedElements().addAll(workProductsToAdd);
 	}
+
+	public static EClass getCustomType() {
+		return CustomTypeHelper.getCustomType(ProjectPracticeCustomTypeHandler.TYPE_NAME);
+	}
+
+	public static boolean isRegistered() {
+		return CustomTypeHelper.isRegistered(ProjectPracticeCustomTypeHandler.TYPE_NAME);
+	}
+
 }

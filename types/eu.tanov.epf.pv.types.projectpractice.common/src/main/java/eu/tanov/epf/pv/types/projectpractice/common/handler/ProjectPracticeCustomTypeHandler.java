@@ -21,7 +21,10 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<Custo
 	private static final String STRUCTURAL_FEATURE_NAME_ROLES = "roles";
 	private static final String STRUCTURAL_FEATURE_NAME_TECHNIQUES = "techniques";
 
-	private static final String TYPE_NAME = "ProjectPractice";
+	/**
+	 * XXX if used outside - move to ProjectPracticeHelper
+	 */
+	public static final String TYPE_NAME = "ProjectPractice";
 
 	private final EClass projectPracticeEClass;
 	private EReference tools;
