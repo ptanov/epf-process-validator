@@ -20,6 +20,13 @@ public final class StandardUIResources extends NLS {
 	public static String standardRolesPage_multipleSelectDescription;
 	public static String standardRolesPage_selectedLabel;
 
+	public static String standardProjectPracticesPage_sectionDescription;
+	public static String standardProjectPracticesPage_sectionName;
+	public static String standardProjectPracticesPage_multipleSelectDescription;
+	public static String standardProjectPracticesPage_selectedLabel;
+	public static String standardProjectPracticesPage_title;
+	public static String standardProjectPracticesPage_filterTabString;
+
 	public static String _UI_Standards_group;
 
 	public static String standard_detailSection_desc;

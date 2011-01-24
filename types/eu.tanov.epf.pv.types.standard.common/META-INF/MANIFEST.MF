@@ -7,6 +7,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.6.1",
  eu.tanov.epf.pv.service.types;bundle-version="1.0.0",
  org.eclipse.epf.uma;bundle-version="1.5.0",
- org.eclipse.epf.library.edit;bundle-version="1.5.0"
+ org.eclipse.epf.library.edit;bundle-version="1.5.0",
+ eu.tanov.epf.pv.types.projectpractice.common;bundle-version="1.0.0"
 Export-Package: eu.tanov.epf.pv.types.standard.common.util
 Bundle-ClassPath: .
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: eu.tanov.epf.pv.types.standard.common.StandardActivator

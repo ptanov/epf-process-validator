@@ -11,6 +11,7 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardDescriptionPage;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardGuidancePage;
+import eu.tanov.epf.pv.types.standard.ui.pages.StandardProjectPracticePage;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardRolesPage;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardWorkProductsPage;
 
@@ -26,6 +27,7 @@ public class StandardPageProviderExtension implements IMethodElementEditorPagePr
 			pageMap.put(new StandardWorkProductsPage(editor), null);
 			pageMap.put(new StandardRolesPage(editor), null);
 			pageMap.put(new StandardGuidancePage(editor), null);
+			pageMap.put(new StandardProjectPracticePage(editor), null);
 		}
 
 		return pageMap;

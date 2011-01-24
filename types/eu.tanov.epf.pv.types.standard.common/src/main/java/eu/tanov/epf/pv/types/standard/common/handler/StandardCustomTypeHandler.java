@@ -7,13 +7,17 @@ import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.UmaPackage;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
+import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
+import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
+import eu.tanov.epf.pv.types.standard.common.StandardActivator;
 import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
 
 public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
 	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
 	private static final String STRUCTURAL_FEATURE_NAME_ROLES = "roles";
+	private static final String STRUCTURAL_FEATURE_NAME_PROJECT_PRACTICES = "projectPractices";
 	/**
 	 * XXX if used outside - move to StandardHelper
 	 */
@@ -22,6 +26,7 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 	private final EClass standardEClass;
 	private EReference roles;
 	private EReference workProducts;
+	private EReference projectPractices;
 
 	public StandardCustomTypeHandler() {
 		this.standardEClass = CustomTypeHelper.createType(TYPE_NAME);
@@ -37,10 +42,22 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 		this.roles = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_ROLES,
 				UmaPackage.eINSTANCE.getRole(), new RolesSettingDelegateFactory());
 
+		final CustomTypeHandler<CustomCategory> projectPracticeTypeHandler = getProjectPracticeTypeHandler();
+		this.projectPractices = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_PROJECT_PRACTICES,
+				projectPracticeTypeHandler.getCustomType(), new ProjectPracticesSettingDelegateFactory(projectPracticeTypeHandler));
+
 		standardEClass.getEStructuralFeatures().add(roles);
 		standardEClass.getEStructuralFeatures().add(workProducts);
+		standardEClass.getEStructuralFeatures().add(projectPractices);
 
 		CustomTypeHelper.getExtendedUmaPackage().getEClassifiers().add(standardEClass);
+	}
+
+	private CustomTypeHandler<CustomCategory> getProjectPracticeTypeHandler() {
+		final CustomTypeHandlersService service = StandardActivator.getDefault().getService(CustomTypeHandlersService.class);
+		final EClass projectPracticeType = ProjectPracticeHelper.getCustomType();
+
+		return service.getHandlerForType(projectPracticeType, CustomCategory.class);
 	}
 
 	@Override
@@ -70,8 +87,8 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 
 	@Override
 	public boolean isReadyToRegisterType() {
-		// not dependent to any type
-		return true;
+		// depends on Project Practice
+		return ProjectPracticeHelper.isRegistered();
 	}
 
 }
