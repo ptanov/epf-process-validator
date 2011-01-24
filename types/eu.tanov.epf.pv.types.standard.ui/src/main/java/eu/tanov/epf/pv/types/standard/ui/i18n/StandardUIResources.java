@@ -27,6 +27,12 @@ public final class StandardUIResources extends NLS {
 	public static String standardProjectPracticesPage_title;
 	public static String standardProjectPracticesPage_filterTabString;
 
+	public static String standardWorkflowsPage_sectionDescription;
+	public static String standardWorkflowsPage_sectionName;
+	public static String standardWorkflowsPage_multipleSelectDescription;
+	public static String standardWorkflowsPage_selectedLabel;
+	public static String standardWorkflowsPage_title;
+
 	public static String _UI_Standards_group;
 
 	public static String standard_detailSection_desc;

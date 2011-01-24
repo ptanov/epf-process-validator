@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.epf.uma.CustomCategory;
+import org.eclipse.epf.uma.Process;
 import org.eclipse.epf.uma.Role;
 import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.epf.uma.WorkProduct;
@@ -20,6 +21,7 @@ import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
 public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
 	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
+	private static final String STRUCTURAL_FEATURE_NAME_WORKFLOWS = "workflows";
 	private static final String STRUCTURAL_FEATURE_NAME_ROLES = "roles";
 	private static final String STRUCTURAL_FEATURE_NAME_PROJECT_PRACTICES = "projectPractices";
 	/**
@@ -28,8 +30,9 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 	public static final String TYPE_NAME = "Standard";
 
 	private final EClass standardEClass;
-	private EReference roles;
 	private EReference workProducts;
+	private EReference workflows;
+	private EReference roles;
 	private EReference projectPractices;
 
 	public StandardCustomTypeHandler() {
@@ -43,6 +46,8 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 	public void registerType() {
 		this.workProducts = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
 				UmaPackage.eINSTANCE.getWorkProduct(), new UmaTypeSettingDelegateFactory<WorkProduct>(WorkProduct.class));
+		this.workflows = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_WORKFLOWS,
+				UmaPackage.eINSTANCE.getProcess(), new UmaTypeSettingDelegateFactory<Process>(Process.class));
 		this.roles = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_ROLES,
 				UmaPackage.eINSTANCE.getRole(), new UmaTypeSettingDelegateFactory<Role>(Role.class));
 
@@ -51,8 +56,9 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 				STRUCTURAL_FEATURE_NAME_PROJECT_PRACTICES, projectPracticeTypeHandler.getCustomType(),
 				new CustomTypeSettingDelegateFactory<CustomCategory>(projectPracticeTypeHandler));
 
-		standardEClass.getEStructuralFeatures().add(roles);
 		standardEClass.getEStructuralFeatures().add(workProducts);
+		standardEClass.getEStructuralFeatures().add(workflows);
+		standardEClass.getEStructuralFeatures().add(roles);
 		standardEClass.getEStructuralFeatures().add(projectPractices);
 
 		CustomTypeHelper.getExtendedUmaPackage().getEClassifiers().add(standardEClass);

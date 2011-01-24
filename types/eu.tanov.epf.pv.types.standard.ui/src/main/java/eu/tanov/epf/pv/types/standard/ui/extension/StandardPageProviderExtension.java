@@ -14,6 +14,7 @@ import eu.tanov.epf.pv.types.standard.ui.pages.StandardGuidancePage;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardProjectPracticePage;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardRolesPage;
 import eu.tanov.epf.pv.types.standard.ui.pages.StandardWorkProductsPage;
+import eu.tanov.epf.pv.types.standard.ui.pages.StandardWorkflowsPage;
 
 public class StandardPageProviderExtension implements IMethodElementEditorPageProviderExtension {
 
@@ -25,6 +26,7 @@ public class StandardPageProviderExtension implements IMethodElementEditorPagePr
 			pageMap.put(new StandardDescriptionPage(editor), null);
 
 			pageMap.put(new StandardWorkProductsPage(editor), null);
+			pageMap.put(new StandardWorkflowsPage(editor), null);
 			pageMap.put(new StandardRolesPage(editor), null);
 			pageMap.put(new StandardGuidancePage(editor), null);
 			pageMap.put(new StandardProjectPracticePage(editor), null);
