@@ -9,6 +9,7 @@ import org.eclipse.epf.uma.UmaPackage;
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
+import eu.tanov.epf.pv.service.types.util.CustomTypeSettingDelegateFactory;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.standard.common.StandardActivator;
 import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
@@ -43,8 +44,9 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 				UmaPackage.eINSTANCE.getRole(), new RolesSettingDelegateFactory());
 
 		final CustomTypeHandler<CustomCategory> projectPracticeTypeHandler = getProjectPracticeTypeHandler();
-		this.projectPractices = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_PROJECT_PRACTICES,
-				projectPracticeTypeHandler.getCustomType(), new ProjectPracticesSettingDelegateFactory(projectPracticeTypeHandler));
+		this.projectPractices = CustomTypeHelper.createStructuralFeatureList(standardEClass,
+				STRUCTURAL_FEATURE_NAME_PROJECT_PRACTICES, projectPracticeTypeHandler.getCustomType(),
+				new CustomTypeSettingDelegateFactory<CustomCategory>(projectPracticeTypeHandler));
 
 		standardEClass.getEStructuralFeatures().add(roles);
 		standardEClass.getEStructuralFeatures().add(workProducts);

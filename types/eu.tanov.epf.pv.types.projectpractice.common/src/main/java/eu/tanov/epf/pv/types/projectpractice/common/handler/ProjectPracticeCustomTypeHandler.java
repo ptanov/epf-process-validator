@@ -9,6 +9,7 @@ import org.eclipse.epf.uma.UmaPackage;
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
+import eu.tanov.epf.pv.service.types.util.CustomTypeSettingDelegateFactory;
 import eu.tanov.epf.pv.types.projectpractice.common.ProjectPracticeActivator;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
@@ -54,7 +55,7 @@ public class ProjectPracticeCustomTypeHandler implements CustomTypeHandler<Custo
 
 		final CustomTypeHandler<CustomCategory> techniqueTypeHandler = getTechniqueTypeHandler();
 		this.techniques = CustomTypeHelper.createStructuralFeatureList(projectPracticeEClass, STRUCTURAL_FEATURE_NAME_TECHNIQUES,
-				techniqueTypeHandler.getCustomType(), new TechniquesSettingDelegateFactory(techniqueTypeHandler));
+				techniqueTypeHandler.getCustomType(), new CustomTypeSettingDelegateFactory<CustomCategory>(techniqueTypeHandler));
 
 		projectPracticeEClass.getEStructuralFeatures().add(tools);
 		projectPracticeEClass.getEStructuralFeatures().add(tasks);
