@@ -62,10 +62,16 @@ public class ${typeName}CustomTypeHandler implements CustomTypeHandler<CustomCat
 	public Class<CustomCategory> getHolderType() {
 		return CustomCategory.class;
 	}
-	
+
 	@Override
 	public String[] getCategoryPkgPath() {
 		return ${typeName}Helper.${typeNamePluralConst}_PATH;
+	}
+
+	@Override
+	public boolean isReadyToRegisterType() {
+		// not dependent to any type
+		return true;
 	}
 
 }

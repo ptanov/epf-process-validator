@@ -78,4 +78,8 @@ public class ${typeName}Helper {
 		return CustomTypeHelper.getCustomType(${typeName}CustomTypeHandler.TYPE_NAME);
 	}
 
+	public static boolean isRegistered() {
+		return CustomTypeHelper.isRegistered(${typeName}CustomTypeHandler.TYPE_NAME);
+	}
+
 }
