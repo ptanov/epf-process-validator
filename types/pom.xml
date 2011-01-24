@@ -18,6 +18,9 @@
 
 		<module>eu.tanov.epf.pv.types.projectpractice.common</module>
 		<module>eu.tanov.epf.pv.types.projectpractice.ui</module>
+		
+		<module>eu.tanov.epf.pv.types.standard.common</module>
+		<module>eu.tanov.epf.pv.types.standard.ui</module>
 	</modules>
 
 </project>
