@@ -26,9 +26,11 @@ public class OCLConstraintDescriptor extends AbstractConstraintDescriptor {
 		this.definition = definition;
 		this.constraint = constraint;
 
-		this.name = constraint.getName();
-		if (this.name == null) {
-			throw new IllegalArgumentException("Constraint without name: " + constraint);
+		if (constraint.getName() == null) {
+			// auto generated name from constraint content
+			this.name = constraint.toString();
+		} else {
+			this.name = constraint.getName();
 		}
 
 		id = this.definition.getId() + '.' + name;
