@@ -23,7 +23,7 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
 	private static final String STRUCTURAL_FEATURE_NAME_WORKFLOWS = "workflows";
 	private static final String STRUCTURAL_FEATURE_NAME_ROLES = "roles";
-	private static final String STRUCTURAL_FEATURE_NAME_PROJECT_PRACTICES = "projectPractices";
+	private static final String STRUCTURAL_FEATURE_NAME_PRACTICES = "practices";
 	/**
 	 * XXX if used outside - move to StandardHelper
 	 */
@@ -33,7 +33,7 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 	private EReference workProducts;
 	private EReference workflows;
 	private EReference roles;
-	private EReference projectPractices;
+	private EReference practices;
 
 	public StandardCustomTypeHandler() {
 		this.standardEClass = CustomTypeHelper.createType(TYPE_NAME);
@@ -52,14 +52,14 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 				UmaPackage.eINSTANCE.getRole(), new UmaTypeSettingDelegateFactory<Role>(Role.class));
 
 		final CustomTypeHandler<CustomCategory> projectPracticeTypeHandler = getProjectPracticeTypeHandler();
-		this.projectPractices = CustomTypeHelper.createStructuralFeatureList(standardEClass,
-				STRUCTURAL_FEATURE_NAME_PROJECT_PRACTICES, projectPracticeTypeHandler.getCustomType(),
+		this.practices = CustomTypeHelper.createStructuralFeatureList(standardEClass,
+				STRUCTURAL_FEATURE_NAME_PRACTICES, projectPracticeTypeHandler.getCustomType(),
 				new CustomTypeSettingDelegateFactory<CustomCategory>(projectPracticeTypeHandler));
 
 		standardEClass.getEStructuralFeatures().add(workProducts);
 		standardEClass.getEStructuralFeatures().add(workflows);
 		standardEClass.getEStructuralFeatures().add(roles);
-		standardEClass.getEStructuralFeatures().add(projectPractices);
+		standardEClass.getEStructuralFeatures().add(practices);
 
 		CustomTypeHelper.getExtendedUmaPackage().getEClassifiers().add(standardEClass);
 	}
