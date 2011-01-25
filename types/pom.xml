@@ -21,6 +21,9 @@
 		
 		<module>eu.tanov.epf.pv.types.standard.common</module>
 		<module>eu.tanov.epf.pv.types.standard.ui</module>
+		
+		<module>eu.tanov.epf.pv.types.projectiteration.common</module>
+		<module>eu.tanov.epf.pv.types.projectiteration.ui</module>
 	</modules>
 
 </project>
