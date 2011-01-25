@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension point="org.eclipse.ui.popupMenus"> 
+   <objectContribution id="eu.tanov.epf.pv.ui.wizards.popupMenus"
+      objectClass="org.eclipse.emf.ecore.EObject">
+      <action
+         id="eu.tanov.epf.pv.ui.wizards.action.CreateSimpleValidationConstraintAction" 
+         label="%action_create_validationConstraint"
+         class="eu.tanov.epf.pv.ui.wizards.action.CreateSimpleValidationConstraintAction"> 
+      </action> 
+   </objectContribution> 
+</extension>
+
+ <extension
+	         point="org.eclipse.ui.exportWizards">
+	      <wizard
+	            category="org.eclipse.ui.Other"
+	            class="eu.tanov.epf.pv.ui.wizards.wizard.SampleWizard"
+	            id="org.eclipse.epf.export.xml.wizards.ExportXMLWizard"
+	            name="%exportXMLWizardName">
+	         <description>
+	               %exportXMLWizardDescription
+	         </description>
+	      </wizard>
+	   </extension>
+</plugin>
