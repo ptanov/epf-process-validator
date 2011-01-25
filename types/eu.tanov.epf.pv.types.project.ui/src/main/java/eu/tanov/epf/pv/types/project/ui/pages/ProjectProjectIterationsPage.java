@@ -22,11 +22,11 @@ import eu.tanov.epf.pv.types.projectiteration.common.util.ProjectIterationHelper
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomTypeCategoryPage;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 
-public class ProjectProjectIterationPage extends AbstractCustomTypeCategoryPage<CustomCategory> {
+public class ProjectProjectIterationsPage extends AbstractCustomTypeCategoryPage<CustomCategory> {
 	private static final String FORM_PAGE_ID = "projectProjectIterationsPage"; //$NON-NLS-1$	
 	private static final String NEW_NAME_ITERATION = "iteration"; //$NON-NLS-1$
 
-	public ProjectProjectIterationPage(FormEditor editor) {
+	public ProjectProjectIterationsPage(FormEditor editor) {
 		super(editor, FORM_PAGE_ID, ProjectUIResources.projectProjectIterationsPage_title, getTypeHelper(),
 				ProjectUIResources.project_text);
 		EditorHelper.updateTitleImage(editor, ProjectItemProvider.getProjectImage());

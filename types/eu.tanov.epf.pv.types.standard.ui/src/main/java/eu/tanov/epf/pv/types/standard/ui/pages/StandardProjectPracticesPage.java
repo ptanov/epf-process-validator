@@ -13,10 +13,10 @@ import eu.tanov.epf.pv.types.standard.ui.provider.StandardItemProvider;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomTypeCategoryPage;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 
-public class StandardProjectPracticePage extends AbstractCustomTypeCategoryPage<CustomCategory> {
-	private static final String FORM_PAGE_ID = "projectPracticeTechniquesPage"; //$NON-NLS-1$	
+public class StandardProjectPracticesPage extends AbstractCustomTypeCategoryPage<CustomCategory> {
+	private static final String FORM_PAGE_ID = "standardProjectPracticesPage"; //$NON-NLS-1$	
 
-	public StandardProjectPracticePage(FormEditor editor) {
+	public StandardProjectPracticesPage(FormEditor editor) {
 		super(editor, FORM_PAGE_ID, StandardUIResources.standardProjectPracticesPage_title, getTypeHelper(),
 				StandardUIResources.standard_text);
 		EditorHelper.updateTitleImage(editor, StandardItemProvider.getStandardImage());
