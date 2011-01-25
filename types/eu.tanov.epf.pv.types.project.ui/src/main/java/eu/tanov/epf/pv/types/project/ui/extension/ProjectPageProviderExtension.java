@@ -11,8 +11,7 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import eu.tanov.epf.pv.types.project.common.util.ProjectHelper;
 import eu.tanov.epf.pv.types.project.ui.pages.ProjectDescriptionPage;
 import eu.tanov.epf.pv.types.project.ui.pages.ProjectGuidancePage;
-import eu.tanov.epf.pv.types.project.ui.pages.ProjectTasksPage;
-import eu.tanov.epf.pv.types.project.ui.pages.ProjectWorkProductsPage;
+import eu.tanov.epf.pv.types.project.ui.pages.ProjectProjectIterationPage;
 
 public class ProjectPageProviderExtension implements IMethodElementEditorPageProviderExtension {
 
@@ -23,8 +22,7 @@ public class ProjectPageProviderExtension implements IMethodElementEditorPagePro
 			removeAssignPage(pageMap);
 			pageMap.put(new ProjectDescriptionPage(editor), null);
 
-			pageMap.put(new ProjectTasksPage(editor), null);
-			pageMap.put(new ProjectWorkProductsPage(editor), null);
+			pageMap.put(new ProjectProjectIterationPage(editor), null);
 			pageMap.put(new ProjectGuidancePage(editor), null);
 		}
 

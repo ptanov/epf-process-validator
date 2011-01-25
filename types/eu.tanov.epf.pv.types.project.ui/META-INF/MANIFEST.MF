@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.epf.library;bundle-version="1.5.0",
  eu.tanov.epf.itemprovider;bundle-version="1.0.0",
  eu.tanov.epf.pv.service.ocl;bundle-version="1.0.0",
  eu.tanov.epf.pv.service.types;bundle-version="1.0.0",
- eu.tanov.epf.pv.types.project.common;bundle-version="1.0.0"
+ eu.tanov.epf.pv.types.project.common;bundle-version="1.0.0",
+ eu.tanov.epf.pv.types.projectiteration.common;bundle-version="1.0.0"
 Bundle-Activator: eu.tanov.epf.pv.types.project.ui.ProjectActivator
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

@@ -4,27 +4,25 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.epf.uma.CustomCategory;
-import org.eclipse.epf.uma.Task;
-import org.eclipse.epf.uma.UmaPackage;
-import org.eclipse.epf.uma.WorkProduct;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
+import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
-import eu.tanov.epf.pv.service.types.util.UmaTypeSettingDelegateFactory;
+import eu.tanov.epf.pv.service.types.util.CustomTypeSettingDelegateFactory;
+import eu.tanov.epf.pv.types.project.common.ProjectActivator;
 import eu.tanov.epf.pv.types.project.common.util.ProjectHelper;
+import eu.tanov.epf.pv.types.projectiteration.common.util.ProjectIterationHelper;
 
 public class ProjectCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
-	private static final String STRUCTURAL_FEATURE_NAME_TASKS = "tasks";
-	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
+	private static final String STRUCTURAL_FEATURE_NAME_ITERATIONS = "iterations";
 	/**
 	 * XXX if used outside - move to ProjectHelper
 	 */
 	public static final String TYPE_NAME = "Project";
 
 	private final EClass projectEClass;
-	private EReference tasks;
-	private EReference workProducts;
+	private EReference iterations;
 
 	public ProjectCustomTypeHandler() {
 		this.projectEClass = CustomTypeHelper.createType(TYPE_NAME);
@@ -35,15 +33,21 @@ public class ProjectCustomTypeHandler implements CustomTypeHandler<CustomCategor
 	 */
 	@Override
 	public void registerType() {
-		this.tasks = CustomTypeHelper.createStructuralFeatureList(projectEClass, STRUCTURAL_FEATURE_NAME_TASKS,
-				UmaPackage.eINSTANCE.getTask(), new UmaTypeSettingDelegateFactory<Task>(Task.class));
-		this.workProducts = CustomTypeHelper.createStructuralFeatureList(projectEClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
-				UmaPackage.eINSTANCE.getWorkProduct(), new UmaTypeSettingDelegateFactory<WorkProduct>(WorkProduct.class));
+		final CustomTypeHandler<CustomCategory> projectIterationTypeHandler = getProjectIterationTypeHandler();
+		this.iterations = CustomTypeHelper.createStructuralFeatureList(projectEClass, STRUCTURAL_FEATURE_NAME_ITERATIONS,
+				projectIterationTypeHandler.getCustomType(), new CustomTypeSettingDelegateFactory<CustomCategory>(
+						projectIterationTypeHandler));
 
-		projectEClass.getEStructuralFeatures().add(tasks);
-		projectEClass.getEStructuralFeatures().add(workProducts);
+		projectEClass.getEStructuralFeatures().add(iterations);
 
 		CustomTypeHelper.getExtendedUmaPackage().getEClassifiers().add(projectEClass);
+	}
+
+	private CustomTypeHandler<CustomCategory> getProjectIterationTypeHandler() {
+		final CustomTypeHandlersService service = ProjectActivator.getDefault().getService(CustomTypeHandlersService.class);
+		final EClass projectIterationType = ProjectIterationHelper.getCustomType();
+
+		return service.getHandlerForType(projectIterationType, CustomCategory.class);
 	}
 
 	@Override
@@ -73,8 +77,8 @@ public class ProjectCustomTypeHandler implements CustomTypeHandler<CustomCategor
 
 	@Override
 	public boolean isReadyToRegisterType() {
-		// not dependent to any type
-		return true;
+		// depends on Project Iteraation
+		return ProjectIterationHelper.isRegistered();
 	}
 
 }
