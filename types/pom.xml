@@ -18,12 +18,15 @@
 
 		<module>eu.tanov.epf.pv.types.projectpractice.common</module>
 		<module>eu.tanov.epf.pv.types.projectpractice.ui</module>
-		
+
 		<module>eu.tanov.epf.pv.types.standard.common</module>
 		<module>eu.tanov.epf.pv.types.standard.ui</module>
-		
+
 		<module>eu.tanov.epf.pv.types.projectiteration.common</module>
 		<module>eu.tanov.epf.pv.types.projectiteration.ui</module>
+
+		<module>eu.tanov.epf.pv.types.project.common</module>
+		<module>eu.tanov.epf.pv.types.project.ui</module>
 	</modules>
 
 </project>

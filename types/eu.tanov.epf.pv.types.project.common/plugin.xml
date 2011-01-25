@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="eu.tanov.epf.pv.service.types.CustomTypeHandler">
+      <handler
+            class="eu.tanov.epf.pv.types.project.common.handler.ProjectCustomTypeHandler">
+      </handler>
+   </extension>
+
+</plugin>

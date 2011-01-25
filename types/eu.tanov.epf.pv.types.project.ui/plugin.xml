@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.epf.authoring.ui.MethodElementEditorPageProviders">
+      <editorPage
+            class="eu.tanov.epf.pv.types.project.ui.extension.ProjectPageProviderExtension">
+      </editorPage>
+   </extension>
+   <extension
+         point="eu.tanov.epf.itemprovider.StandardCategoriesItemProviders">
+      <provider
+            class="eu.tanov.epf.pv.types.project.ui.extension.ProjectsExtendedItemProvider"
+            id="Projects">
+      </provider>
+   </extension>
+
+</plugin>
