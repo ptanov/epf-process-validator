@@ -20,6 +20,7 @@
 		<module>eu.tanov.epf.pv.ui.validator</module>
 		<module>eu.tanov.epf.pv.ui.ocl</module>
 		<module>eu.tanov.epf.pv.service.types</module>
+		<module>eu.tanov.epf.pv.ui.wizards</module>
 	</modules>
 
 </project>

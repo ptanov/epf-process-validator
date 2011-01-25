@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Wizards
+Bundle-SymbolicName: eu.tanov.epf.pv.ui.wizards
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: eu.tanov.epf.pv.ui.wizards.WizardsActivator
+Bundle-Vendor: eu.tanov.epf.pv.ui.wizards
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
