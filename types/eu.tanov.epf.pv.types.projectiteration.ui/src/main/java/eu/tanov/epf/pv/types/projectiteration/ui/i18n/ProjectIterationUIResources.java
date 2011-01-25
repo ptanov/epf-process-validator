@@ -36,11 +36,6 @@ public final class ProjectIterationUIResources extends NLS {
 	public static String projectIterationWorkflowsPage_selectedLabel;
 	public static String projectIterationWorkflowsPage_title;
 
-	
-	
-	
-	public static String _UI_ProjectIterations_group;
-
 	public static String projectIteration_detailSection_desc;
 	public static String projectIteration_generalInfoSection_desc;
 	public static String projectIteration_variabilitySection_desc;
@@ -49,7 +44,6 @@ public final class ProjectIterationUIResources extends NLS {
 
 	public static String projectIteration_guidancepage_sectiondescription;
 	public static String projectIteration_text;
-	public static String ProjectIterations_child;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, ProjectIterationUIResources.class);
