@@ -11,8 +11,10 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import eu.tanov.epf.pv.types.projectiteration.common.util.ProjectIterationHelper;
 import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationDescriptionPage;
 import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationGuidancePage;
-import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationTasksPage;
-import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationWorkProductsPage;
+import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationProjectPracticePage;
+import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationStandardPage;
+import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationToolsPage;
+import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationWorkflowsPage;
 
 public class ProjectIterationPageProviderExtension implements IMethodElementEditorPageProviderExtension {
 
@@ -23,8 +25,10 @@ public class ProjectIterationPageProviderExtension implements IMethodElementEdit
 			removeAssignPage(pageMap);
 			pageMap.put(new ProjectIterationDescriptionPage(editor), null);
 
-			pageMap.put(new ProjectIterationTasksPage(editor), null);
-			pageMap.put(new ProjectIterationWorkProductsPage(editor), null);
+			pageMap.put(new ProjectIterationProjectPracticePage(editor), null);
+			pageMap.put(new ProjectIterationStandardPage(editor), null);
+			pageMap.put(new ProjectIterationToolsPage(editor), null);
+			pageMap.put(new ProjectIterationWorkflowsPage(editor), null);
 			pageMap.put(new ProjectIterationGuidancePage(editor), null);
 		}
 

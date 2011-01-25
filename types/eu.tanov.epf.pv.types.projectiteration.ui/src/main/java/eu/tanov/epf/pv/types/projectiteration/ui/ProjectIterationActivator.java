@@ -7,6 +7,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -19,6 +20,8 @@ public class ProjectIterationActivator extends AbstractUIPlugin {
 
 	// The shared image hash map.
 	protected final Map<String, Image> images = new HashMap<String, Image>();
+
+	private BundleContext context;
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "eu.tanov.epf.pv.types.projectiteration.ui"; //$NON-NLS-1$
@@ -36,10 +39,14 @@ public class ProjectIterationActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		
+		this.context = context;
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		this.context = null;
+
 		plugin = null;
 		super.stop(context);
 	}
@@ -67,4 +74,17 @@ public class ProjectIterationActivator extends AbstractUIPlugin {
 		return result;
 	}
 
+	public <T> T getService(Class<T> serviceClass) {
+		final ServiceReference serviceReference = context.getServiceReference(serviceClass.getName());
+		if (serviceReference != null) {
+			@SuppressWarnings("unchecked")
+			final T result = (T) context.getService(serviceReference);
+
+			if (result != null) {
+				return result;
+			}
+		}
+
+		throw new IllegalArgumentException("Service not found: " + serviceClass.getName());
+	}
 }
