@@ -14,6 +14,7 @@ import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 
 import eu.tanov.epf.pv.wizards.completeness.pages.SelectFeaturePage;
+import eu.tanov.epf.pv.wizards.completeness.preference.OCLConstraintsPreference;
 
 public class CompletenessWizard extends Wizard implements IExportWizard {
 
@@ -39,9 +40,16 @@ public class CompletenessWizard extends Wizard implements IExportWizard {
 		}
 
 		final String ocl = generateOCL(eclass, path);
-		// TODO registerOCL
+		
+		registerOCL(ocl);
 
 		return true;
+	}
+
+	private void registerOCL(String ocl) {
+		String oclContent = OCLConstraintsPreference.PREFERENCE_STORE.getString(OCLConstraintsPreference.NAME_OCL_CONTENT);
+		OCLConstraintsPreference.PREFERENCE_STORE.setValue(OCLConstraintsPreference.NAME_OCL_CONTENT,oclContent+"\n\n"+ocl);
+		OCLConstraintsPreference.registerOCLContent();
 	}
 
 	private static String generateOCL(EClass eclass, TreePath[] path) {

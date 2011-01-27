@@ -14,4 +14,27 @@
 	         </description>
 	      </wizard>
 	   </extension>
+	   
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="eu.tanov.epf.pv.wizards.completeness.preference.OCLConstraintsPreference"
+            id="eu.tanov.epf.pv.ui.ocl.preferences"
+            category="org.eclipse.emf.validation.ui.rootPage"
+            name="Completeness OCL"
+            >
+      </page>
+   </extension>
+
+	<extension point="org.eclipse.emf.validation.constraintProviders">
+		<category id="eu.tanov.epf.pv.validators.category.default/Wizards"
+				name="Wizards"/>
+		<category id="eu.tanov.epf.pv.validators.category.default/Wizards/Completeness"
+				name="Completeness"/>
+	</extension>
+
+	<extension point="org.eclipse.ui.startup">
+      <startup class="eu.tanov.epf.pv.wizards.completeness.preference.AddConstraintAtStartup"/>
+	</extension>
+   	   
 </plugin>
