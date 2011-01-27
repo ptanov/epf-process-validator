@@ -54,13 +54,13 @@ public class SelectWizardWizard extends Wizard {
 	 */
 	public void addPages() {
 		// TODO i18n
-		addPage(new SelectionPage(this.workbench, this.selection, getAvailableExportWizards(), "Select wizard"));
+		addPage(new SelectionPage(this.workbench, this.selection, getAvailableConstraintsWizards(), "Select wizard"));
 	}
 
 	/**
 	 * Returns the export wizards that are available for invocation.
 	 */
-	protected AdaptableList getAvailableExportWizards() {
+	protected AdaptableList getAvailableConstraintsWizards() {
 		// TODO: exports are still flat - we need to get at the flat list. All
 		// wizards will be in the "other" category.
 		IWizardCategory root = ConstraintsWizardRegistry.getInstance().getRootCategory();
