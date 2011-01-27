@@ -1,4 +1,4 @@
-package eu.tanov.epf.pv.ui.ocl.preference;
+package eu.tanov.epf.pv.ui.common.widgets;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.preference.StringFieldEditor;

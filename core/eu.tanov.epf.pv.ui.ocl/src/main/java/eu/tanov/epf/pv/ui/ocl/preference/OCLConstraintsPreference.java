@@ -11,9 +11,10 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import eu.tanov.epf.pv.service.ocl.extension.OCLConstraintsDefinition;
 import eu.tanov.epf.pv.service.ocl.service.OCLConstraintsService;
+import eu.tanov.epf.pv.ui.common.widgets.OneColumnMultilineStringFieldEditor;
+import eu.tanov.epf.pv.ui.common.widgets.OneColumnMultilineStringFieldEditor.StringFieldValidator;
 import eu.tanov.epf.pv.ui.ocl.OCLActivator;
 import eu.tanov.epf.pv.ui.ocl.i18n.OCLUIResources;
-import eu.tanov.epf.pv.ui.ocl.preference.OneColumnMultilineStringFieldEditor.StringFieldValidator;
 
 public class OCLConstraintsPreference extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
