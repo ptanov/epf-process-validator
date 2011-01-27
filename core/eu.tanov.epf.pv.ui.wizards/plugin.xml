@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="constraintsWizards" name="Constraints Wizards" schema="schema/constraintsWizards.exsd"/>
 <extension point="org.eclipse.ui.popupMenus"> 
    <objectContribution id="eu.tanov.epf.pv.ui.wizards.popupMenus"
       objectClass="org.eclipse.emf.ecore.EObject">
@@ -13,14 +14,14 @@
 </extension>
 
  <extension
-	         point="org.eclipse.ui.exportWizards">
+	         point="eu.tanov.epf.pv.ui.wizards.constraintsWizards">
 	      <wizard
 	            category="org.eclipse.ui.Other"
 	            class="eu.tanov.epf.pv.ui.wizards.wizard.SampleWizard"
-	            id="org.eclipse.epf.export.xml.wizards.ExportXMLWizard"
-	            name="%exportXMLWizardName">
+	            id="eu.tanov.epf.pv.ui.wizards.wizard.SampleWizard"
+	            name="Sample constraint wizard">
 	         <description>
-	               %exportXMLWizardDescription
+	               Sample constraint wizard description
 	         </description>
 	      </wizard>
 	   </extension>

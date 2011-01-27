@@ -9,8 +9,7 @@ public class SampleWizard extends Wizard implements IExportWizard {
 
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -18,6 +17,5 @@ public class SampleWizard extends Wizard implements IExportWizard {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
 
 }

@@ -8,9 +8,6 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.eclipse.ui.internal.IWorkbenchHelpContextIds;
-import org.eclipse.ui.internal.WorkbenchMessages;
-import org.eclipse.ui.internal.WorkbenchPlugin;
 import org.eclipse.ui.internal.activities.ws.WorkbenchTriggerPoints;
 import org.eclipse.ui.internal.dialogs.WizardCollectionElement;
 import org.eclipse.ui.internal.dialogs.WorkbenchWizardElement;
@@ -20,10 +17,13 @@ import org.eclipse.ui.internal.registry.WizardsRegistryReader;
 import org.eclipse.ui.model.AdaptableList;
 import org.eclipse.ui.wizards.IWizardCategory;
 
+import eu.tanov.epf.pv.ui.wizards.registry.ConstraintsWizardRegistry;
+
 /**
  * Based on org.eclipse.ui.internal.dialogs.ExportWizard
  * FIXME remove access to internal!
  */
+@SuppressWarnings("restriction")
 public class SelectWizardWizard extends Wizard {
 	private IWorkbench workbench;
 
@@ -37,7 +37,7 @@ public class SelectWizardWizard extends Wizard {
 
 		public void createControl(Composite parent) {
 			super.createControl(parent);
-			workbench.getHelpSystem().setHelp(getControl(), IWorkbenchHelpContextIds.EXPORT_WIZARD_SELECTION_WIZARD_PAGE);
+			// workbench.getHelpSystem().setHelp(getControl(), IWorkbenchHelpContextIds.EXPORT_WIZARD_SELECTION_WIZARD_PAGE);
 		}
 
 		protected IWizardNode createWizardNode(WorkbenchWizardElement element) {
@@ -53,8 +53,8 @@ public class SelectWizardWizard extends Wizard {
 	 * Creates the wizard's pages lazily.
 	 */
 	public void addPages() {
-		addPage(new SelectionPage(this.workbench, this.selection, getAvailableExportWizards(),
-				WorkbenchMessages.ExportWizard_selectDestination));
+		// TODO i18n
+		addPage(new SelectionPage(this.workbench, this.selection, getAvailableExportWizards(), "Select wizard"));
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class SelectWizardWizard extends Wizard {
 	protected AdaptableList getAvailableExportWizards() {
 		// TODO: exports are still flat - we need to get at the flat list. All
 		// wizards will be in the "other" category.
-		IWizardCategory root = WorkbenchPlugin.getDefault().getExportWizardRegistry().getRootCategory();
+		IWizardCategory root = ConstraintsWizardRegistry.getInstance().getRootCategory();
 		WizardCollectionElement otherCategory = (WizardCollectionElement) root.findCategory(new Path(
 				WizardsRegistryReader.UNCATEGORIZED_WIZARD_CATEGORY));
 		if (otherCategory == null) {
@@ -76,7 +76,8 @@ public class SelectWizardWizard extends Wizard {
 		this.workbench = workbench;
 		this.selection = currentSelection;
 
-		setWindowTitle("WorkbenchMessages.ExportWizard_title");
+		// TODO i18n
+		setWindowTitle("Constraints wizard");
 		// setDefaultPageImageDescriptor(WorkbenchImages
 		// .getImageDescriptor(IWorkbenchGraphicConstants.IMG_WIZBAN_EXPORT_WIZ));
 		setNeedsProgressMonitor(true);
