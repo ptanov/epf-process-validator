@@ -10,6 +10,7 @@
 		<module>core</module>
 		<module>types</module>
 		<module>archetypes</module>
+		<module>wizards</module>
 	</modules>
 	
 	<dependencyManagement>
