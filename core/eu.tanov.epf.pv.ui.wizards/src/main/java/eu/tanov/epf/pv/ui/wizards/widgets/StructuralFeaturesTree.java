@@ -1,6 +1,7 @@
 package eu.tanov.epf.pv.ui.wizards.widgets;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -47,6 +48,7 @@ public class StructuralFeaturesTree extends TreeViewer {
 						result.add((EReference) object);
 					}
 				}
+				Collections.reverse(result);
 				return result.toArray();
 			}
 			return new Object[0];
