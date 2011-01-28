@@ -18,7 +18,6 @@ import eu.tanov.epf.pv.wizards.completeness.preference.OCLConstraintsPreference;
 
 public class CompletenessWizard extends Wizard implements IExportWizard {
 
-	private EReference selectedFeature;
 	private EClass eclass;
 	private TreePath[] path;
 
@@ -33,8 +32,7 @@ public class CompletenessWizard extends Wizard implements IExportWizard {
 
 	@Override
 	public boolean performFinish() {
-		// TODO Auto-generated method stub
-		if (selectedFeature == null || path == null) {
+		if (path == null) {
 			// throw new IllegalStateException("Finish, but nothing selected");
 			return false;
 		}
@@ -103,10 +101,6 @@ public class CompletenessWizard extends Wizard implements IExportWizard {
 		result.delete(result.length() - 1, result.length());
 
 		return result.toString();
-	}
-
-	public void setSelectedFeature(EReference selectedFeature) {
-		this.selectedFeature = selectedFeature;
 	}
 
 	public EClass getEclass() {

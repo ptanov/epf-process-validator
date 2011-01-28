@@ -74,10 +74,8 @@ public class SelectFeaturePage extends WizardPage {
 
 	// TODO i18n
 	private void updateStatus(Object selected, ITreeSelection iTreeSelection) {
-		((CompletenessWizard) getWizard()).setSelectedFeature(null);
 		((CompletenessWizard) getWizard()).setSelectedPath(null);
 		if (selected instanceof EReference) {
-			((CompletenessWizard) getWizard()).setSelectedFeature((EReference) selected);
 			((CompletenessWizard) getWizard()).setSelectedPath(iTreeSelection.getPathsFor(selected));
 			setErrorMessage(null);
 			setMessage("Press finish to save");
