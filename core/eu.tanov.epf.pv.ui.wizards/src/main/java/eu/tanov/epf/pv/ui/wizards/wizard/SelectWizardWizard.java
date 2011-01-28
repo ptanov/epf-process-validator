@@ -81,6 +81,8 @@ public class SelectWizardWizard extends Wizard {
 		// setDefaultPageImageDescriptor(WorkbenchImages
 		// .getImageDescriptor(IWorkbenchGraphicConstants.IMG_WIZBAN_EXPORT_WIZ));
 		setNeedsProgressMonitor(true);
+		
+		setForcePreviousAndNextButtons(true);
 	}
 
 	@Override
