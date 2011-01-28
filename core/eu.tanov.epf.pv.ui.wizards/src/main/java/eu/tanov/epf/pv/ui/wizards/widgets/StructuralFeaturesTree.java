@@ -41,7 +41,7 @@ public class StructuralFeaturesTree extends TreeViewer {
 			if (parentElement instanceof EClass) {
 				final EClass eObject = (EClass) parentElement;
 				final List<EReference> result = new ArrayList<EReference>(eObject.getEStructuralFeatures().size());
-				for (EStructuralFeature object : eObject.getEStructuralFeatures()) {
+				for (EStructuralFeature object : eObject.getEAllStructuralFeatures()) {
 					if (object instanceof EReference && (((EReference) object).isMany())) {
 						// add only list EReferences
 						result.add((EReference) object);
