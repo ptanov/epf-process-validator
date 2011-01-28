@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -46,7 +47,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 	private final OCLParser parser;
 
 	public OCLConstraintProvider() {
-		//load types service
+		// load types service
 		OCLActivator.getDefault().getService(CustomTypeHandlersService.class);
 
 		this.parser = createParser();
@@ -59,7 +60,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		super.setInitializationData(config, propertyName, data);
-		
+
 		final OCLConstraintsService service = OCLActivator.getDefault().getService(OCLConstraintsService.class);
 
 		service.addListener(this);
@@ -73,8 +74,8 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 			registerConstraints(getConstraints());
 		} catch (ConstraintExistsException e) {
 			// TODO i18n
-			throw new CoreException(
-					new Status(IStatus.ERROR, OCLActivator.PLUGIN_ID, 1, "Registration of OCL constraints failed", e));
+			throw new CoreException(new Status(IStatus.ERROR, OCLActivator.PLUGIN_ID, 1,
+					"Registration of OCL constraints failed", e));
 		}
 	}
 
@@ -107,6 +108,13 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 		for (OCLConstraint constraintToRemove : constraintsToRemove) {
 			allConstraints.remove(constraintToRemove);
 			ConstraintRegistry.getInstance().unregister(constraintToRemove.getDescriptor());
+
+			// remove from category
+			final Set<Category> categories = constraintToRemove.getDescriptor().getCategories();
+			// new ArrayList - prevent concurrent modification exception
+			for (Category category : new ArrayList<Category>(categories)) {
+				category.removeConstraint(constraintToRemove.getDescriptor());
+			}
 		}
 	}
 
@@ -159,7 +167,7 @@ public class OCLConstraintProvider extends AbstractConstraintProvider implements
 			throw new IllegalArgumentException("Definition already added: " + definition);
 		}
 		final List<Constraint> invariantConstraints = parser.parseInvariants(definition.getContent());
-		
+
 		definitionToConstraintsMap.put(definition, new ArrayList<OCLConstraint>(invariantConstraints.size()));
 		for (Constraint constraint : invariantConstraints) {
 			addConstraint(definition, parser.getOCL(), constraint);
