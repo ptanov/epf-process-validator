@@ -2,19 +2,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>eu.tanov.epf.pv</groupId>
-		<artifactId>eu.tanov.epf.pv</artifactId>
+		<groupId>eu.tanov.epf.pv.wizards</groupId>
+		<artifactId>eu.tanov.epf.pv.wizards</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>eu.tanov.epf.pv.wizards</groupId>
-	<artifactId>eu.tanov.epf.pv.wizards</artifactId>
-	<name>${project.artifactId}</name>
-	<packaging>pom</packaging>
 
-	<modules>
-		<module>eu.tanov.epf.pv.wizards.completeness</module>
-		<module>eu.tanov.epf.pv.wizards.consistency</module>
-	</modules>
+	<groupId>eu.tanov.epf.pv.wizards</groupId>
+	<artifactId>eu.tanov.epf.pv.wizards.consistency</artifactId>
+	<name>${project.artifactId}</name>
 
 </project>

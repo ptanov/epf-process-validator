@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+ <extension
+	         point="eu.tanov.epf.pv.ui.wizards.constraintsWizards">
+	      <wizard
+	            category="org.eclipse.ui.Other"
+	            class="eu.tanov.epf.pv.wizards.consistency.wizard.ConsistencyWizard"
+	            id="eu.tanov.epf.pv.wizards.consistency.wizard.ConsistencyWizard"
+	            name="Consistency constraint wizard">
+	         <description>
+	               Adds feature that must exist in type if exists in its child
+	         </description>
+	      </wizard>
+	   </extension>
+	   
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="eu.tanov.epf.pv.wizards.consistency.preference.OCLConstraintsPreference"
+            id="eu.tanov.epf.pv.ui.ocl.preferences"
+            category="org.eclipse.emf.validation.ui.rootPage"
+            name="Wizard: Consistency"
+            >
+      </page>
+   </extension>
+
+	<extension point="org.eclipse.emf.validation.constraintProviders">
+		<category id="eu.tanov.epf.pv.validators.category.default/Wizards/Consistency"
+				name="Consistency"/>
+	</extension>
+
+	<extension point="org.eclipse.ui.startup">
+      <startup class="eu.tanov.epf.pv.wizards.consistency.preference.AddConstraintAtStartup"/>
+	</extension>
+   	   
+</plugin>
