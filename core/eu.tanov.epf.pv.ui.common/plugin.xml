@@ -2,6 +2,10 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension point="org.eclipse.ui.editors">
+   <!-- 
+   This is very ugly hack to override original MethodElementEditor:
+   name should be greater compared to "Method Element Editor" (e.g. "NMethod Element Editor")
+   because editor registry sorts editor contributions by name/label -->
       <editor
             class="eu.tanov.epf.pv.ui.common.editor.ValidatingMethodElementEditor"
             contributorClass="org.eclipse.epf.authoring.ui.actions.MethodLibraryActionBarContributor"
