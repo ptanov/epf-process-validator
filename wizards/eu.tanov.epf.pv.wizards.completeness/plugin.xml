@@ -10,7 +10,7 @@
 	            id="eu.tanov.epf.pv.wizards.completeness.wizard.CompletenessWizard"
 	            name="Completeness constraint wizard">
 	         <description>
-	               Add mandatory feature
+	               Adds mandatory feature
 	         </description>
 	      </wizard>
 	   </extension>
@@ -21,7 +21,7 @@
             class="eu.tanov.epf.pv.wizards.completeness.preference.OCLConstraintsPreference"
             id="eu.tanov.epf.pv.ui.ocl.preferences"
             category="org.eclipse.emf.validation.ui.rootPage"
-            name="Completeness OCL"
+            name="Wizard: Completeness"
             >
       </page>
    </extension>
