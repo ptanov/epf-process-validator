@@ -24,6 +24,8 @@ public class SelectFeaturePage extends WizardPage {
 		super("Select feature");
 		setTitle("Mandatory feature");
 		setDescription("Select mandatory feature for type");
+
+		setPageComplete(false);
 	}
 
 	@Override
@@ -75,9 +77,11 @@ public class SelectFeaturePage extends WizardPage {
 	// TODO i18n
 	private void updateStatus(Object selected, ITreeSelection iTreeSelection) {
 		((CompletenessWizard) getWizard()).setSelectedPath(null);
+		setPageComplete(false);
 		if (selected instanceof EReference) {
 			((CompletenessWizard) getWizard()).setSelectedPath(iTreeSelection.getPathsFor(selected));
 			setErrorMessage(null);
+			setPageComplete(true);
 			setMessage("Press finish to save");
 		} else if (selected == null) {
 			setErrorMessage("Item should be selected");
