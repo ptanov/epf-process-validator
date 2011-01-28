@@ -21,6 +21,7 @@ public class CompletenessWizard extends Wizard implements IExportWizard {
 	private EClass eclass;
 	private TreePath[] path;
 
+	//TODO i18n
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		addPage(new SelectFeaturePage());
@@ -28,6 +29,7 @@ public class CompletenessWizard extends Wizard implements IExportWizard {
 			throw new IllegalArgumentException("Selection should be EObject, not: " + selection.getFirstElement());
 		}
 		this.eclass = (EClass) ((EObject) selection.getFirstElement()).eClass();
+		setWindowTitle("Completeness constraint");
 	}
 
 	@Override
