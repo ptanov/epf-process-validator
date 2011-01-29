@@ -10,9 +10,9 @@ import org.eclipse.epf.uma.UmaPackage;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
+import eu.tanov.epf.pv.service.types.util.CustomCategoryCategorizedElementsReadOnlySettingDelegate;
+import eu.tanov.epf.pv.service.types.util.CustomCategoryCustomTypeReadOnlySettingDelegate;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
-import eu.tanov.epf.pv.service.types.util.CustomTypeSettingDelegateFactory;
-import eu.tanov.epf.pv.service.types.util.UmaTypeSettingDelegateFactory;
 import eu.tanov.epf.pv.types.projectiteration.common.ProjectIterationActivator;
 import eu.tanov.epf.pv.types.projectiteration.common.util.ProjectIterationHelper;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
@@ -48,17 +48,19 @@ public class ProjectIterationCustomTypeHandler implements CustomTypeHandler<Cust
 	public void registerType() {
 		final CustomTypeHandler<CustomCategory> projectPracticeTypeHandler = getProjectPracticeTypeHandler();
 		this.practices = CustomTypeHelper.createStructuralFeatureList(projectIterationEClass, STRUCTURAL_FEATURE_NAME_PRACTICES,
-				projectPracticeTypeHandler.getCustomType(), new CustomTypeSettingDelegateFactory<CustomCategory>(
+				projectPracticeTypeHandler.getCustomType(), new CustomCategoryCustomTypeReadOnlySettingDelegate<CustomCategory>(
 						projectPracticeTypeHandler));
 
 		final CustomTypeHandler<CustomCategory> standardTypeHandler = getStandardTypeHandler();
 		this.standards = CustomTypeHelper.createStructuralFeatureList(projectIterationEClass, STRUCTURAL_FEATURE_NAME_STANDARDS,
-				standardTypeHandler.getCustomType(), new CustomTypeSettingDelegateFactory<CustomCategory>(standardTypeHandler));
+				standardTypeHandler.getCustomType(), new CustomCategoryCustomTypeReadOnlySettingDelegate<CustomCategory>(
+						standardTypeHandler));
 
 		this.tools = CustomTypeHelper.createStructuralFeatureList(projectIterationEClass, STRUCTURAL_FEATURE_NAME_TOOLS,
-				UmaPackage.eINSTANCE.getTool(), new UmaTypeSettingDelegateFactory<Tool>(Tool.class));
+				UmaPackage.eINSTANCE.getTool(), new CustomCategoryCategorizedElementsReadOnlySettingDelegate<Tool>(Tool.class));
 		this.workflows = CustomTypeHelper.createStructuralFeatureList(projectIterationEClass, STRUCTURAL_FEATURE_NAME_WORKFLOWS,
-				UmaPackage.eINSTANCE.getProcess(), new UmaTypeSettingDelegateFactory<Process>(Process.class));
+				UmaPackage.eINSTANCE.getProcess(), new CustomCategoryCategorizedElementsReadOnlySettingDelegate<Process>(
+						Process.class));
 
 		projectIterationEClass.getEStructuralFeatures().add(practices);
 		projectIterationEClass.getEStructuralFeatures().add(standards);

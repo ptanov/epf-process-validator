@@ -1,9 +1,5 @@
 package eu.tanov.epf.pv.service.types.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -51,8 +47,7 @@ public class CustomTypeHelper {
 		return result;
 	}
 
-	public static EReference createStructuralFeatureList(EClass clazz, String name, EClass type,
-			SettingDelegate.Factory settingDelegate) {
+	public static EReference createStructuralFeatureList(EClass clazz, String name, EClass type, SettingDelegate settingDelegate) {
 		final EReference result = EcoreFactory.eINSTANCE.createEReference();
 		result.setName(name);
 		result.setEType(type);
@@ -69,24 +64,13 @@ public class CustomTypeHelper {
 	}
 
 	/**
-	 * XXX really it is so hard to register setting delegate?
+	 * XXX SettingDelegate API is changed from emf.ecore 2.5.0 to 2.6.1
 	 */
-	private static void addSettingDelegate(EReference structuralFeature, SettingDelegate.Factory settingDelegate,
+	private static void addSettingDelegate(EReference structuralFeature, SettingDelegate settingDelegate,
 			String settingDelegateName) {
-		final EPackage extendedUmaPackage = getExtendedUmaPackage();
 
-		final EAnnotation settingDelegateAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		settingDelegateAnnotation.setSource(settingDelegateName);
-		structuralFeature.getEAnnotations().add(settingDelegateAnnotation);
-
-		final List<String> oldSettingDelegates = EcoreUtil.getSettingDelegates(extendedUmaPackage);
-		final List<String> newSettingDelegates = new ArrayList<String>(oldSettingDelegates.size() + 1);
-		newSettingDelegates.addAll(oldSettingDelegates);
-		newSettingDelegates.add(settingDelegateName);
-
-		EcoreUtil.setSettingDelegates(extendedUmaPackage, newSettingDelegates);
-
-		SettingDelegate.Factory.Registry.INSTANCE.put(settingDelegateName, settingDelegate);
+		final EStructuralFeature.Internal internalStrtucturalFeature = (EStructuralFeature.Internal) structuralFeature;
+		internalStrtucturalFeature.setSettingDelegate(settingDelegate);
 	}
 
 	public static <T extends EObject> T copy(T eObject, EClass targetType) {

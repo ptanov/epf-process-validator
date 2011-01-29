@@ -11,9 +11,9 @@ import org.eclipse.epf.uma.WorkProduct;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
+import eu.tanov.epf.pv.service.types.util.CustomCategoryCategorizedElementsReadOnlySettingDelegate;
+import eu.tanov.epf.pv.service.types.util.CustomCategoryCustomTypeReadOnlySettingDelegate;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
-import eu.tanov.epf.pv.service.types.util.CustomTypeSettingDelegateFactory;
-import eu.tanov.epf.pv.service.types.util.UmaTypeSettingDelegateFactory;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.standard.common.StandardActivator;
 import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
@@ -45,16 +45,18 @@ public class StandardCustomTypeHandler implements CustomTypeHandler<CustomCatego
 	@Override
 	public void registerType() {
 		this.workProducts = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
-				UmaPackage.eINSTANCE.getWorkProduct(), new UmaTypeSettingDelegateFactory<WorkProduct>(WorkProduct.class));
+				UmaPackage.eINSTANCE.getWorkProduct(), new CustomCategoryCategorizedElementsReadOnlySettingDelegate<WorkProduct>(
+						WorkProduct.class));
 		this.workflows = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_WORKFLOWS,
-				UmaPackage.eINSTANCE.getProcess(), new UmaTypeSettingDelegateFactory<Process>(Process.class));
+				UmaPackage.eINSTANCE.getProcess(), new CustomCategoryCategorizedElementsReadOnlySettingDelegate<Process>(
+						Process.class));
 		this.roles = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_ROLES,
-				UmaPackage.eINSTANCE.getRole(), new UmaTypeSettingDelegateFactory<Role>(Role.class));
+				UmaPackage.eINSTANCE.getRole(), new CustomCategoryCategorizedElementsReadOnlySettingDelegate<Role>(Role.class));
 
 		final CustomTypeHandler<CustomCategory> projectPracticeTypeHandler = getProjectPracticeTypeHandler();
-		this.practices = CustomTypeHelper.createStructuralFeatureList(standardEClass,
-				STRUCTURAL_FEATURE_NAME_PRACTICES, projectPracticeTypeHandler.getCustomType(),
-				new CustomTypeSettingDelegateFactory<CustomCategory>(projectPracticeTypeHandler));
+		this.practices = CustomTypeHelper.createStructuralFeatureList(standardEClass, STRUCTURAL_FEATURE_NAME_PRACTICES,
+				projectPracticeTypeHandler.getCustomType(), new CustomCategoryCustomTypeReadOnlySettingDelegate<CustomCategory>(
+						projectPracticeTypeHandler));
 
 		standardEClass.getEStructuralFeatures().add(workProducts);
 		standardEClass.getEStructuralFeatures().add(workflows);

@@ -7,8 +7,8 @@ import org.eclipse.epf.uma.CustomCategory;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
+import eu.tanov.epf.pv.service.types.util.CustomCategoryCustomTypeReadOnlySettingDelegate;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
-import eu.tanov.epf.pv.service.types.util.CustomTypeSettingDelegateFactory;
 import eu.tanov.epf.pv.types.project.common.ProjectActivator;
 import eu.tanov.epf.pv.types.project.common.util.ProjectHelper;
 import eu.tanov.epf.pv.types.projectiteration.common.util.ProjectIterationHelper;
@@ -35,7 +35,7 @@ public class ProjectCustomTypeHandler implements CustomTypeHandler<CustomCategor
 	public void registerType() {
 		final CustomTypeHandler<CustomCategory> projectIterationTypeHandler = getProjectIterationTypeHandler();
 		this.iterations = CustomTypeHelper.createStructuralFeatureList(projectEClass, STRUCTURAL_FEATURE_NAME_ITERATIONS,
-				projectIterationTypeHandler.getCustomType(), new CustomTypeSettingDelegateFactory<CustomCategory>(
+				projectIterationTypeHandler.getCustomType(), new CustomCategoryCustomTypeReadOnlySettingDelegate<CustomCategory>(
 						projectIterationTypeHandler));
 
 		projectEClass.getEStructuralFeatures().add(iterations);

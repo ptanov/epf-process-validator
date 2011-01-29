@@ -9,8 +9,8 @@ import org.eclipse.epf.uma.UmaPackage;
 import org.eclipse.epf.uma.WorkProduct;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
+import eu.tanov.epf.pv.service.types.util.CustomCategoryCategorizedElementsReadOnlySettingDelegate;
 import eu.tanov.epf.pv.service.types.util.CustomTypeHelper;
-import eu.tanov.epf.pv.service.types.util.UmaTypeSettingDelegateFactory;
 import eu.tanov.epf.pv.types.technique.common.util.TechniqueHelper;
 
 public class TechniqueCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
@@ -36,9 +36,10 @@ public class TechniqueCustomTypeHandler implements CustomTypeHandler<CustomCateg
 	@Override
 	public void registerType() {
 		this.tasks = CustomTypeHelper.createStructuralFeatureList(techniqueEClass, STRUCTURAL_FEATURE_NAME_TASKS,
-				UmaPackage.eINSTANCE.getTask(), new UmaTypeSettingDelegateFactory<Task>(Task.class));
+				UmaPackage.eINSTANCE.getTask(), new CustomCategoryCategorizedElementsReadOnlySettingDelegate<Task>(Task.class));
 		this.workProducts = CustomTypeHelper.createStructuralFeatureList(techniqueEClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
-				UmaPackage.eINSTANCE.getWorkProduct(), new UmaTypeSettingDelegateFactory<WorkProduct>(WorkProduct.class));
+				UmaPackage.eINSTANCE.getWorkProduct(), new CustomCategoryCategorizedElementsReadOnlySettingDelegate<WorkProduct>(
+						WorkProduct.class));
 
 		techniqueEClass.getEStructuralFeatures().add(tasks);
 		techniqueEClass.getEStructuralFeatures().add(workProducts);
