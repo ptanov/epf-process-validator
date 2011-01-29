@@ -71,7 +71,78 @@ public class ValidatingMethodElementEditor extends MethodElementEditor {
 
 		@Override
 		public List<Diagnostic> getChildren() {
-			return original.getChildren();
+			return removeDuplicates(original.getChildren());
+		}
+
+		/**
+		 * TODO quick fix in order to show error only once, something should be done in order to avoid validating of one object
+		 * twice
+		 * 
+		 * @param children
+		 * @return
+		 */
+		private List<Diagnostic> removeDuplicates(List<Diagnostic> children) {
+			final List<Diagnostic> result = new ArrayList<Diagnostic>(children);
+			for (Diagnostic diagnostic : children) {
+				removeDuplicates(result, diagnostic);
+			}
+			return result;
+		}
+
+		private static void removeDuplicates(List<Diagnostic> result, Diagnostic diagnostic) {
+			boolean started = false;
+			for (Iterator<Diagnostic> iterator = result.iterator(); iterator.hasNext();) {
+				final Diagnostic toRemove = iterator.next();
+				if (toRemove == diagnostic) {
+					// start checking only after source element is found (all after it)
+					started = true;
+					continue;
+				}
+				if (started) {
+					if (diagnosticEquals(diagnostic, toRemove)) {
+						iterator.remove();
+					}
+				}
+			}
+		}
+
+		private static boolean diagnosticEquals(Diagnostic diagnostic, Diagnostic toRemove) {
+			if (diagnostic.getSeverity() != toRemove.getSeverity()) {
+				return false;
+			}
+			if (!equals(diagnostic.getMessage(), toRemove.getMessage())) {
+				return false;
+			}
+			if (!equals(diagnostic.getSource(), toRemove.getSource())) {
+				return false;
+			}
+			if (diagnostic.getCode() != toRemove.getCode()) {
+				return false;
+			}
+			if (!equals(diagnostic.getException(), toRemove.getException())) {
+				return false;
+			}
+			if (!equals(diagnostic.getData(), toRemove.getData())) {
+				return false;
+			}
+
+			// XXX this will not work as expected - diagnosticEquals() should be used
+			if (!equals(diagnostic.getChildren(), toRemove.getChildren())) {
+				return false;
+			}
+
+			return true;
+		}
+
+		private static boolean equals(Object string1, Object string2) {
+			if (string1 == null && string2 == null) {
+				return true;
+			}
+			if (string1 != null) {
+				return string1.equals(string2);
+			} else {
+				return string2.equals(string1);
+			}
 		}
 	}
 
