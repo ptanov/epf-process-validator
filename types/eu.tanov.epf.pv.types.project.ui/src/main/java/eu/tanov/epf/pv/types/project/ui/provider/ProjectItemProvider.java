@@ -15,9 +15,14 @@ import eu.tanov.epf.pv.types.projectiteration.ui.provider.ProjectIterationItemPr
 
 public class ProjectItemProvider extends org.eclipse.epf.library.edit.category.CustomCategoryItemProvider implements
 		ILibraryItemProvider, IStatefulItemProvider, IDefaultNameSetter, IListenerProvider {
+	/**
+	 * FIXME very very bad approach... fix this...
+	 */
+	public static AdapterFactory lastAdapterFactory;
 
 	public ProjectItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
+		lastAdapterFactory = adapterFactory;
 	}
 
 	@Override

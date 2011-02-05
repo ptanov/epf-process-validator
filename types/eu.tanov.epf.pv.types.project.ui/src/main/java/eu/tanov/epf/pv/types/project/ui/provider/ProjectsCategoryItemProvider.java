@@ -11,6 +11,7 @@ import org.eclipse.epf.library.edit.util.TngUtil;
 import org.eclipse.epf.uma.ContentCategory;
 import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.CustomCategory;
+import org.eclipse.epf.uma.DescribableElement;
 import org.eclipse.epf.uma.MethodElement;
 import org.eclipse.epf.uma.UmaFactory;
 import org.eclipse.epf.uma.UmaPackage;
@@ -86,9 +87,34 @@ public class ProjectsCategoryItemProvider extends TransientCategoryPackageItemPr
 				// ITreeItemContentProvider.class);
 
 				itemProvider.setParent(object);
+				
+				addAdapterToChildren(customCategory);
 			}
 		}
 		return children;
+	}
+
+	/**
+	 * FIXME very bad approach - fix this, issue 168
+	 * @param customCategory
+	 */
+	private void addAdapterToChildren(CustomCategory customCategory) {
+		for (DescribableElement element : customCategory.getCategorizedElements()) {
+			if (!(element instanceof CustomCategory)) {
+				continue;
+			}
+			final ProjectItemProvider itemProvider = new ProjectItemProvider(adapterFactory);
+			element.eAdapters().add(itemProvider);
+
+			// TODO issue #56 use adapter factory extension
+			// final ILibraryItemProvider itemProvider = (ILibraryItemProvider) TngUtil
+			// .getBestAdapterFactory(adapterFactory).adapt(customCategory,
+			// ITreeItemContentProvider.class);
+
+			itemProvider.setParent(customCategory);
+			
+
+		}
 	}
 
 	@Override

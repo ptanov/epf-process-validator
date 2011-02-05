@@ -19,6 +19,7 @@ import eu.tanov.epf.pv.types.project.ui.ProjectActivator;
 import eu.tanov.epf.pv.types.project.ui.i18n.ProjectUIResources;
 import eu.tanov.epf.pv.types.project.ui.provider.ProjectItemProvider;
 import eu.tanov.epf.pv.types.projectiteration.common.util.ProjectIterationHelper;
+import eu.tanov.epf.pv.types.projectiteration.ui.provider.ProjectIterationItemProvider;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomTypeCategoryPage;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 
@@ -94,6 +95,25 @@ public class ProjectProjectIterationsPage extends AbstractCustomTypeCategoryPage
 
 		iterationsContentPackage.getContentElements().add(iteration);
 		addToCategory(getActionManager(), container, iteration);
+		
+		addAdapter(iteration);
+
+	}
+
+	/**
+	 * TODO copied from ProjectItemProvider, issue 168
+	 */
+	private void addAdapter(CustomCategory iteration) {
+
+		final ProjectIterationItemProvider itemProvider = new ProjectIterationItemProvider(ProjectItemProvider.lastAdapterFactory);
+		iteration.eAdapters().add(itemProvider);
+
+		// TODO issue #56 use adapter factory extension
+		// final ILibraryItemProvider itemProvider = (ILibraryItemProvider) TngUtil
+		// .getBestAdapterFactory(adapterFactory).adapt(customCategory,
+		// ITreeItemContentProvider.class);
+
+		itemProvider.setParent(container);
 
 	}
 
