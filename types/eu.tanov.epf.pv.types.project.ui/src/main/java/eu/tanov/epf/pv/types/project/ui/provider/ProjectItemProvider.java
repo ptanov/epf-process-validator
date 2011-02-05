@@ -47,6 +47,8 @@ public class ProjectItemProvider extends org.eclipse.epf.library.edit.category.C
 				// ITreeItemContentProvider.class);
 
 				itemProvider.setParent(object);
+			} else {
+				throw new IllegalStateException(String.format("Not custom category in project: %s, but: %s", object, next));
 			}
 		}
 		return children;

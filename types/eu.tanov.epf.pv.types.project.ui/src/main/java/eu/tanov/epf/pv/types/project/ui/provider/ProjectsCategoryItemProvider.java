@@ -19,6 +19,7 @@ import org.eclipse.swt.graphics.Image;
 
 import eu.tanov.epf.pv.types.project.ui.ProjectActivator;
 import eu.tanov.epf.pv.types.project.ui.i18n.ProjectUIResources;
+import eu.tanov.epf.pv.types.projectiteration.ui.provider.ProjectIterationItemProvider;
 
 public class ProjectsCategoryItemProvider extends TransientCategoryPackageItemProvider {
 	private static final String NEW_NAME = "new_project";
@@ -87,7 +88,7 @@ public class ProjectsCategoryItemProvider extends TransientCategoryPackageItemPr
 				// ITreeItemContentProvider.class);
 
 				itemProvider.setParent(object);
-				
+
 				addAdapterToChildren(customCategory);
 			}
 		}
@@ -96,6 +97,7 @@ public class ProjectsCategoryItemProvider extends TransientCategoryPackageItemPr
 
 	/**
 	 * FIXME very bad approach - fix this, issue 168
+	 * 
 	 * @param customCategory
 	 */
 	private void addAdapterToChildren(CustomCategory customCategory) {
@@ -103,7 +105,7 @@ public class ProjectsCategoryItemProvider extends TransientCategoryPackageItemPr
 			if (!(element instanceof CustomCategory)) {
 				continue;
 			}
-			final ProjectItemProvider itemProvider = new ProjectItemProvider(adapterFactory);
+			final ProjectIterationItemProvider itemProvider = new ProjectIterationItemProvider(adapterFactory);
 			element.eAdapters().add(itemProvider);
 
 			// TODO issue #56 use adapter factory extension
@@ -112,7 +114,6 @@ public class ProjectsCategoryItemProvider extends TransientCategoryPackageItemPr
 			// ITreeItemContentProvider.class);
 
 			itemProvider.setParent(customCategory);
-			
 
 		}
 	}
