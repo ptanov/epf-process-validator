@@ -3,7 +3,7 @@ package eu.tanov.epf.pv.types.projectiteration.ui.pages;
 import org.eclipse.epf.authoring.ui.filters.ReferenceWorkFlowFilter;
 import org.eclipse.epf.library.edit.IFilter;
 import org.eclipse.epf.library.edit.itemsfilter.FilterConstants;
-import org.eclipse.epf.uma.Process;
+import org.eclipse.epf.uma.WorkBreakdownElement;
 import org.eclipse.ui.forms.editor.FormEditor;
 
 import eu.tanov.epf.pv.types.projectiteration.ui.i18n.ProjectIterationUIResources;
@@ -12,11 +12,11 @@ import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomCategoryPage;
 import eu.tanov.epf.pv.ui.common.util.EditorHelper;
 
-public class ProjectIterationWorkflowsPage extends AbstractCustomCategoryPage<Process> {
+public class ProjectIterationWorkflowsPage extends AbstractCustomCategoryPage<WorkBreakdownElement> {
 	private static final String FORM_PAGE_ID = "projectIterationWorkflowsPage"; //$NON-NLS-1$	
 
 	public ProjectIterationWorkflowsPage(FormEditor editor) {
-		super(editor, FORM_PAGE_ID, ProjectIterationUIResources.projectIterationWorkflowsPage_title, Process.class,
+		super(editor, FORM_PAGE_ID, ProjectIterationUIResources.projectIterationWorkflowsPage_title, WorkBreakdownElement.class,
 				ProjectIterationUIResources.projectIteration_text);
 		EditorHelper.updateTitleImage(editor, ProjectIterationItemProvider.getProjectIterationImage());
 	}
