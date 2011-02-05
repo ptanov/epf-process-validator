@@ -3,7 +3,6 @@ package eu.tanov.epf.pv.types.project.ui.pages;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.epf.library.edit.IFilter;
 import org.eclipse.epf.library.edit.command.IActionManager;
-import org.eclipse.epf.library.edit.util.TngUtil;
 import org.eclipse.epf.uma.ContentPackage;
 import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.MethodPlugin;
@@ -18,6 +17,7 @@ import eu.tanov.epf.pv.types.project.common.util.ProjectHelper;
 import eu.tanov.epf.pv.types.project.ui.ProjectActivator;
 import eu.tanov.epf.pv.types.project.ui.i18n.ProjectUIResources;
 import eu.tanov.epf.pv.types.project.ui.provider.ProjectItemProvider;
+import eu.tanov.epf.pv.types.project.ui.util.NameHelper;
 import eu.tanov.epf.pv.types.projectiteration.common.util.ProjectIterationHelper;
 import eu.tanov.epf.pv.types.projectiteration.ui.provider.ProjectIterationItemProvider;
 import eu.tanov.epf.pv.ui.common.pages.AbstractCustomTypeCategoryPage;
@@ -91,7 +91,7 @@ public class ProjectProjectIterationsPage extends AbstractCustomTypeCategoryPage
 		final CustomCategory iteration = UmaFactory.eINSTANCE.createCustomCategory();
 		final ContentPackage iterationsContentPackage = findIterationsContentPackage();
 
-		TngUtil.setDefaultName(container.getCategorizedElements(), iteration, NEW_NAME_ITERATION);
+		NameHelper.setDefaultName(container.getCategorizedElements(), iteration, NEW_NAME_ITERATION);
 
 		iterationsContentPackage.getContentElements().add(iteration);
 		addToCategory(getActionManager(), container, iteration);
@@ -99,7 +99,7 @@ public class ProjectProjectIterationsPage extends AbstractCustomTypeCategoryPage
 		addAdapter(iteration);
 
 	}
-
+	
 	/**
 	 * TODO copied from ProjectItemProvider, issue 168
 	 */
