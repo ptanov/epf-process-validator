@@ -41,6 +41,9 @@ public class ProjectDescriptionPage extends CustomCategoryDescriptionPage {
 		// without variability - if on - it searches in custom categories, not in Projects
 		// but it is not used - so disable
 		this.variabilitySectionOn = false;
+		
+		//issue #170
+		this.iconSectionOn = false;
 	}
 
 	@Override
