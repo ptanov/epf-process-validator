@@ -26,4 +26,8 @@ public class ProjectsExtendedItemProvider extends AbstractExtendedItemProvider i
 		return ProjectUIResources._UI_Projects_group;
 	}
 
+	@Override
+	public int position() {
+		return 60;
+	}
 }

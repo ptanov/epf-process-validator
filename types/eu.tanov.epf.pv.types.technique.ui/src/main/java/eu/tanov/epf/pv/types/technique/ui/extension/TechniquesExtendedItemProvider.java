@@ -26,4 +26,8 @@ public class TechniquesExtendedItemProvider extends AbstractExtendedItemProvider
 		return TechniqueUIResources._UI_Techniques_group;
 	}
 
+	@Override
+	public int position() {
+		return 90;
+	}
 }

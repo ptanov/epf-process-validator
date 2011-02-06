@@ -25,4 +25,9 @@ public class DomainsExtendedItemProvider extends AbstractExtendedItemProvider im
 	protected String getCategoryLocalizedName() {
 		return LibraryEditPlugin.INSTANCE.getString("_UI_Domains_group");
 	}
+
+	@Override
+	public int position() {
+		return 20;
+	}
 }

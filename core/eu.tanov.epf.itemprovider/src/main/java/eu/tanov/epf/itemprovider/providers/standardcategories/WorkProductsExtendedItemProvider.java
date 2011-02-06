@@ -25,4 +25,9 @@ public class WorkProductsExtendedItemProvider extends AbstractExtendedItemProvid
 	protected String getCategoryLocalizedName() {
 		return LibraryEditPlugin.INSTANCE.getString("_UI_WorkProductTypes_group");
 	}
+
+	@Override
+	public int position() {
+		return 30;
+	}
 }

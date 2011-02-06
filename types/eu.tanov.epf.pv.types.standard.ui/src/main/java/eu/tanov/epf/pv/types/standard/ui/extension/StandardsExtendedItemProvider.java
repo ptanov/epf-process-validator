@@ -26,4 +26,8 @@ public class StandardsExtendedItemProvider extends AbstractExtendedItemProvider 
 		return StandardUIResources._UI_Standards_group;
 	}
 
+	@Override
+	public int position() {
+		return 70;
+	}
 }

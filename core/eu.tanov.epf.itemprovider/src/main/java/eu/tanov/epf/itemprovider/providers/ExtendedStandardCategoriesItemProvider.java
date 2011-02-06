@@ -2,6 +2,8 @@ package eu.tanov.epf.itemprovider.providers;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +21,15 @@ public class ExtendedStandardCategoriesItemProvider extends StandardCategoriesIt
 	 * TODO move to common space or get from somewhere else?
 	 */
 	private static final String PLUGIN_ID = "eu.tanov.epf.itemprovider";
+	
+	private static class ContributionsComparator implements Comparator<ExtendedItemProvider> {
+		@Override
+		public int compare(ExtendedItemProvider arg0, ExtendedItemProvider arg1) {
+			return arg0.position() - arg1.position();
+		}
+	}
+	
+	private static final ContributionsComparator comparator = new ContributionsComparator();
 
 	private ArrayList<ILibraryItemProvider> children;
 
@@ -47,6 +58,8 @@ public class ExtendedStandardCategoriesItemProvider extends StandardCategoriesIt
 	private List<ExtendedItemProvider> getAllExtensions() {
 		if (allProviders == null) {
 			allProviders = ExtensionManager.getExtensions(PLUGIN_ID, EXTENSION_POINT_NAME, ExtendedItemProvider.class);
+			//compare contributions
+			Collections.sort(allProviders, comparator);
 		}
 		return allProviders;
 	}

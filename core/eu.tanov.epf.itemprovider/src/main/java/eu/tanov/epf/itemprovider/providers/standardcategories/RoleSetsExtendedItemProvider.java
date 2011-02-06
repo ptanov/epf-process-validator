@@ -25,4 +25,9 @@ public class RoleSetsExtendedItemProvider extends AbstractExtendedItemProvider i
 	protected String getCategoryLocalizedName() {
 		return LibraryEditPlugin.INSTANCE.getString("_UI_Role_Sets_group");
 	}
+
+	@Override
+	public int position() {
+		return 40;
+	}
 }

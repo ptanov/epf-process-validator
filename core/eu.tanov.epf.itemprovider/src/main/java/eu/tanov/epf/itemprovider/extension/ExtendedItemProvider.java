@@ -9,4 +9,6 @@ import org.eclipse.epf.library.edit.ILibraryItemProvider;
 public interface ExtendedItemProvider {
 	public void provide(Object object, List<ILibraryItemProvider> children,
 			Map<String, ILibraryItemProvider> groupItemProviderMap, AdapterFactory adapterFactory);
+	
+	public int position();
 }

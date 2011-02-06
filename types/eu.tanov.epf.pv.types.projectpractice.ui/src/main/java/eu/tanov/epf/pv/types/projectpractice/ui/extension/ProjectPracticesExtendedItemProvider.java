@@ -26,4 +26,8 @@ public class ProjectPracticesExtendedItemProvider extends AbstractExtendedItemPr
 		return ProjectPracticeUIResources._UI_ProjectPractices_group;
 	}
 
+	@Override
+	public int position() {
+		return 80;
+	}
 }

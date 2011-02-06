@@ -26,4 +26,9 @@ public class DisciplinesExtendedItemProvider extends AbstractExtendedItemProvide
 		return LibraryEditPlugin.INSTANCE.getString("_UI_Disciplines_group");
 	}
 
+	@Override
+	public int position() {
+		return 10;
+	}
+
 }

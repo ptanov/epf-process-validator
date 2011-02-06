@@ -25,4 +25,9 @@ public class ToolsExtendedItemProvider extends AbstractExtendedItemProvider impl
 	protected String getCategoryLocalizedName() {
 		return LibraryEditPlugin.INSTANCE.getString("_UI_Tools_group");
 	}
+
+	@Override
+	public int position() {
+		return 50;
+	}
 }
