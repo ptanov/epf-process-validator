@@ -26,4 +26,8 @@ public class ${typeNamePlural}ExtendedItemProvider extends AbstractExtendedItemP
 		return ${typeName}UIResources._UI_${typeNamePlural}_group;
 	}
 
+	@Override
+	public int position() {
+		return 90;
+	}
 }
