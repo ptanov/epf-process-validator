@@ -10,6 +10,11 @@ public final class ProjectIterationUIResources extends NLS {
 		// Do not instantiate.
 	}
 
+	public static String projectIterationWorkProductsPage_selectedLabel;
+	public static String projectIterationWorkProductsPage_sectionName;
+	public static String projectIterationWorkProductsPage_sectionDescription;
+	public static String projectIterationWorkProductsPage_multipleSelectDescription;
+
 	public static String projectIterationProjectPracticesPage_sectionDescription;
 	public static String projectIterationProjectPracticesPage_sectionName;
 	public static String projectIterationProjectPracticesPage_multipleSelectDescription;

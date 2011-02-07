@@ -14,6 +14,7 @@ import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationGuidanceP
 import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationProjectPracticesPage;
 import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationStandardsPage;
 import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationToolsPage;
+import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationWorkProductsPage;
 import eu.tanov.epf.pv.types.projectiteration.ui.pages.ProjectIterationWorkflowsPage;
 
 public class ProjectIterationPageProviderExtension implements IMethodElementEditorPageProviderExtension {
@@ -25,6 +26,7 @@ public class ProjectIterationPageProviderExtension implements IMethodElementEdit
 			removeAssignPage(pageMap);
 			pageMap.put(new ProjectIterationDescriptionPage(editor), null);
 
+			pageMap.put(new ProjectIterationWorkProductsPage(editor), null);
 			pageMap.put(new ProjectIterationProjectPracticesPage(editor), null);
 			pageMap.put(new ProjectIterationStandardsPage(editor), null);
 			pageMap.put(new ProjectIterationToolsPage(editor), null);

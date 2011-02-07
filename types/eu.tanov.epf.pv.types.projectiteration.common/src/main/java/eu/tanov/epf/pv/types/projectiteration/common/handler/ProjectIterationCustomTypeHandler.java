@@ -7,6 +7,7 @@ import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.epf.uma.Process;
 import org.eclipse.epf.uma.Tool;
 import org.eclipse.epf.uma.UmaPackage;
+import org.eclipse.epf.uma.WorkProduct;
 
 import eu.tanov.epf.pv.service.types.handler.CustomTypeHandler;
 import eu.tanov.epf.pv.service.types.service.CustomTypeHandlersService;
@@ -20,6 +21,7 @@ import eu.tanov.epf.pv.types.standard.common.util.StandardHelper;
 
 public class ProjectIterationCustomTypeHandler implements CustomTypeHandler<CustomCategory> {
 
+	private static final String STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS = "workProducts";
 	private static final String STRUCTURAL_FEATURE_NAME_PRACTICES = "practices";
 	private static final String STRUCTURAL_FEATURE_NAME_STANDARDS = "standards";
 	private static final String STRUCTURAL_FEATURE_NAME_TOOLS = "tools";
@@ -32,6 +34,7 @@ public class ProjectIterationCustomTypeHandler implements CustomTypeHandler<Cust
 
 	private final EClass projectIterationEClass;
 
+	private EReference workProducts;
 	private EReference practices;
 	private EReference standards;
 	private EReference tools;
@@ -46,6 +49,9 @@ public class ProjectIterationCustomTypeHandler implements CustomTypeHandler<Cust
 	 */
 	@Override
 	public void registerType() {
+		this.workProducts = CustomTypeHelper.createStructuralFeatureList(projectIterationEClass, STRUCTURAL_FEATURE_NAME_WORK_PRODUCTS,
+				UmaPackage.eINSTANCE.getWorkProduct(), new CustomCategoryCategorizedElementsReadOnlySettingDelegate<WorkProduct>(
+						WorkProduct.class));
 		final CustomTypeHandler<CustomCategory> projectPracticeTypeHandler = getProjectPracticeTypeHandler();
 		this.practices = CustomTypeHelper.createStructuralFeatureList(projectIterationEClass, STRUCTURAL_FEATURE_NAME_PRACTICES,
 				projectPracticeTypeHandler.getCustomType(), new CustomCategoryCustomTypeReadOnlySettingDelegate<CustomCategory>(
@@ -62,6 +68,7 @@ public class ProjectIterationCustomTypeHandler implements CustomTypeHandler<Cust
 				UmaPackage.eINSTANCE.getProcess(), new CustomCategoryCategorizedElementsReadOnlySettingDelegate<Process>(
 						Process.class));
 
+		projectIterationEClass.getEStructuralFeatures().add(workProducts);
 		projectIterationEClass.getEStructuralFeatures().add(practices);
 		projectIterationEClass.getEStructuralFeatures().add(standards);
 		projectIterationEClass.getEStructuralFeatures().add(tools);
