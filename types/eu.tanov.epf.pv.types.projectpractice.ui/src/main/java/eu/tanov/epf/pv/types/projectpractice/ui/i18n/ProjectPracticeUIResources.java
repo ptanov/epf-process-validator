@@ -38,6 +38,12 @@ public final class ProjectPracticeUIResources extends NLS {
 	public static String projectPracticeTechniquesPage_title;
 	public static String projectPracticeTechniquesPage_filterTabString;
 
+	public static String projectPracticePracticeGuidancesPage_sectionDescription;
+	public static String projectPracticePracticeGuidancesPage_sectionName;
+	public static String projectPracticePracticeGuidancesPage_multipleSelectDescription;
+	public static String projectPracticePracticeGuidancesPage_selectedLabel;
+	public static String projectPracticePracticeGuidancesPage_filterTabString;
+	
 	public static String _UI_ProjectPractices_group;
 
 	public static String projectPractice_detailSection_desc;

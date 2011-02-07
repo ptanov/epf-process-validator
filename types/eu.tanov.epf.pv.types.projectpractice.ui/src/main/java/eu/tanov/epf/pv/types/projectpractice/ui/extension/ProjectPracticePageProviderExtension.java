@@ -11,6 +11,7 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import eu.tanov.epf.pv.types.projectpractice.common.util.ProjectPracticeHelper;
 import eu.tanov.epf.pv.types.projectpractice.ui.pages.ProjectPracticeDescriptionPage;
 import eu.tanov.epf.pv.types.projectpractice.ui.pages.ProjectPracticeGuidancePage;
+import eu.tanov.epf.pv.types.projectpractice.ui.pages.ProjectPracticePracticeGuidancesPage;
 import eu.tanov.epf.pv.types.projectpractice.ui.pages.ProjectPracticeRolesPage;
 import eu.tanov.epf.pv.types.projectpractice.ui.pages.ProjectPracticeTasksPage;
 import eu.tanov.epf.pv.types.projectpractice.ui.pages.ProjectPracticeTechniquesPage;
@@ -31,6 +32,7 @@ public class ProjectPracticePageProviderExtension implements IMethodElementEdito
 			pageMap.put(new ProjectPracticeWorkProductsPage(editor), null);
 			pageMap.put(new ProjectPracticeRolesPage(editor), null);
 			pageMap.put(new ProjectPracticeTechniquesPage(editor), null);
+			pageMap.put(new ProjectPracticePracticeGuidancesPage(editor), null);
 			pageMap.put(new ProjectPracticeGuidancePage(editor), null);
 		}
 
