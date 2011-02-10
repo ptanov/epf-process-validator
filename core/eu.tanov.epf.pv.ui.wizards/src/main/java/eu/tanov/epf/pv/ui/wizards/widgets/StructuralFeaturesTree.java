@@ -48,6 +48,7 @@ public class StructuralFeaturesTree extends TreeViewer {
 						result.add((EReference) object);
 					}
 				}
+				// local structural features - first: 
 				Collections.reverse(result);
 				return result.toArray();
 			}
