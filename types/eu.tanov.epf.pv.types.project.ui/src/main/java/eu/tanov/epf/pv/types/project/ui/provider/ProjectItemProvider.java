@@ -7,51 +7,27 @@ import org.eclipse.epf.library.edit.IDefaultNameSetter;
 import org.eclipse.epf.library.edit.ILibraryItemProvider;
 import org.eclipse.epf.library.edit.IStatefulItemProvider;
 import org.eclipse.epf.library.edit.internal.IListenerProvider;
-import org.eclipse.epf.uma.CustomCategory;
 import org.eclipse.swt.graphics.Image;
 
+import eu.tanov.epf.itemprovider.extension.CustomItemProvider;
+import eu.tanov.epf.pv.types.project.common.util.ProjectHelper;
 import eu.tanov.epf.pv.types.project.ui.ProjectActivator;
-import eu.tanov.epf.pv.types.projectiteration.ui.provider.ProjectIterationItemProvider;
 
 public class ProjectItemProvider extends org.eclipse.epf.library.edit.category.CustomCategoryItemProvider implements
-		ILibraryItemProvider, IStatefulItemProvider, IDefaultNameSetter, IListenerProvider {
-	/**
-	 * FIXME very very bad approach... fix this...
-	 */
-	public static AdapterFactory lastAdapterFactory;
+		ILibraryItemProvider, IStatefulItemProvider, IDefaultNameSetter, IListenerProvider, CustomItemProvider {
+	public ProjectItemProvider() {
+		this(null);
+	}
 
 	public ProjectItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
-		lastAdapterFactory = adapterFactory;
 	}
 
 	@Override
 	public Collection<?> getChildren(Object object) {
-		// TODO why not using standard scheme?
-		if (!(object instanceof CustomCategory)) {
-			throw new IllegalArgumentException("Only custom categories expected, not: " + object);
-		}
-		final CustomCategory category = ((CustomCategory) object);
-		final Collection<?> children = category.getCategorizedElements();
-
-		for (Object next : children) {
-			if (next instanceof CustomCategory) {
-				final CustomCategory customCategory = (CustomCategory) next;
-
-				final ProjectIterationItemProvider itemProvider = new ProjectIterationItemProvider(adapterFactory);
-				customCategory.eAdapters().add(itemProvider);
-
-				// TODO issue #56 use adapter factory extension
-				// final ILibraryItemProvider itemProvider = (ILibraryItemProvider) TngUtil
-				// .getBestAdapterFactory(adapterFactory).adapt(customCategory,
-				// ITreeItemContentProvider.class);
-
-				itemProvider.setParent(object);
-			} else {
-				throw new IllegalStateException(String.format("Not custom category in project: %s, but: %s", object, next));
-			}
-		}
-		return children;
+		// XXX Set the childrenStoreMap to null, to get the updated content, how to listen (add adapter) on custom category for changes?! 
+		childrenStoreMap = null;
+		return super.getChildren(object);
 	}
 
 	@Override
@@ -64,8 +40,23 @@ public class ProjectItemProvider extends org.eclipse.epf.library.edit.category.C
 	}
 
 	@Override
-	protected void collectNewChildDescriptors(@SuppressWarnings("rawtypes") Collection newChildDescriptors, Object object) {
+	public void collectNewChildDescriptors(@SuppressWarnings("rawtypes") Collection newChildDescriptors, Object object) {
 		// no children
 	}
 
+	@Override
+	public boolean matches(Object object) {
+		return ProjectHelper.isProject(object);
+	}
+
+	@Override
+	public void setAdapterFactory(AdapterFactory adapterFactory) {
+		if (adapterFactory == null) {
+			throw new NullPointerException("Adapter factory should not be null");
+		}
+		if (this.adapterFactory!=null) {
+			throw new IllegalStateException(String.format("Adapter factory already set: %s, new: %s", this.adapterFactory, adapterFactory));
+		}
+		this.adapterFactory = adapterFactory;
+	}
 }

@@ -14,5 +14,12 @@
             id="Techniques">
       </provider>
    </extension>
+   <extension
+         point="eu.tanov.epf.itemprovider.CustomCategoriesItemProviders">
+      <provider
+            class="eu.tanov.epf.pv.types.technique.ui.provider.TechniqueItemProvider"
+            id="TechniqueItemProvider">
+      </provider>
+   </extension>
 
 </plugin>

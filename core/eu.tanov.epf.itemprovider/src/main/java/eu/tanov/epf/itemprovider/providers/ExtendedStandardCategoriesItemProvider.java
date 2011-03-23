@@ -14,14 +14,11 @@ import org.eclipse.epf.library.edit.category.StandardCategoriesItemProvider;
 import org.eclipse.epf.library.edit.util.ExtensionManager;
 
 import eu.tanov.epf.itemprovider.extension.ExtendedItemProvider;
+import eu.tanov.epf.itemprovider.factory.ExtendedItemProviderAdapterFactory;
 
 public class ExtendedStandardCategoriesItemProvider extends StandardCategoriesItemProvider {
 	private static final String EXTENSION_POINT_NAME = "StandardCategoriesItemProviders";
-	/**
-	 * TODO move to common space or get from somewhere else?
-	 */
-	private static final String PLUGIN_ID = "eu.tanov.epf.itemprovider";
-	
+
 	private static class ContributionsComparator implements Comparator<ExtendedItemProvider> {
 		@Override
 		public int compare(ExtendedItemProvider arg0, ExtendedItemProvider arg1) {
@@ -57,7 +54,7 @@ public class ExtendedStandardCategoriesItemProvider extends StandardCategoriesIt
 	}
 	private List<ExtendedItemProvider> getAllExtensions() {
 		if (allProviders == null) {
-			allProviders = ExtensionManager.getExtensions(PLUGIN_ID, EXTENSION_POINT_NAME, ExtendedItemProvider.class);
+			allProviders = ExtensionManager.getExtensions(ExtendedItemProviderAdapterFactory.PLUGIN_ID, EXTENSION_POINT_NAME, ExtendedItemProvider.class);
 			//compare contributions
 			Collections.sort(allProviders, comparator);
 		}

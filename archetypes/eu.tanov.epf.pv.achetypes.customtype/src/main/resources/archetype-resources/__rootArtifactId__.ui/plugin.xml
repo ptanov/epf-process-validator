@@ -14,5 +14,12 @@
             id="${typeNamePlural}">
       </provider>
    </extension>
+   <extension
+         point="eu.tanov.epf.itemprovider.CustomCategoriesItemProviders">
+      <provider
+            class="eu.tanov.epf.pv.types.${typeNamePackage}.ui.provider.${typeName}ItemProvider"
+            id="${typeName}ItemProvider">
+      </provider>
+   </extension>
 
 </plugin>

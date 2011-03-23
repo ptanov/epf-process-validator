@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="StandardCategoriesItemProviders" name="Standard Categories Item Providers" schema="schema/StandardCategoriesItemProviders.exsd"/>
+   <extension-point id="CustomCategoriesItemProviders" name="Custom Categories Item Providers" schema="schema/CustomCategoriesItemProviders.exsd"/>
    <extension
          point="org.eclipse.epf.library.edit.adapterFactories">
       <factory

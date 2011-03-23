@@ -70,28 +70,6 @@ public class StandardsCategoryItemProvider extends TransientCategoryPackageItemP
 	}
 
 	@Override
-	public Collection<?> getChildren(Object object) {
-		final Collection<?> children = super.getChildren(object);
-
-		for (Object next : children) {
-			if (next instanceof CustomCategory) {
-				final CustomCategory customCategory = (CustomCategory) next;
-
-				final StandardItemProvider itemProvider = new StandardItemProvider(adapterFactory);
-				customCategory.eAdapters().add(itemProvider);
-
-				// TODO issue #56 use adapter factory extension
-				// final ILibraryItemProvider itemProvider = (ILibraryItemProvider) TngUtil
-				// .getBestAdapterFactory(adapterFactory).adapt(customCategory,
-				// ITreeItemContentProvider.class);
-
-				itemProvider.setParent(object);
-			}
-		}
-		return children;
-	}
-
-	@Override
 	public void setDefaultName(Object obj) {
 		if (obj instanceof CustomCategory) {
 			@SuppressWarnings("unchecked")

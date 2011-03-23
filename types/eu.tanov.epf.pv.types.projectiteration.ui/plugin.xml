@@ -7,4 +7,11 @@
             class="eu.tanov.epf.pv.types.projectiteration.ui.extension.ProjectIterationPageProviderExtension">
       </editorPage>
    </extension>
+   <extension
+         point="eu.tanov.epf.itemprovider.CustomCategoriesItemProviders">
+      <provider
+            class="eu.tanov.epf.pv.types.projectiteration.ui.provider.ProjectIterationItemProvider"
+            id="ProjectIterationItemProvider">
+      </provider>
+   </extension>
 </plugin>

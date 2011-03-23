@@ -14,5 +14,12 @@
             id="ProjectPractices">
       </provider>
    </extension>
+   <extension
+         point="eu.tanov.epf.itemprovider.CustomCategoriesItemProviders">
+      <provider
+            class="eu.tanov.epf.pv.types.projectpractice.ui.provider.ProjectPracticeItemProvider"
+            id="ProjectPracticeItemProvider">
+      </provider>
+   </extension>
 
 </plugin>

@@ -6,10 +6,21 @@
    <objectContribution id="eu.tanov.epf.pv.ui.wizards.popupMenus"
       objectClass="org.eclipse.emf.ecore.EObject">
       <action
-         id="eu.tanov.epf.pv.ui.wizards.action.CreateSimpleValidationConstraintAction" 
+         id="eu.tanov.epf.pv.ui.wizards.action.CreateSimpleValidationConstraintActionForEObject" 
          label="%action_create_validationConstraint"
          class="eu.tanov.epf.pv.ui.wizards.action.CreateSimpleValidationConstraintAction"> 
       </action> 
    </objectContribution> 
+   
+   <objectContribution id="eu.tanov.epf.pv.ui.wizards.popupMenus"
+      objectClass="org.eclipse.epf.library.edit.FeatureValueWrapperItemProvider">
+      <action
+         id="eu.tanov.epf.pv.ui.wizards.action.CreateSimpleValidationConstraintActionForWrapped" 
+         label="%action_create_validationConstraint"
+         class="eu.tanov.epf.pv.ui.wizards.action.CreateSimpleValidationConstraintAction"> 
+      </action> 
+   </objectContribution> 
+   
+   
 </extension>
 </plugin>

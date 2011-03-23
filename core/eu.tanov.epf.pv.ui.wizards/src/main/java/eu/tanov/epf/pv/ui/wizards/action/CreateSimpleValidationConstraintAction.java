@@ -1,6 +1,7 @@
 package eu.tanov.epf.pv.ui.wizards.action;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.WrapperItemProvider;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -32,13 +33,21 @@ public class CreateSimpleValidationConstraintAction implements IObjectActionDele
 
 	private static IStructuredSelection wrapSelection(IStructuredSelection selection) {
 		final CustomTypeHandlersService service = WizardsActivator.getDefault().getService(CustomTypeHandlersService.class);
-		final Object firstElement = selection.getFirstElement();
+		final Object firstElement = getFirstElement(selection);
 		if (!(firstElement instanceof EObject)) {
 			throw new IllegalStateException("Selection should be from EObjects, not " + firstElement);
 		}
 		final EObject wrapped = service.wrapObjectIfNeeded((EObject) firstElement);
 
 		return new StructuredSelection(wrapped);
+	}
+
+	private static Object getFirstElement(IStructuredSelection selection) {
+		Object result = selection.getFirstElement();
+		if (result instanceof WrapperItemProvider) {
+			result = ((WrapperItemProvider) result).getValue();
+		}
+		return result;
 	}
 
 	@Override

@@ -14,5 +14,12 @@
             id="Standards">
       </provider>
    </extension>
+   <extension
+         point="eu.tanov.epf.itemprovider.CustomCategoriesItemProviders">
+      <provider
+            class="eu.tanov.epf.pv.types.standard.ui.provider.StandardItemProvider"
+            id="StandardItemProvider">
+      </provider>
+   </extension>
 
 </plugin>
